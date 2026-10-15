@@ -1,13 +1,9 @@
 # Agent rules
 
-`SYSTEM.md` maps this source repository. `project` defines document ownership; `writing-style`
-owns prose inside each artifact.
-
-1. Keep skill resources and local links inside their own directory, because installers copy skills independently. `scripts/check.sh` checks this. Revisit when the installer resolves shared resources.
-2. Keep prose rules in `writing-style` and artifact structure in its owning skill, so each rule has one owner. Revisit when two artifact skills need the same structure.
-3. Declare companions in `skill-dependencies.json` and keep installed metadata equal, because dependencies can come from another source. `scripts/check.sh` checks this. Revisit when the installer resolves companion metadata itself.
-4. Add public files to `export-allowlist.json` after reviewing their full contents, because the publication boundary is explicit. `scripts/check.sh` checks it. Revisit when another reviewed publication mechanism replaces the export.
-5. Keep upstream notices inside adapted skill directories, because selected installation must preserve attribution. Revisit when a dependency becomes an external skill.
-6. Keep plan confirmation and merges with the user: a drafted or merged plan does not authorize implementation. Revisit when the user explicitly delegates that authority.
-7. Let `clarify`, `critique`, `to-outcomes`, `implement`, and `evaluate` own publication; workflow skills compose them and `wf` owns fresh-session routing. Revisit when `wf` gains finer permission modes.
-8. Record rules here with their reason and revisit condition; keep a longer argument in its plan, so git preserves the history without a separate decision-record directory.
+1. Keep each skill's resources and local links inside its directory, because installers copy skills independently. `node scripts/check.mjs` checks this. Revisit when installers resolve shared resources.
+2. Declare companions in each skill's `skill-dependencies.json`, because deployment reads installed metadata. Declare external sources in `external-dependencies.json`. Revisit when installers resolve companions themselves.
+3. Keep prose rules in `writing-style` and artifact structure in its owning skill, so each rule has one owner. Revisit when two artifacts need the same structure.
+4. Keep applicable upstream notices inside adapted skill directories, because selected installation must preserve attribution. Revisit when an adaptation becomes an external dependency.
+5. Keep publication thin: skills, required resources, consumer documentation, and one structural check. Migration and deployment tooling have separate owners. Revisit when a public consumer needs another repository tool.
+6. Keep plan confirmation and merges with the user unless explicitly authorized, because publication does not establish consent. Revisit when the user delegates that authority.
+7. Let artifact skills own publication, workflow skills compose them, and wf own fresh-session routing, so direct and delegated runs behave alike. Revisit when wf gains finer permission modes.

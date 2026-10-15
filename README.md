@@ -50,11 +50,10 @@ The installer fetches that revision; updating the revision is a separate decisio
 | `workflow-plan` | Compose planning and fresh-session critique before confirmation |
 | `writing-style` | Apply prose rules by documentation, instruction, and correspondence register |
 
-[skill-dependencies.json](skill-dependencies.json) is the companion map. Install companions
-recursively alongside the selected skill. The map includes conditional companions, such as
-`gh-stack` for stacked work, so the complete composition can execute every documented branch.
-The Skills CLI installs the skills you select; it does not resolve this companion map.
-Each installed skill carries a matching `skill-dependencies.json` for deployment preflight.
+Each skill's `skill-dependencies.json` names its companions. Install them recursively alongside
+the selected skill. Conditional companions, such as `gh-stack` for stacked work, support every
+documented branch. The Skills CLI installs only the skills you select; it does not resolve this
+metadata automatically. Deployment tools can read the same metadata from installed skills.
 
 `gh-stack` is maintained separately. Install it from its upstream source when the companion map
 requires it:
@@ -76,30 +75,22 @@ Stacked work needs the [gh-stack extension](https://github.com/github/gh-stack) 
 [Workflow CLI](https://github.com/pepdevs/workflow), available as `wf`, and a configured agent
 harness. Standalone planning, implementation, and review skills can run in the invoking session.
 
-Skill helpers use Node.js 22 or newer. Repository checks also need Python 3.10 or newer.
+Skill helpers and the repository check use Node.js 22 or newer.
 `retain` asks for the user's vault and follows its templates. Ticket publication uses the active
 tracker integration; browser verification uses an available browser harness.
 These integrations and their authentication belong to the consumer's environment.
 
-## Check and maintain
+## Check
 
-The checks run offline and need no private repository or service credentials:
-
-```bash
-bash scripts/check.sh
+```sh
+node scripts/check.mjs
 ```
 
-On Windows, use `pwsh -File scripts/check.ps1` with `python` and `node` on `PATH`.
-The check validates approved files, scans their complete text for personal paths, credential signatures, and private network hosts,
-verifies portable skill links and companion declarations, and runs the existing
-protocol, adapter, and palette fixtures. An optional external `--denylist` JSON array adds private literal terms during export review.
-Keep that file outside the public tree. Heuristic scanning supplements review; it cannot prove
-that arbitrary prose contains no confidential fact.
+One offline check validates skill names, descriptions, companion declarations, and portable local
+resource links. CI runs the same command. This repository contains installable skills and their
+resources; machine deployment and migration tooling stay outside its published tree.
 
-For optional token-size reporting, `uv run scripts/skill-size.py` installs `tiktoken` from the
-script's dependency metadata. Run `uv run scripts/skill-size.py --help` for file selection.
-See [docs/use-cases.md](docs/use-cases.md) for the checks' consumer paths and the reviewed export
-procedure. [AGENTS.md](AGENTS.md) defines editing rules; [SYSTEM.md](SYSTEM.md) maps the files.
+[AGENTS.md](AGENTS.md) defines editing rules; [SYSTEM.md](SYSTEM.md) maps the files.
 
 ## License
 

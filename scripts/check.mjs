@@ -10,29 +10,21 @@ export function validateRepository(root) {
         try { return JSON.parse(fs.readFileSync(path.join(root, name), 'utf8')); }
         catch (error) { failures.push(`${name}: ${error.message}`); return {}; }
     };
-    const compositions = read('skill-dependencies.json');
     const external = read('external-dependencies.json').skills ?? {};
     const skillRoot = path.join(root, 'skills');
-    for (const [name, dependencies] of Object.entries(compositions)) {
-        if (!fs.existsSync(path.join(skillRoot, name, 'SKILL.md'))) failures.push(`${name}: missing skill ${name}`);
-        if (!Array.isArray(dependencies) || dependencies.some((dependency) => !/^[a-z0-9-]+$/.test(dependency))) {
+    const directories = fs.readdirSync(skillRoot, { withFileTypes: true });
+    const names = new Set(directories.filter(entry => entry.isDirectory()).map(entry => entry.name));
+    for (const name of names) {
+        if (!fs.existsSync(path.join(skillRoot, name, 'SKILL.md'))) failures.push(`${name}: missing SKILL.md`);
+        const dependencies = read(`skills/${name}/skill-dependencies.json`);
+        if (!Array.isArray(dependencies) || dependencies.some(dependency => typeof dependency !== 'string' || !/^[a-z0-9-]+$/.test(dependency))) {
             failures.push(`${name}: dependencies must be skill identities`); continue;
         }
         for (const required of dependencies) {
-            if (Object.hasOwn(compositions, required)) {
-                if (!fs.existsSync(path.join(skillRoot, required, 'SKILL.md'))) failures.push(`${name}: missing skill ${required}`);
-            } else if (!external[required]?.repository || !external[required]?.path) {
-                failures.push(`${name}: missing skill ${required}; declare an external source`);
+            if (!names.has(required) && (!external[required]?.repository || !external[required]?.path)) {
+                failures.push(`${name}: missing companion ${required}; declare its external source`);
             }
         }
-        const file = path.join(skillRoot, name, 'skill-dependencies.json');
-        if (fs.existsSync(file)) {
-            try {
-                if (JSON.stringify(JSON.parse(fs.readFileSync(file, 'utf8'))) !== JSON.stringify(dependencies)) {
-                    failures.push(`${name}: installed dependency declaration differs from repository map`);
-                }
-            } catch { failures.push(`${name}: invalid installed dependency declaration`); }
-        } else failures.push(`${name}: missing installed dependency declaration`);
     }
     function inspect(directory, home) {
         for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -59,9 +51,8 @@ export function validateRepository(root) {
             }
         }
     }
-    for (const entry of fs.readdirSync(skillRoot, { withFileTypes: true })) {
+    for (const entry of directories) {
         if (!entry.isDirectory()) { failures.push(`${entry.name}: expected a skill directory`); continue; }
-        if (!Object.hasOwn(compositions, entry.name)) failures.push(`${entry.name}: missing dependency declaration`);
         inspect(path.join(skillRoot, entry.name), path.join(skillRoot, entry.name));
     }
     return failures;
