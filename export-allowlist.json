@@ -311,9 +311,8 @@
     },
     {
       "path": "skills/delegate/scripts/validate-task-capsule.mjs",
-      "origin": "source",
-      "mode": "0644",
-      "sha256": "88d3f4eb744547834ed9666a88ee4181d671b6be4847cc37313bbd9339d105d7"
+      "origin": "public",
+      "mode": "0644"
     },
     {
       "path": "skills/delegate/skill-dependencies.json",

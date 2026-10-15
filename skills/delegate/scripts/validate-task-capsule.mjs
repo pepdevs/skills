@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Validate a task capsule before wf run launches it: readable text within 65,536 bytes.
 import { readFile } from 'node:fs/promises';
+import { pathToFileURL } from 'node:url';
 
 export function capsuleProblems(body) {
     const problems = [];
@@ -18,7 +19,7 @@ async function main() {
     process.stdout.write(`${JSON.stringify({ status: 'ok', bytes: bytes.length })}\n`);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
     main().catch((error) => {
         process.stderr.write(`task capsule invalid: ${error.message}\n`);
         process.exitCode = 1;
