@@ -1,0 +1,3 @@
+interface:
+  display_name: "Project"
+  short_description: "Keep a repository's documents, use cases, tests and layout in one shape"

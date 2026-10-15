@@ -1,0 +1,4 @@
+interface:
+  display_name: "Critique"
+  short_description: "Challenge a plan and its architecture"
+  default_prompt: "Use $critique to challenge this plan, compare design and architecture alternatives, and publish evidence-supported corrections and findings."

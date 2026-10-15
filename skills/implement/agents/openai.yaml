@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implement"
+  short_description: "Implement an outcome issue"
+  default_prompt: "Use $implement to implement this outcome and publish its PR."

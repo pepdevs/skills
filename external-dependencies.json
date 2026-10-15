@@ -1,0 +1,88 @@
+{
+  "skills": {
+    "gh-stack": {
+      "repository": "https://github.com/github/gh-stack",
+      "path": "skills/gh-stack",
+      "when": "Required for stacked branches; omit only when using a skill exclusively without stacked work.",
+      "commands": [
+        "gh",
+        "gh stack"
+      ]
+    }
+  },
+  "commands": {
+    "git": {
+      "source": "https://git-scm.com/",
+      "usedBy": [
+        "clarify",
+        "critique",
+        "delegate",
+        "git",
+        "implement",
+        "record-improvement",
+        "ticket-authoring",
+        "workflow-build"
+      ]
+    },
+    "gh": {
+      "source": "https://cli.github.com/",
+      "usedBy": [
+        "clarify",
+        "critique",
+        "evaluate",
+        "git",
+        "implement",
+        "record-improvement",
+        "to-outcomes",
+        "workflow-build"
+      ]
+    },
+    "gh stack": {
+      "source": "https://github.com/github/gh-stack",
+      "usedBy": [
+        "git",
+        "implement",
+        "record-improvement",
+        "to-outcomes",
+        "workflow-build"
+      ]
+    },
+    "wf": {
+      "source": "https://github.com/pepdevs/workflow",
+      "usedBy": [
+        "delegate",
+        "workflow-plan",
+        "workflow-build"
+      ],
+      "note": "External Workflow CLI; configure an authenticated supported agent harness."
+    },
+    "node": {
+      "source": "https://nodejs.org/",
+      "minimumVersion": "22",
+      "usedBy": [
+        "clarify",
+        "data-visualization",
+        "delegate",
+        "evaluate",
+        "record-improvement",
+        "to-outcomes",
+        "workflow-build"
+      ]
+    },
+    "python3": {
+      "source": "https://www.python.org/",
+      "minimumVersion": "3.10",
+      "usedBy": [
+        "repository export and checks",
+        "optional skill-size.py"
+      ]
+    },
+    "uv": {
+      "source": "https://docs.astral.sh/uv/",
+      "usedBy": [
+        "optional skill-size.py"
+      ],
+      "note": "Runs PEP 723 dependency metadata; tiktoken >=0.12.0,<1."
+    }
+  }
+}

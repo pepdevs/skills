@@ -1,0 +1,3 @@
+interface:
+  display_name: "Writing Style"
+  short_description: "Writing rules per register"

@@ -1,0 +1,669 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": ".github/workflows/check.yml",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": ".gitignore",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "AGENTS.md",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "LICENSE",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "NOTICE.md",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "README.md",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "SYSTEM.md",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "docs/golden/inventory.txt",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "docs/use-cases.md",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "export-allowlist.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "external-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "scripts/check.ps1",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "scripts/check.sh",
+      "origin": "public",
+      "mode": "0755"
+    },
+    {
+      "path": "scripts/export-public.py",
+      "origin": "public",
+      "mode": "0755"
+    },
+    {
+      "path": "scripts/public-check.py",
+      "origin": "public",
+      "mode": "0755"
+    },
+    {
+      "path": "scripts/skill-size.py",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "189078e268234797410de40561d65081e4ee7c6c9111b194d7cb094b78a9617b"
+    },
+    {
+      "path": "scripts/tests/clarify-plan-pr.test.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "548cd261608e17a492e6c1f4bd9445a2e9373d1f24bbae9ca635f9530be68010"
+    },
+    {
+      "path": "scripts/tests/improvement-file.test.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "f56b07c2469ab9defa033b602568092c5ca3d74f60838c473ab96c2144cc152b"
+    },
+    {
+      "path": "scripts/tests/modular-delivery.test.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "06cc2f82b2a3d9675f40b91a578541cf59f98b80797dbf7c4e5959f77ddda3db"
+    },
+    {
+      "path": "scripts/tests/outcome-size.test.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "c9003a3ff035e3468d1b1a2035cad84cd2a5ca354d31cd49b03d6f8bcdf47888"
+    },
+    {
+      "path": "scripts/tests/palette.test.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "d73d0da82711032efa294f0d7405ad5c211369a11f4a93e81e70275b11d01b9a"
+    },
+    {
+      "path": "scripts/tests/protocol.test.mjs",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "scripts/tests/task-capsule.test.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "f78c35fad93dc4beb1e8ca7aa18b7a0ecf20ffd09bd6e4e52caa79dab0e52259"
+    },
+    {
+      "path": "scripts/validate-protocol.mjs",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/clarify/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "a7fa570fabb4a20da2aee04d72d683b4981f547720596c377aa9997464417b32"
+    },
+    {
+      "path": "skills/clarify/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "1ad7fef61907b5a5406e3cc48e5f343322fbe354cdefcb8a0db46c335dad387f"
+    },
+    {
+      "path": "skills/clarify/references/plan-file.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "ff2a5b029cdad31330816a3e65db1a851ec103d77b73c4fcd0fd8e0e288bbc01"
+    },
+    {
+      "path": "skills/clarify/scripts/validate-plan.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "49430faf9359942428bc5c396a9e3642740861cc51f88b64aef0d7342af38534"
+    },
+    {
+      "path": "skills/clarify/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/create-verification-skill/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "31440a5cacdf2370c7fd47bac60724c37d3918743d5b75b4b7fa252fca162c32"
+    },
+    {
+      "path": "skills/create-verification-skill/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "a8b03eb6cfe46ca7daaf4bf5154939db475c9983fdd16ecab5a68f9534d22b2a"
+    },
+    {
+      "path": "skills/create-verification-skill/references/feature-map-example/README.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "ae852337440db6f8c98bd9e58f897952ab7f8db7a3e7ba215652b6014b28e96c"
+    },
+    {
+      "path": "skills/create-verification-skill/references/feature-map-example/create-note.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "644a44c74f35d38c2feb7cd05a0121fdebbb623e8dc376c185b565a581d1ccf7"
+    },
+    {
+      "path": "skills/create-verification-skill/references/feature-map-example/search.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "6e87b9e7f2791a7776ba1bb83f371cd285c306c67f19d245cc4dd6ca3015c823"
+    },
+    {
+      "path": "skills/create-verification-skill/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/critique/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "61f83aa84d68a41da652c52eab13003dd4cae246dca6cfac518ac426aca41839"
+    },
+    {
+      "path": "skills/critique/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "a5077fdb71d911b257540c81e75fbe699a9a48442590f1640bf30d8f2bba1263"
+    },
+    {
+      "path": "skills/critique/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/data-visualization/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "a6dcf063b8e9d045ede7a6769239d4180535e5539acddaab819e2c6c08de750a"
+    },
+    {
+      "path": "skills/data-visualization/references/accessibility.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "8aab012799edbbf9644cbd157ad5a05dbe67751f825106d03ee06173d74006f3"
+    },
+    {
+      "path": "skills/data-visualization/references/anti-patterns.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "e67474778be93e68dad86af22cd737f47cd33e1dc80ba741e01708937b49621e"
+    },
+    {
+      "path": "skills/data-visualization/references/choosing-a-form.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "1c9c1351e20e5122e6d2cf922ce500bce7aba5908164a05d28f97a338be344c7"
+    },
+    {
+      "path": "skills/data-visualization/references/dashboards.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "52c78709bca98a2ea4b648597b78c7f96cad0f9e90f07312e6bd76d341daf9f7"
+    },
+    {
+      "path": "skills/data-visualization/references/review-scenarios.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "99f878e58202d61ef9b5ac4185a6df3b730b8616c956a518e4ac8b32022e723b"
+    },
+    {
+      "path": "skills/data-visualization/references/standalone-html.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "31472fdb0547cfe90eb066b729336cf88a2b8998179d90adfe52fc60bdbaf206"
+    },
+    {
+      "path": "skills/data-visualization/references/visual-defaults.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "ffcd82bdf1b373e9c17a6862f73b20b5dee2578ae5fb7c7c53151ae8dfe3c647"
+    },
+    {
+      "path": "skills/data-visualization/scripts/validate-palette.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "a67446029f1aacb6509d0fd9969023005b0cd514f88e0737b230e0e27a0ea351"
+    },
+    {
+      "path": "skills/data-visualization/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/delegate/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "9422e25ce27554361fc40d75bc350f2d632afa69c0137f3631eb9aa4fc570708"
+    },
+    {
+      "path": "skills/delegate/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "b05c66ca0c7795cf52296a3ee529bb2662f16fe93513561bb78f7d8a7cbc996a"
+    },
+    {
+      "path": "skills/delegate/assets/task-capsule.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "91bfa50e744e29fc009312c00ab4c5868932daa278b7c6a3416bc0c4cb74f255"
+    },
+    {
+      "path": "skills/delegate/references/routing.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "f3c940fb7f540a3e997e7c983c08a4a7d87a7ee6acaccfaeecea09e0348cce71"
+    },
+    {
+      "path": "skills/delegate/references/skill-adapter.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "6911a46f4c5cfbf1f4c1532fb877dcc09448f5aeeb927397497d29cc88c62b9e"
+    },
+    {
+      "path": "skills/delegate/scripts/skill-adapter.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "28980972903512c2920a60e4d529a14affbe47ee5bf48fd0450eda0c8be661ee"
+    },
+    {
+      "path": "skills/delegate/scripts/validate-task-capsule.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "88d3f4eb744547834ed9666a88ee4181d671b6be4847cc37313bbd9339d105d7"
+    },
+    {
+      "path": "skills/delegate/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/evaluate/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "ccfd694edb5860acf6e80c65caf4db37bcf1cde1adf3caf59f48d405079e8a8a"
+    },
+    {
+      "path": "skills/evaluate/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "abaf4a9ad3fa02326bd9558b68bc2198d8029667aec75968fea16006189967f7"
+    },
+    {
+      "path": "skills/evaluate/references/acceptance.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "204aef27255f8c0f06f022c215beb55ef4a6d5fe45731693e73a432feef5e166"
+    },
+    {
+      "path": "skills/evaluate/references/external-and-batch.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "ec0218ca273aa331d7c686534d207561de07eb199aa537e95c13d65caac617b1"
+    },
+    {
+      "path": "skills/evaluate/references/rendered.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "2618369afc452f499663bdf4ef053a23fc600bf8091cfc38f55dfbfccccef5b4"
+    },
+    {
+      "path": "skills/evaluate/references/runtime.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "3e7d7e32725e072ab2dbe15c26cd3f9d4eb02d1143d1d1d53eb9ec2eb2ba15fb"
+    },
+    {
+      "path": "skills/evaluate/scripts/acceptance.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "023612d2b42c55485c60f607c8ff3d69e7e0698b73884fe636ac9afabe619660"
+    },
+    {
+      "path": "skills/evaluate/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/git/SKILL.md",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/git/resolvers/default.md",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/git/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/implement/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "d7086d1857b4f8addd01e3fa97bde314c2d337a48c8c1485d7042eb767d4dc4e"
+    },
+    {
+      "path": "skills/implement/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "2572f7065ba3b0c3e38ec330e2371e5d2c0bd49f14342f14f6ee09a9a53806a1"
+    },
+    {
+      "path": "skills/implement/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/pr/SKILL.md",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/pr/licenses/humanlayer-MIT.txt",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/pr/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/project/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "4aee3052780bc88444909c8329f95f85c615c5dffd3a838b966da4b924a1227e"
+    },
+    {
+      "path": "skills/project/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "50c53662ac936b09e779d4b231b4a008b7e13fcfd5512d98aab9429256af4e39"
+    },
+    {
+      "path": "skills/project/references/agents.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "d5b88d9be69850594035d5a04b346715f1ccf6a75ec6e5753d48363ad65249db"
+    },
+    {
+      "path": "skills/project/references/context.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "452b5ebb91a3cadf60e3555cfb2dd1edc463a194c6d99791fd4c312b961338e6"
+    },
+    {
+      "path": "skills/project/references/layout.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "33e885593094fcd1411caefdc47f360ff140b92d3d84090d1d6582df1cde9997"
+    },
+    {
+      "path": "skills/project/references/policy.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "689fb4bad5e8687403bf36afac0a140d6bf55ae811739557273fccb9732f2c94"
+    },
+    {
+      "path": "skills/project/references/tests.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "cbf20155ccf6dba9d61d9f1ea1d6d6ef3fee21c82cbe17db6d0bb78e20ae9e13"
+    },
+    {
+      "path": "skills/project/references/use-cases.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "b320366e5054b661d4b0a0ac27180264d0e4cc7654b4f4961feef98827ef8b18"
+    },
+    {
+      "path": "skills/project/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/record-improvement/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "650969650cd0e2346928c08e88289785d26388caf0e7425dbce78606f29da9cc"
+    },
+    {
+      "path": "skills/record-improvement/assets/improvement.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "5cb3176a8a305a128c39954a802ed8d817504449e7785040bd4a755d0754fc60"
+    },
+    {
+      "path": "skills/record-improvement/references/improvement-file.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "0008da3e74643d6189f7c6edd288c39fa57916d88f2f659c86008ddfbb776d53"
+    },
+    {
+      "path": "skills/record-improvement/scripts/validate-new-improvement.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "604f87411aef480152627b6b55c447b50e0e0bf349e1004c9cd2862486826d41"
+    },
+    {
+      "path": "skills/record-improvement/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/retain/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "aae3eb3376072d4cdf0905b512d9937e5383cdbb624ffd27d4f2a3401b4e58e5"
+    },
+    {
+      "path": "skills/retain/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "cb40b7741d5b731f8b02d19e4777bd1e94b68bfc4c6281a44b1333e8c85376c5"
+    },
+    {
+      "path": "skills/retain/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/ticket-authoring/SKILL.md",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/ticket-authoring/licenses/matt-pocock-MIT.txt",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/ticket-authoring/references/comment.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "81f4d4f6fca69ed496cf60aafc59e1506819076c13d0d275ec7669c904f2b1ff"
+    },
+    {
+      "path": "skills/ticket-authoring/references/links.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "9c505986c546dd96289e4ca424cb28dae055cc4dfc425e0795601a1d679c81b9"
+    },
+    {
+      "path": "skills/ticket-authoring/references/slicing.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "ef3630ee50ca5369400ef63d0fbed2d26d8ab5d5a434cc8650d356e1c0a57b1c"
+    },
+    {
+      "path": "skills/ticket-authoring/references/ticket.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "5489c69e7e64f9dc8648b63988cdf1d1ab561454e6358756dd0138bae7fddad7"
+    },
+    {
+      "path": "skills/ticket-authoring/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/to-outcomes/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "21f759e1e05c447f94a72ebaf3521e46bb8a1fbd8c445c4056d46490913a3b45"
+    },
+    {
+      "path": "skills/to-outcomes/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "bbe2736a71832087473831a5d1247976dbd6f6f38066fc10f6d0e777851b63c8"
+    },
+    {
+      "path": "skills/to-outcomes/references/outcome-contract.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "25a9d319bc45dc2db8ba15a587e6e567713d035e06a3ddd5126cf31ad0a938fd"
+    },
+    {
+      "path": "skills/to-outcomes/scripts/outcomes.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "f781e9fdb084a2ffdbce4683133d5f14bbb17b64d7c085bd7ee0fcb8b9cbb1a5"
+    },
+    {
+      "path": "skills/to-outcomes/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/workflow-build/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "ec0ffb3aaa5244330a2971dfa5e00787285aaabd0376dba562c56d95e46c2b6d"
+    },
+    {
+      "path": "skills/workflow-build/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "307ce8c481129f4202d4bdc4c45e3adc16a9983e2dbefcffdff710d8bf7c3b81"
+    },
+    {
+      "path": "skills/workflow-build/references/execution.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "d3d30570bbe5d0f4943e057497b73fe428b631111a6c84088df1cc98ca5921a2"
+    },
+    {
+      "path": "skills/workflow-build/references/queue.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "966a0cf39a6e734121db8b390af69a1c725756f7335aeed32dc29dd31fceaaf7"
+    },
+    {
+      "path": "skills/workflow-build/scripts/queue.mjs",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "af315497eefb7ef5b8903171bcaab38abc0d94531b6d11c731e448907d3eebd0"
+    },
+    {
+      "path": "skills/workflow-build/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/workflow-plan/SKILL.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "ab45abf587e6d0510fb26c9ff1ad569af95a3643c72859fcd70f3f5cd0186a39"
+    },
+    {
+      "path": "skills/workflow-plan/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "bd86e87f1849c44e245a8a5a108c28fb9c4f06a3564817ea280eb0c1625be26a"
+    },
+    {
+      "path": "skills/workflow-plan/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/writing-style/SKILL.md",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/writing-style/agents/openai.yaml",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "013aa0ea6692d22d1f2d796773a9e7e537853b6ae410cb338b13d24f317000e8"
+    },
+    {
+      "path": "skills/writing-style/document-architecture.md",
+      "origin": "source",
+      "mode": "0644",
+      "sha256": "1ce58826b6bb726896a5fb268b5953ffa3d552931fe411e3119b6154ca97ab9d"
+    },
+    {
+      "path": "skills/writing-style/licenses/humanizer-MIT.txt",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/writing-style/licenses/pstack-MIT.txt",
+      "origin": "public",
+      "mode": "0644"
+    },
+    {
+      "path": "skills/writing-style/skill-dependencies.json",
+      "origin": "public",
+      "mode": "0644"
+    }
+  ]
+}
