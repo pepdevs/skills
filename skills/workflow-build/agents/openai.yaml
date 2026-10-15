@@ -1,0 +1,4 @@
+interface:
+  display_name: "Workflow Build"
+  short_description: "Build bounded outcomes with fresh sessions through wf"
+  default_prompt: "Use $workflow-build for this plan."

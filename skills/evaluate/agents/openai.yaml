@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evaluate"
+  short_description: "Review a PR or deliverable"
+  default_prompt: "Use $evaluate to evaluate this artifact and publish the relevant evidence and verdict."
