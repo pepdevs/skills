@@ -51,8 +51,7 @@ node <clarify-skill>/scripts/validate-plan.mjs <plan-file>
 ```
 
 Read the remote PR back and verify its plan link and revision. Report its URL and unresolved choices.
-`critique` can review this proposal independently. `workflow-plan` composes this skill with delegated
-critique; clarify itself does not require Workflow or launch a critic.
+`critique` can review this proposal independently. Clarify itself launches no critic.
 
 ## Confirm a revision
 

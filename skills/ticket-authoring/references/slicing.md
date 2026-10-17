@@ -2,8 +2,8 @@
 
 Turn a confirmed plan into the smallest coherent ticket set that can deliver it. One ticket is a
 valid result when the plan is already atomic. Use this reference for a tracker-backed work queue.
-For GitHub outcome issues run through `wf`, `to-outcomes` replaces the ticket-size signal with
-session sizing and adds publication.
+When agents build the tickets, size each one to fit a single fresh session, including its
+verification, and split any that would not.
 
 ## Read the source
 

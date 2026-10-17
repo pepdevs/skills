@@ -1,3 +1,0 @@
-interface:
-  display_name: "Delegate"
-  short_description: "Run a fresh-context role with a chosen model through wf"

@@ -37,7 +37,7 @@ nothing for it. Metadata validation does not enforce prose structure.
   decisions and the alternatives that explain them here.
 - **Increments:** List numbered steps in delivery order. Give each its observable result and how it
   is checked. Mark a finished increment with the pull request or file that holds it. Increments
-  set order and scope; `to-outcomes` slices them into session-sized outcome issues.
+  set order and scope; `ticket-authoring` slices them into tickets.
 - **Scope and boundaries:** State included work, exclusions, constraints, and explicit deferrals.
   Explain the effects of deferrals and any human decision boundaries.
 - **Open questions:** Keep unresolved decisions and assumptions visible while the plan remains

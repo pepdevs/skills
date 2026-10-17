@@ -1,6 +1,6 @@
 # Skills
 
-Reusable agent skills for planning, implementation, review, Git workflows, writing, and data
+Reusable agent skills for planning, plan review, Git, tickets, repository order, writing, and data
 visualization. Each directory under `skills/` is an installable skill with its own resources.
 
 ## Install
@@ -35,14 +35,9 @@ The installer fetches that revision; updating the revision is a separate decisio
 | `clarify` | Interview for a plan and publish its draft and explicit confirmation |
 | `critique` | Review a plan and publish evidence-supported corrections |
 | `data-visualization` | Design and inspect charts, tables, and operational dashboards |
-| `delegate` | Route and launch fresh agent sessions through Workflow |
-| `evaluate` | Review an implementation or inspect its consumed form |
 | `git` | Apply the author's branch, commit, and pull-request preferences |
-| `implement` | Deliver one outcome issue and its implementation pull request |
 | `project` | Keep repository documents, structure, policies, and proof coherent |
 | `ticket-authoring` | Write tracker-independent tickets, criteria, and comments |
-| `to-outcomes` | Publish bounded GitHub outcome issues from a confirmed plan |
-| `workflow-plan` | Compose planning and fresh-session critique before confirmation |
 | `writing-style` | Apply prose rules by documentation, instruction, and correspondence register |
 
 Each skill's `skill-dependencies.json` names its companions. Install them recursively alongside
@@ -66,9 +61,8 @@ override them.
 [external-dependencies.json](external-dependencies.json) names command sources and the skills
 that use them. Publication needs Git and authenticated [GitHub CLI](https://cli.github.com/).
 Stacked work needs the [gh-stack extension](https://github.com/github/gh-stack) and its skill.
-`delegate` and `workflow-plan` need the external
-[Workflow CLI](https://github.com/pepdevs/workflow), available as `wf`, and a configured agent
-harness. Standalone planning, implementation, and review skills can run in the invoking session.
+The `delegate` skill, which runs these skills with another model through `wf`, lives in
+[pepdevs/workflow](https://github.com/pepdevs/workflow).
 
 Skill helpers and the repository check use Node.js 22 or newer.
 Ticket publication uses the active tracker integration; browser verification uses an available

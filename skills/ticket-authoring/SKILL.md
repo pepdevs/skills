@@ -13,8 +13,7 @@ owns the prose. `git` owns branch, commit, and pull-request conventions.
 
 ## Route the task
 
-This skill owns slicing and ticket content for every tracker. For GitHub outcome issues run
-through `wf`, `to-outcomes` adds session sizing, metadata, the overview issue, and publication.
+This skill owns slicing and ticket content for every tracker.
 
 Read `references/links.md` when the ticket or comment cites another artifact. Also read the file
 for the task at hand.
