@@ -9,8 +9,8 @@ description: Run a critic, builder, or evaluator in a fresh session with a chose
 caller supplies the bounded task and reconciles the result. Apply `writing-style` to every capsule,
 report, and publication.
 
-For `workflow-plan` or `workflow-build`, read [the installed-skill adapter](references/skill-adapter.md).
-It invokes `critique`, `implement`, or `evaluate` with their own publication authority.
+To run `critique`, `implement`, or `evaluate`, read [the installed-skill adapter](references/skill-adapter.md).
+The adapter keeps each skill's own publication authority.
 
 ## Choose the route
 

@@ -1,6 +1,6 @@
 # Installed-skill execution
 
-Use this adapter from `workflow-plan` and `workflow-build`. The destination harness must have the
+Use this adapter from `workflow-plan` or an orchestrating session. The destination harness must have the
 modular skills and their dependencies installed. The capsule names the installed skill; the
 harness loads it natively. Do not copy its instructions into the capsule.
 
