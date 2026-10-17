@@ -17,4 +17,4 @@ does not reproduce the standard. `data-visualization` links the research and acc
 behind its recommendations in its skill and reference files.
 
 Third-party skills maintained by other authors are installed from their own sources.
-`external-dependencies.json` identifies `gh-stack`, the companion used by the Git and delivery skills.
+`external-dependencies.json` identifies `gh-stack`, the companion used by the `git` skill.

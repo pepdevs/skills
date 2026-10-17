@@ -16,9 +16,7 @@
       "usedBy": [
         "clarify",
         "critique",
-        "delegate",
         "git",
-        "implement",
         "ticket-authoring"
       ]
     },
@@ -27,37 +25,21 @@
       "usedBy": [
         "clarify",
         "critique",
-        "evaluate",
-        "git",
-        "implement",
-        "to-outcomes"
+        "git"
       ]
     },
     "gh stack": {
       "source": "https://github.com/github/gh-stack",
       "usedBy": [
-        "git",
-        "implement",
-        "to-outcomes"
+        "git"
       ]
-    },
-    "wf": {
-      "source": "https://github.com/pepdevs/workflow",
-      "usedBy": [
-        "delegate",
-        "workflow-plan"
-      ],
-      "note": "External Workflow CLI; configure an authenticated supported agent harness."
     },
     "node": {
       "source": "https://nodejs.org/",
       "minimumVersion": "22",
       "usedBy": [
         "clarify",
-        "data-visualization",
-        "delegate",
-        "evaluate",
-        "to-outcomes"
+        "data-visualization"
       ]
     }
   }

@@ -1,4 +1,0 @@
-interface:
-  display_name: "To Outcomes"
-  short_description: "Create bounded outcome issues"
-  default_prompt: "Use $to-outcomes to decompose this confirmed plan into outcome issues."

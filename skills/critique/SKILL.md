@@ -43,7 +43,7 @@ sentences. Keep each acceptance item's one-line check, such as "Checked by a tab
 command that shows it, and the exact interfaces or configuration lines the operator approved.
 Keep evidence, reproductions, rejected alternatives, and dispositions in the review, not
 the plan. Put implementation checks, such as test cases, verification commands, and configuration
-details, in the review under "For outcomes", where `to-outcomes` carries them into outcome issues.
+details, in the review under "For implementation", where the implementer finds them.
 When a revision grows the plan by more than a third, cut it back or explain in the review why the
 plan needs the added text.
 Present consequential product or architecture forks for user decision. Do not silently choose one.

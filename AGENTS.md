@@ -6,4 +6,4 @@
 4. Keep applicable upstream notices inside adapted skill directories, because selected installation must preserve attribution. Revisit when an adaptation becomes an external dependency.
 5. Keep publication thin: skills, required resources, consumer documentation, and one structural check. Migration and deployment tooling have separate owners. Revisit when a public consumer needs another repository tool.
 6. Keep plan confirmation and merges with the user unless explicitly authorized, because publication does not establish consent. Revisit when the user delegates that authority.
-7. Let artifact skills own publication, workflow skills compose them, and wf own fresh-session routing, so direct and delegated runs behave alike. Revisit when wf gains finer permission modes.
+7. Let each skill own its artifact and publication, and `delegate` in pepdevs/workflow own fresh-session routing, so direct and delegated runs behave alike. Revisit when wf gains finer permission modes.

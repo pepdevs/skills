@@ -1,4 +1,0 @@
-interface:
-  display_name: "Workflow Plan"
-  short_description: "Plan with a delegated critique"
-  default_prompt: "Use $workflow-plan for this plan."
