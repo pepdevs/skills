@@ -1,6 +1,0 @@
-interface:
-  display_name: "Create Verification Skill"
-  short_description: "Create and prove repository verification"
-  default_prompt: "Use $create-verification-skill to create and prove a verification skill for this repository."
-policy:
-  allow_implicit_invocation: false

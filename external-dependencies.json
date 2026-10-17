@@ -19,9 +19,7 @@
         "delegate",
         "git",
         "implement",
-        "record-improvement",
-        "ticket-authoring",
-        "workflow-build"
+        "ticket-authoring"
       ]
     },
     "gh": {
@@ -32,9 +30,7 @@
         "evaluate",
         "git",
         "implement",
-        "record-improvement",
-        "to-outcomes",
-        "workflow-build"
+        "to-outcomes"
       ]
     },
     "gh stack": {
@@ -42,17 +38,14 @@
       "usedBy": [
         "git",
         "implement",
-        "record-improvement",
-        "to-outcomes",
-        "workflow-build"
+        "to-outcomes"
       ]
     },
     "wf": {
       "source": "https://github.com/pepdevs/workflow",
       "usedBy": [
         "delegate",
-        "workflow-plan",
-        "workflow-build"
+        "workflow-plan"
       ],
       "note": "External Workflow CLI; configure an authenticated supported agent harness."
     },
@@ -64,9 +57,7 @@
         "data-visualization",
         "delegate",
         "evaluate",
-        "record-improvement",
-        "to-outcomes",
-        "workflow-build"
+        "to-outcomes"
       ]
     }
   }
