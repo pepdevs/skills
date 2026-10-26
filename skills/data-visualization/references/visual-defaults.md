@@ -1,6 +1,7 @@
 # Preferred visual defaults
 
 These are starting choices for products without their own visual system.
+For standalone reports, [report-style.md](report-style.md) offers a coordinated light-theme alternative to the tokens below.
 They are local preferences, not accessibility standards or a universal dashboard style.
 Choose mark sizes, spacing and typography for the actual display and task.
 
