@@ -22,6 +22,7 @@ Chart selection: read [references/choosing-a-form.md](references/choosing-a-form
 Accessibility: read [references/accessibility.md](references/accessibility.md) when implementing charts or reviewing their interactions and contrast.
 Visual defaults: read [references/visual-defaults.md](references/visual-defaults.md) when selecting colours or mark styling.
 Standalone files: read [references/standalone-html.md](references/standalone-html.md) only for portable HTML delivery.
+Report style: read [references/report-style.md](references/report-style.md) when choosing visual defaults for a standalone report or dashboard without its own visual system.
 
 ## Method
 
@@ -75,5 +76,6 @@ Specific chart and accessibility decisions have sources in their references.
 | [visual-defaults.md](references/visual-defaults.md) | Optional palette and styling; colour diagnostic limits |
 | [anti-patterns.md](references/anti-patterns.md) | Failure symptoms and corrective decisions |
 | [standalone-html.md](references/standalone-html.md) | Portable HTML delivery, offline data and file navigation |
+| [report-style.md](references/report-style.md) | Optional report shell, type, surfaces, status marks and delivery checks |
 | [review-scenarios.md](references/review-scenarios.md) | Task acceptance and scenarios that challenge these rules |
 | [validate-palette.mjs](scripts/validate-palette.mjs) | Palette diagnostics and exported contrast calculation |
