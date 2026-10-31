@@ -33,12 +33,15 @@ under "Run".
 7. Compare the page with its file block by block, in page order: headings, paragraphs, lists,
    tables, captions, figures, videos and demo URLs. Name each block that is missing, added,
    reordered or altered.
-8. Compare each figure with its `Description:` line. A description that omits or contradicts
-   what the figure shows is a finding.
+8. Compare each figure with its `Description:` line. The line states the design intent first:
+   the rule, pattern or lesson the figure teaches, read with the page around it. The values,
+   labels and do and don't differences that carry it follow. Each of these is a finding: a
+   missing or wrong intent, an intent neither the figure nor its page supports, and a contradicted
+   or missing value that carries the lesson. Leave out incidental content that teaches nothing.
 9. Fetch each video. Corpus videos are Git LFS pointers: run `git lfs install --local`, then
    `git lfs pull -I <path> -X ""`.
 10. Extract frames from each fetched video with `ffmpeg` and compare them with its
-    `Description:` line.
+    `Description:` line, as in step 8.
 11. Reproduce each suspected finding on the live page before you list it.
 
 ## Review table
