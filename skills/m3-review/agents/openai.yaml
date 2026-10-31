@@ -1,0 +1,6 @@
+interface:
+  display_name: "M3 review"
+  short_description: "Judge a pull request against the M3 corpus"
+  default_prompt: "Use $m3-review to judge this pull request against the docs/m3 corpus, the plan's acceptance items and AGENTS.md, and report a review table."
+policy:
+  allow_implicit_invocation: false

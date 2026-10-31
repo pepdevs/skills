@@ -17,6 +17,8 @@
         "clarify",
         "critique",
         "git",
+        "m3-corpus",
+        "m3-review",
         "ticket-authoring"
       ]
     },
@@ -39,7 +41,30 @@
       "minimumVersion": "22",
       "usedBy": [
         "clarify",
-        "data-visualization"
+        "data-visualization",
+        "m3-corpus",
+        "m3-review"
+      ]
+    },
+    "npm": {
+      "source": "https://www.npmjs.com/",
+      "usedBy": [
+        "m3-corpus",
+        "m3-review"
+      ]
+    },
+    "git-lfs": {
+      "source": "https://git-lfs.com/",
+      "usedBy": [
+        "m3-corpus",
+        "m3-review"
+      ]
+    },
+    "ffmpeg": {
+      "source": "https://ffmpeg.org/",
+      "usedBy": [
+        "m3-corpus",
+        "m3-review"
       ]
     }
   }

@@ -1,0 +1,6 @@
+interface:
+  display_name: "M3 corpus review"
+  short_description: "Judge the M3 corpus against the live site"
+  default_prompt: "Use $m3-corpus to compare the committed docs/m3 pages with m3.material.io block by block and report a review table."
+policy:
+  allow_implicit_invocation: false
