@@ -36,6 +36,8 @@ The installer fetches that revision; updating the revision is a separate decisio
 | `critique` | Review a plan and publish evidence-supported corrections |
 | `data-visualization` | Design and inspect charts, tables, and operational dashboards |
 | `git` | Apply the author's branch, commit, and pull-request preferences |
+| `m3-corpus` | Judge the committed Material 3 corpus against the live site |
+| `m3-review` | Judge a pull request against the Material 3 corpus |
 | `project` | Keep repository documents, structure, policies, and proof coherent |
 | `ticket-authoring` | Write tracker-independent tickets, criteria, and comments |
 | `writing-style` | Apply prose rules by documentation, instruction, and correspondence register |
