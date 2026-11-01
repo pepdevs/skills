@@ -5,7 +5,7 @@ description: Judge a pull request's diff against the Material 3 corpus at the ba
 
 # M3 review
 
-Judge a diff against `docs/m3/` at the base revision. Apply `writing-style` to the reply.
+Judge a diff against the corpus. The corpus is `docs/m3/` in the repository, or in the sibling checkout `../m3-specs` when the repository has none, at the revision `tokens/m3-specs-revision.json` records at the base revision. Apply `writing-style` to the reply.
 The capsule names the round, the base revision, the head revision, the acceptance items and
 any extra command. Start from [assets/capsule.md](assets/capsule.md); the launch line is under
 "Run".
@@ -46,7 +46,7 @@ One row per finding. No findings is a valid result: write the table header and "
 | Corpus revision | File and line | Acceptance item | Evidence | Severity | Disposition |
 | --- | --- | --- | --- | --- | --- |
 
-- Corpus revision: the output of `git log -1 --format=%h <base> -- docs/m3`.
+- Corpus revision: the revision in `tokens/m3-specs-revision.json` at the base revision, or the output of `git log -1 --format=%h <base> -- docs/m3` when the repository holds the corpus.
 - File and line: the changed file and line, with the `docs/m3/` file and line it contradicts.
 - Evidence: the command output or the text read on each side.
 - Severity: `blocks acceptance` when an acceptance item is unmet by something you reproduced or
