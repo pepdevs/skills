@@ -13,8 +13,12 @@ cover the code that reads them. Adding another kind needs an `AGENTS.md` rule th
 - **When a plan is done**, meaning the operator accepted its increments, run the stability check:
   write or refresh the use cases for the behaviour the plan settled, regenerate the golden files,
   and review every diff. The plan's last increment is that check.
-- **The gate** runs static checks and adapter tests before merging to the main branch. It does not
-  run the golden files, and it does not block committing or pushing work in progress.
+- **The gate** is `.githooks/pre-push`. It runs static checks and adapter tests before every push,
+  and it does not run the golden files. A fresh worktree installs its dependencies, then pushes
+  through the hook.
+- **A bug fix in settled behaviour** starts with a golden case or adapter test that fails for the
+  expected reason. The fix leaves that case's expected output unchanged. Behaviour still moving is
+  inspected by running it.
 
 ## Browser and scenario tests
 
