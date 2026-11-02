@@ -55,6 +55,11 @@ stays in the plan that made the decision, and git keeps the history.
    the README's setup enables the hook. A check over 10 seconds keeps its static checks in the hook,
    and an `AGENTS.md` rule names what runs where. A fresh worktree installs its dependencies before
    its first push. Read `references/tests.md`.
+7. **We own the code, so write the least that works.** A reference, a spec or an upstream library
+   sets behaviour and values; our code takes its own, smallest shape. Cut or simplify any code,
+   generated file, layer or check whose removal keeps functionality and behaviour, without asking.
+   A plan principle that multiplies output per row, state or component states the total it
+   produces. When judging an increment, run `wf repo` and account for the largest folder.
 
 ## Record what changed
 
@@ -90,5 +95,6 @@ Use this path when the user asks to audit, orient or adopt this shape in a repos
   `SYSTEM.md` says it goes.
 - No price, plan, limit or tier is a constant in code.
 - Every rule added to `AGENTS.md` states its reason and revisit condition.
+- `wf repo` shows no folder larger than what it delivers justifies.
 - The check passes under 10 seconds.
 - A push from this checkout runs the tracked `pre-push` hook.
