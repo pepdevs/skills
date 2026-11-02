@@ -1,4 +1,4 @@
-# Dashboards that answer questions
+# Questions and evidence
 
 Use this guidance for an analytical application or operational portal. Preserve the existing stack and the user's established interactions.
 
@@ -8,9 +8,59 @@ A portal can contain all three without forcing them into the same layout.
 The distinctions inform design choices, not a fixed page taxonomy.
 See [Dashboard Design Patterns](https://arxiv.org/abs/2205.00757).
 
+## How to apply this guidance
+
+| Level | Meaning |
+|---|---|
+| Requirements | Preserve evidence, interaction correctness and applicable accessibility criteria. Verify these before delivery. |
+| Design heuristics | Choose according to the reader's task, data and display. Explain meaningful tradeoffs. |
+| Preferred defaults | Use when the project has no established equivalent. Adjust to the product and user. |
+
+## Method
+
+1. Name the reader's question, next action, scope, units and evidence needed.
+   For a redesign, inventory useful behaviours before changing presentation.
+2. Choose the comparison and visual form. Distinguish monitoring from exploration and explanation.
+3. Establish truthful scales, comparison periods and unknown states.
+4. Apply the project's visual system. Use colour to identify, order, emphasise or communicate status.
+5. Check contrast and interaction accessibility in the rendered context.
+   Use palette simulation as a diagnostic alongside labels, shapes and browser inspection.
+6. Follow a representative question through the actual browser, including detail and return navigation.
+7. Evaluate whether the intended reader reaches the correct answer using [scenarios](scenarios.md).
+   Report separately what was checked mechanically, inspected by the agent and tested with a user.
+
+## Requirements
+
+- Preserve units, populations, reporting windows and selected navigation state across related views.
+- Distinguish missing evidence from measured zero. Keep partial coverage and material limitations visible, as a drawn state or from an info icon beside the measure.
+- Keep entity colours stable across filters and related views. Recheck distinguishability when combinations change.
+- Give meaning a non-colour encoding. Provide an accessible description and equivalent evidence for complex charts.
+- Check text, essential graphical objects and controls against their actual adjacent colours and supported themes.
+- Make chart actions keyboard operable, with visible focus and reachable content at zoom.
+- Insert source labels through text nodes or escaped framework bindings. Treat source text as untrusted data.
+
+[Accessibility](accessibility.md) defines the WCAG criteria and relevant exceptions; this checklist alone is not a conformance audit.
+
+
+## Design heuristics
+
+- Prefer aligned position and length when readers need accurate magnitude comparisons.
+- Label units and comparisons explicitly. Scales and axes follow [charts](charts.md).
+- Keep frequent tasks and decision-critical evidence visible. Move secondary detail to the item's detail view.
+- Use tooltips when they add useful detail. Keep essential information available through an accessible persistent alternative.
+- Use sequential palettes with ordered lightness; they may contain one or several hues.
+  Centre diverging palettes on a meaningful reference value and distinguish their two directions.
+- Recompute any claim in a title when filters change.
+- Use the fewest visual distinctions the task needs. Preserve important exceptions when grouping categories.
+
+These heuristics follow the task-oriented guidance in [Tableau](https://help.tableau.com/current/pro/desktop/en-us/dashboards_best_practices.htm),
+[NN/g](https://www.nngroup.com/articles/dashboards-preattentive/) and [ONS](https://service-manual.ons.gov.uk/data-visualisation/guidance/dashboards).
+Specific chart and accessibility decisions have sources in their references.
+
 ## Establish the questions before arranging pages
 
-Find the project's use-case document and inspect the current UI. Record missing questions there before adding views.
+Find the project's use-case document and inspect the current UI. Record missing questions in the
+screen's brief before adding views, and add settled ones to the use cases.
 For each proposed page, identify:
 
 | Field | Design consequence |
@@ -26,11 +76,9 @@ It does not establish which team became more productive.
 
 Group overlapping pages by the questions they answer. A spend area can have timeline, people and models as subviews.
 Keep collection diagnostics and configuration in utilities unless they are the operator's primary task.
-Show a relevant coverage warning beside an affected measure, with a link to the diagnostics.
+Show a coverage limit as a drawn state or an info icon beside the affected measure, with a link to the diagnostics.
 
-When a product needs an explicit question catalogue, a small accessible button beside the page title can reveal it.
-Reuse the documented questions and explain where the page answers them. Avoid duplicating long introductions on every page.
-A simple chart or page with an obvious purpose may need only a descriptive title.
+A simple chart or page with an obvious purpose needs only a descriptive title.
 
 For a port or redesign, inventory working behaviours before replacing the layout: period presets, units, thresholds,
 comparisons, filters, navigation and drilldowns. User requests to "recover" a feature indicate a continuity requirement.
@@ -41,7 +89,7 @@ Preserve its meaning or explain the specific tradeoff; visual cleanup must not s
 Lead with the few facts needed to answer the page's question. Choose the number of headline metrics from that need.
 Follow with the comparison and supporting evidence. Avoid repeating the same large overview on every subtab.
 Keep frequently needed values and decision-critical comparisons visible together.
-Use disclosure for secondary detail, with labels that predict what opens.
+Move secondary detail to the item's detail view, with labels that predict what opens.
 Test that a reader can still complete the common task without repeatedly switching tabs.
 See [NN/g progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/).
 
@@ -54,13 +102,11 @@ See [NN/g progressive disclosure](https://www.nngroup.com/articles/progressive-d
 | Which repositories need security attention? | Severity distribution or repository exposure matrix | Alert records, owner and coverage |
 | What is costly or stale to collect? | Collection age, volume and runtime comparisons | Schedule state, collection errors and record counts |
 
-Replace explanatory subtexts with a visual only when the visual encodes information more efficiently.
-Retain concise titles, annotations, units and scope that help interpretation.
+Keep titles, units and scope, which count as labels and values.
 A finding in a title must stay true when the user changes filters; otherwise use a descriptive title.
 See [ONS chart text](https://service-manual.ons.gov.uk/data-visualisation/guidance/chart-text).
-Keep exact figures available. Put lengthy definitions and assumptions in a disclosure near the measure.
-Use comparable scales for magnitude comparisons; ordinary bars and filled areas include zero.
-Line and scatter ranges follow the question, with clear labels. See [choosing-a-form.md](choosing-a-form.md).
+Keep exact figures available. A definition or assumption that a screen needs opens from an info icon near the measure.
+Scales follow [charts.md](charts.md).
 Label percentage-of-budget scales separately from dollar scales.
 
 Treat change as secondary to the current measure unless the question specifically concerns change.
@@ -71,8 +117,7 @@ Use neutral styling when the value judgement is unsupported. State any adopted c
 
 ## Compact shell and persistent navigation
 
-Reuse the project's shell, router and components. For dense desktop workspaces, consider navigation on the first line
-and breadcrumb, period and scope on the second. Keep each control once, close to what it governs.
+Reuse the project's shell, router and components. Keep each control once, close to what it governs.
 On small screens, collapse or wrap controls without hiding the selected context.
 
 Keep the selected page, subtab and entity stable when the period or team changes.
@@ -86,7 +131,7 @@ A summary count can open a dedicated evidence tab instead of crowding the overvi
 Provide an explicit keyboard-operable link or control for the same action.
 
 Use component scrolling when the user requests a bounded desktop workspace or the task benefits from persistent context.
-Without a host shell, consider the optional report shell in [report-style.md](report-style.md).
+A report with no library can use the shell in [report-style.md](report-style.md).
 Give flexible children room to shrink and scroll: inspect their actual minimum sizes and overflow behaviour.
 Reserve scrolling for the evidence region; avoid multiple tiny nested scroll areas.
 Allow sensible page flow on narrow screens, at zoom and with large text. Reachability matters more than a fixed viewport.
@@ -101,7 +146,7 @@ Use colour where it conveys meaning; avoid turning every cell into a badge.
 
 Provide text search and sorting for investigative lists. Add column filters when users need field-specific questions.
 Compare raw numeric and date values, not formatted strings. Keep unknowns distinct from zero and sort them predictably.
-Display matching and total counts. Make pagination or result caps explicit.
+Display matching and total counts. Make a result cap explicit.
 If collapsing columns removes a filter or changes sorting, disclose the change so the remaining rows are explainable.
 Protect long entity names from excessive wrapping and give numeric columns tabular figures.
 A rank column is useful only when ranking is part of the question.
@@ -131,7 +176,7 @@ Show the denominator for small groups whose rates could otherwise imply a strong
 These checks operationalize the requirement to keep comparisons interpretable.
 
 Expose uncertainty when it could change the reader's conclusion. Separate estimates and projections from observed values.
-Include uncertainty bands or intervals where appropriate and explain their meaning.
+Include uncertainty bands or intervals where appropriate, with their meaning behind an info icon.
 Avoid decorative precision unsupported by evidence; missing collection coverage is not a statistical confidence interval.
 See [ONS uncertainty guidance](https://service-manual.ons.gov.uk/data-visualisation/guidance/showing-uncertainty-in-charts).
 
@@ -163,7 +208,7 @@ Define an acceptance task and expected evidence before evaluating the design.
 With an intended reader, observe answer correctness, scope interpretation, hesitation and unnecessary navigation.
 Record what they actually did, including assistance; avoid treating an agent walkthrough as a user study.
 If no user is available, report that limitation and leave the concrete task ready for their review.
-Use [review-scenarios.md](review-scenarios.md) for task examples and a compact result format.
+Use [scenarios.md](scenarios.md) for task examples and a compact result format.
 Revisit measures when repeated use shows that they no longer support a decision.
 See [ONS dashboard guidance](https://service-manual.ons.gov.uk/data-visualisation/guidance/dashboards).
 Promote reusable interaction patterns to the shared UI library when their API is clear and reuse justifies it.

@@ -2,7 +2,7 @@
 
 Use this mode when the user requests a file that opens locally, works offline or can be shared as an attachment.
 An existing application keeps its own build, router and authenticated data access.
-For visual defaults, read [report-style.md](report-style.md). Choose the shell and navigation for the report's questions.
+A report with no visual system of its own takes its visual defaults from [report-style.md](report-style.md). Choose the shell and navigation for the report's questions.
 
 ## Build and data
 

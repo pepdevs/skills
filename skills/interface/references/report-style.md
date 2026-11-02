@@ -1,7 +1,9 @@
 # Calm report style
 
-Use these preferred defaults for a standalone report or a dashboard without its own visual system.
+Use these preferred defaults only for a report or dashboard that cannot use `@pepsoler/material` and has no visual system of its own.
+There they replace [layout](layout.md), [colour](colour.md), [phone](phone.md) and the explanation rules of [screen text](screen-text.md).
 A host product keeps its own shell, components and tokens.
+
 Choose the frame, content and chart forms for the reader's questions.
 The dimensions and colours below are local preferences. Apply [accessibility.md](accessibility.md) to the rendered result.
 
@@ -30,7 +32,7 @@ The dimensions and colours below are local preferences. Apply [accessibility.md]
 - Start with a 14px body size and adjust for the reader, display and text enlargement.
   Build hierarchy from weight (400 for body, 600 for titles and figures) and colour (primary, secondary, muted).
 - Use the system sans stack: `"Segoe UI Variable Text","Segoe UI Variable",Inter,"Helvetica Neue",system-ui,sans-serif`.
-- Give part titles a 4×16px rounded accent bar in the link colour, and a muted lead sentence below.
+- Give part titles a 4×16px rounded accent bar in the link colour.
 - Write entity names, such as endpoints, repositories and packages, in the body font.
   Use monospace only for code the reader copies.
 - Use tabular figures in numeric columns.
@@ -45,7 +47,7 @@ The dimensions and colours below are local preferences. Apply [accessibility.md]
 | Line | `#e6e6e1` | Borders, table rules, separators |
 | Primary text | `#1f2328` | Body, titles, selected tab fill |
 | Secondary text | `#57595c` | Unselected tabs, table headers |
-| Muted text | `#6b6d70` | Leads, labels, notes |
+| Muted text | `#6b6d70` | Labels |
 | Link | `#2f5f8f` | Links, accent bars, info buttons |
 | Risk | `#a8392f` | Risk tag and tile edge |
 
@@ -56,7 +58,7 @@ Recheck other surfaces, themes and interaction states.
   Essential control boundaries and graphical marks follow the contrast checks in [accessibility.md](accessibility.md).
 - Round surfaces: 14px to 16px for cards and tiles, 12px for cells and explanation boxes.
   Make badges, buttons, bars, notes and selected tabs pills (`border-radius:999px`).
-- Leave about 40px between parts and 18px below a lead sentence.
+- Leave about 40px between parts.
 - Give table headers no fill and a 1px rule below.
 
 ### Selection and state
@@ -111,7 +113,7 @@ Recheck other surfaces, themes and interaction states.
 
 ## Open to the task
 
-- The chart form and the comparison it shows. See [choosing-a-form.md](choosing-a-form.md).
+- The chart form and the comparison it shows. See [charts.md](charts.md).
 - The number and order of tiles, tabs and parts.
 - Categorical colours outside the status scale, validated with `scripts/validate-palette.mjs`.
 - Additional visuals such as small multiples, sequences and matrices.
@@ -124,7 +126,58 @@ Run these checks in a real browser, for example headless Edge or Chrome through 
 1. For a bounded shell, verify the intended desktop viewport scrolls only the content region.
 2. Each actionable tile opens its evidence and moves focus to the section heading.
 3. Text enlargement and zoom keep controls and evidence reachable.
-4. Check reflow at 390px and 320px. Scope necessary two-dimensional scrolling to the affected chart or table.
+4. Check reflow at 390px and 320px. Scope necessary two-dimensional scrolling to the affected chart; a table follows [tables and lists](tables-and-lists.md#width).
 5. Test keyboard navigation, visible focus, disclosures and popover dismissal.
 6. The browser console has no errors.
 7. Inspect each view for clipped or overlapping content. Verify printing includes hidden panels and explanations.
+
+## Starting tokens
+
+These are starting choices with dark values, for a report whose palette the calm style above does not cover.
+They are local preferences, not accessibility standards or a universal dashboard style.
+Choose mark sizes, spacing and typography for the actual display and task.
+
+### Palette candidates
+
+Define tokens by role. Keep entity assignments stable across filtering and related views.
+The following categorical candidates need validation for the colours actually used together.
+The complete eight-colour set fails the diagnostic's all-pairs thresholds in both themes.
+
+| Candidate | Light | Dark |
+|---|---|---|
+| Blue | `#2a78d6` | `#3987e5` |
+| Green | `#008300` | `#008300` |
+| Magenta | `#e87ba4` | `#d55181` |
+| Yellow | `#eda100` | `#c98500` |
+| Aqua | `#1baf7a` | `#199e70` |
+| Orange | `#eb6834` | `#d95926` |
+| Violet | `#4a3aa7` | `#9085e9` |
+| Red | `#e34948` | `#e66767` |
+
+Use a suitable subset, another palette or additional encodings according to the comparison.
+
+Sequential blue examples:
+
+- Light surface: `#cde2fb #9ec5f4 #5598e7 #256abf #0d366b`.
+- Dark surface: `#184f95 #2a78d6 #5598e7 #86b6ef #cde2fb`.
+
+Label which direction means higher values. These two examples reverse lightness direction with the surface.
+Multi-hue sequential scales are also valid when their progression remains perceptually ordered.
+Keep measured zero, missing evidence and low positive values distinguishable where the task needs that distinction.
+Use the measure's units for heatmap thresholds, including percentages when the measure is a percentage.
+
+| Text/surface role | Light | Dark |
+|---|---|---|
+| Page | `#f9f9f7` | `#0d0d0d` |
+| Surface | `#fcfcfb` | `#1a1a19` |
+| Primary text | `#0b0b0b` | `#ffffff` |
+| Secondary text | `#52514e` | `#c3c2b7` |
+| Muted text | `#6f6d67` | `#898781` |
+| De-emphasised fill | `#898781` | `#898781` |
+
+All listed text roles meet 4.5:1 on their corresponding page and surface at full opacity.
+Recheck when backgrounds, opacity, font role or interaction state change.
+Keep de-emphasised fills separate from text tokens.
+
+The general colour principles are supported by [Datawrapper](https://www.datawrapper.de/blog/which-color-scale-to-use-in-data-vis).
+The particular tokens and dimensions above remain local choices.

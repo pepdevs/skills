@@ -34,8 +34,8 @@ The installer fetches that revision; updating the revision is a separate decisio
 | --- | --- |
 | `clarify` | Interview for a plan and publish its draft and explicit confirmation |
 | `critique` | Review a plan and publish evidence-supported corrections |
-| `data-visualization` | Design and inspect charts, tables, and operational dashboards |
 | `git` | Apply the author's branch, commit, and pull-request preferences |
+| `interface` | Design and review app screens, charts, tables, dashboards and exploration pages |
 | `m3-corpus` | Judge the committed Material 3 corpus against the live site |
 | `m3-review` | Judge a pull request against the Material 3 corpus |
 | `project` | Keep repository documents, structure, policies, and proof coherent |
