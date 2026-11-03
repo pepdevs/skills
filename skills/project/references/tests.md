@@ -60,6 +60,13 @@ Each architecture rule that a reviewer would otherwise police by reading becomes
 - **Entry point guard.** Tests import only the public entry points the rules list, so internal
   code can move without rewriting tests.
 
+## Checks over variants
+
+A check that walks variants, states or themes proves each expected value once. Enumerate the
+combinations in memory, then run the fewest cases that cover every value or spec row, never every
+combination. The check prints the cases it
+ran, the rows it covered and its wall time. A run longer than a few minutes means it repeats work.
+
 ## Real-data check
 
 Code that reads an external system has a second check over all real local data: it loads

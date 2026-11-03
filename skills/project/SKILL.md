@@ -59,7 +59,8 @@ stays in the plan that made the decision, and git keeps the history.
    sets behaviour and values; our code takes its own, smallest shape. Cut or simplify any code,
    generated file, layer or check whose removal keeps functionality and behaviour, without asking.
    A plan principle that multiplies output per row, state or component states the total it
-   produces. When judging an increment, run `wf repo` and account for the largest folder.
+   produces, and so does a check that multiplies cases. When judging an increment, run `wf repo`
+   and account for the largest folder and the slowest check.
 
 ## Record what changed
 
@@ -97,4 +98,5 @@ Use this path when the user asks to audit, orient or adopt this shape in a repos
 - Every rule added to `AGENTS.md` states its reason and revisit condition.
 - `wf repo` shows no folder larger than what it delivers justifies.
 - The check passes under 10 seconds.
+- A check over variants or states covers each row once and prints its case count and time.
 - A push from this checkout runs the tracked `pre-push` hook.
