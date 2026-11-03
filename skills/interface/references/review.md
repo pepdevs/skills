@@ -7,7 +7,7 @@
 - **Approved fonts, colours and components stay.** A refinement changes only the named target, adds
   no new primitives, and keeps the existing identity and copy. Source: impeccable: SKILL.md,
   new-work.md.
-- **Use `@pepsoler/material` first.** Promote a pattern to the library after three uses with the
+- **Use the catalog's components first.** Promote a pattern to the catalog after three uses with the
   same intent, merge near-duplicate components, and make a value a token only when it is reused
   with the same meaning. Source: impeccable: extract.md, polish.md, distill.md.
 - **Follow the pattern of neighbouring screens before inventing one.** Source: impeccable:
@@ -25,7 +25,7 @@
 
 - **Capture before an edit, then review the new capture visually.** A clean automated check never
   replaces looking. Source: impeccable: polish.md; `docs/research/guardrails.md` (:135).
-- **Inspect at phone 390 × 844 and desktop 1280 × 800, in every mode the theme has.** Source:
+- **Inspect at phone 390 × 844 and desktop 1280 × 800, in every mode the app supports.** Source:
   `docs/research/layouts.md` (:429); impeccable: polish.md.
 - **Check every capture before judging it**: right viewport, no blank regions, fully loaded, motion
   settled. Source: impeccable: new-work.md.
@@ -71,7 +71,7 @@ say which lines were checked and name any line that could not be checked.
 - [ ] Every text on screen is a title, a label, a value, an error, an empty state, a field format
   or a warning before a destructive action.
 - [ ] No info icon, `?` icon, explaining tooltip, Disclosure or accordion explains the screen,
-  apart from `ChartKey` and an info icon the screen needs.
+  apart from the chart key and an info icon the screen needs.
 - [ ] Phone and desktop each have their own layout. The phone shows six months, and its charts
   scroll sideways in sync.
 - [ ] The phone screen has one scroll. No list scrolls inside a card on phone.
@@ -85,12 +85,12 @@ say which lines were checked and name any line that could not be checked.
   500 ms.
 - [ ] Table heat cells draw a dot sized by value beside the value. The Calendar shades its days.
 - [ ] Bars start at zero, and scatter axes fit the data.
-- [ ] The page and regions follow the chosen theme, or are white and flat with no theme, and colour
+- [ ] The page and regions follow the catalog, or are white and flat where it sets none, and colour
   appears only where it means something.
 - [ ] Regions form one rectangle, side-by-side regions end level, and edges and numbers align.
 - [ ] Every target is at least 44 px on touch and 40 px with a mouse.
 - [ ] Every number the operator stated, such as a count, size or period, matches the screen.
-- [ ] Every mode the theme has passes text contrast; with no theme, light and dark.
+- [ ] Every mode the app supports passes text contrast.
 - [ ] Missing evidence reads differently from zero, and period comparisons use matching windows.
 - [ ] In a redesign, before and after differ at a glance in every component presented, on the URL
   the operator will open.

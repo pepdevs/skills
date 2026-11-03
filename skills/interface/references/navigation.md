@@ -26,13 +26,13 @@
 
 ## Controls
 
-- **Use Tabs for 2 to 5 distinct areas, and Segmented to switch views of the same content.**
+- **Use tabs for 2 to 5 distinct areas, and a segmented control to switch views of the same content.**
   Destination children handle routes. Source: `docs/research/navigation.md` (:13 to :19, :61,
   :67); `docs/research/collections.md` (:193).
-- **Choose the control by option count**: Segmented for 2 to 5 options with labels of 3 words or
-  fewer, a checkbox List for 5 or fewer multiple choices, a Selector above that, with search above
+- **Choose the control by option count**: a segmented control for 2 to 5 options with labels of 3 words or
+  fewer, a checkbox list for 5 or fewer multiple choices, a select above that, with search above
   10. Never drop options to fit. Source: `docs/research/collections.md` (:137, :191, :312).
-- **Put "All" first in a filter Segmented.** Source: `docs/research/collections.md` (:190).
+- **Put "All" first in a filter segmented control.** Source: `docs/research/collections.md` (:190).
 - **One control per job.** The legend is the category filter: pressing a legend row isolates it.
   No separate category filter sits beside it. Source: `docs/research/charts.md` (:98);
   `docs/research/figures.md` (:163).

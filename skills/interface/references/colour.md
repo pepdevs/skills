@@ -2,10 +2,9 @@
 
 ## Colour
 
-- **A chosen library theme sets the page, surfaces, depth, corner shape and any gradient or glass.**
-  With no theme, the rules below on those subjects hold. The rules on meaning, contrast and
-  series colours hold in every theme. Source: design call, 2026-11-02, listed for the operator; the
-  operator asked for themes from soft reference screens over the rules against gradients and glass.
+- **The catalog's look sets the page, surfaces, depth, corner shape and any gradient or glass.**
+  Where it sets none, the rules below on those subjects hold. The rules on meaning, contrast and
+  series colours always hold. Source: design call, 2026-11-02, listed for the operator.
 - **Neutral base; colour only where it carries meaning**: a series, a state, or the one thing to look
   at. No colour across whole regions. Source: operator, decided 2026-10-27 over impeccable:
   colorize.md; `docs/research/charts.md` (:24); `docs/research/figures.md` (:27).
@@ -39,7 +38,7 @@
 
 - **Controls keep a visible edge, fill or underline.** Flat buttons get missed. A boundary that
   alone identifies a control reaches 3:1. Source: `docs/research/themes-colour.md` (:175).
-- **With no theme, keep control radius at most a quarter of the target size.** Source:
+- **Where the catalog sets no corner shape, keep control radius at most a quarter of the target size.** Source:
   `docs/research/themes-form.md` (:280).
 
 ## Icons

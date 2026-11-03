@@ -30,7 +30,7 @@
   them only on hover. At most two show inline; three or more go into one More menu. Source:
   operator, decided 2026-10-27; `docs/research/collections.md` (:43, :58);
   `docs/research/table.md` (:254).
-- **Difference and amount are two states of one table, switched inline** by a Segmented control.
+- **Difference and amount are two states of one table, switched inline** by a segmented control.
   Source: `docs/research/collections.md` (:193).
 
 ## Toolbar

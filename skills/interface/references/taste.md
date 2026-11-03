@@ -19,7 +19,3 @@ images, only what they show.
 - **Hard, loud looks.** Heavy black outlines, hard offset shadows, terminal and print pastiche, and
   bevels are "too aggressive", and the operator would never use them. Source: operator, 2026-11-02,
   on the Print, Terminal, Soft, Brutal and Bevel Button pilot.
-
-## Waiting for a verdict
-
-- Graphite, Ember and Aura as base themes. Source: `pepdevs/material` plan 0001.

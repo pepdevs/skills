@@ -1,6 +1,6 @@
 # Calm report style
 
-Use these preferred defaults only for a report or dashboard that cannot use `@pepsoler/material` and has no visual system of its own.
+Use these preferred defaults only for a report or dashboard that has no component catalog and no visual system of its own.
 There they replace [layout](layout.md), [colour](colour.md), [phone](phone.md) and the explanation rules of [screen text](screen-text.md).
 A host product keeps its own shell, components and tokens.
 
