@@ -64,10 +64,13 @@ confirmation SHA read it, and the page draws it.
 - Give each part or increment its acceptance line or question from the plan. Show the increment
   order with its review gates, the settled decisions and the exclusions.
 - Use the plan's terms and the demo values it states. Draw nothing the plan leaves out.
-- Publish the page as a private page when the harness has a page tool, such as Claude's Artifact.
-  Otherwise write it outside the repository. Link it in the PR body beside the plan link.
-- Redraw it at the same link after each revision. When the page and the plan disagree, fix the plan
-  first, then the page.
+- Commit the page beside the plan with the same name and an `.html` extension, in the plan's
+  commit, so the confirmed SHA holds both. Also publish it as a private page when the harness has a
+  page tool, such as Claude's Artifact, and link it in the PR body beside the plan link.
+- Redraw and commit it after each revision. When the page and the plan disagree, fix the plan first,
+  then the page.
+- Builders read the plan file. A capsule may point at the page for behaviour the plan describes in
+  words, such as a layout that changes with width; the look comes from the repository's rules.
 
 ## Confirm a revision
 
