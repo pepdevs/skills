@@ -31,7 +31,7 @@ Probe vague answers with concrete examples, boundary cases, and observable behav
 Make consequential assumptions explicit and put unresolved trade-offs to the user. An unanswered question remains open; a recommendation is not agreement.
 Depth follows uncertainty and consequence. Continue until the decisions needed to define the plan are settled or explicitly deferred with their effects understood.
 
-Read back the resulting understanding: the outcome, scope, chosen behavior, important trade-offs, and any remaining boundaries.
+Read back the resulting understanding: the outcome, scope, chosen behavior, important trade-offs, and any remaining boundaries. Show it in the plan view, drawn as described in "Draw the plan".
 Invite corrections and obtain explicit confirmation that this captures the user's intent. A coherent document alone does not establish mutual understanding.
 Drafts can support the interview, but unresolved choices remain visible. Implementation authorization follows the revision confirmation below.
 One explicit approval can confirm both understanding and the plan revision when it covers the current proposal.
@@ -52,6 +52,22 @@ node <clarify-skill>/scripts/validate-plan.mjs <plan-file>
 
 Read the remote PR back and verify its plan link and revision. Report its URL and unresolved choices.
 `critique` can review this proposal independently. Clarify itself launches no critic.
+
+## Draw the plan
+
+Draw each published revision as one HTML page, the plan view, so the user checks the design by
+sight during the read-back. The plan file stays the source: builders, the validator and the
+confirmation SHA read it, and the page draws it.
+
+- Draw what the user will get: each screen, behaviour or structure the plan names, at the sizes or
+  cases it names. Make it interactive where a width, setting or press changes the result.
+- Give each part or increment its acceptance line or question from the plan. Show the increment
+  order with its review gates, the settled decisions and the exclusions.
+- Use the plan's terms and the demo values it states. Draw nothing the plan leaves out.
+- Publish the page as a private page when the harness has a page tool, such as Claude's Artifact.
+  Otherwise write it outside the repository. Link it in the PR body beside the plan link.
+- Redraw it at the same link after each revision. When the page and the plan disagree, fix the plan
+  first, then the page.
 
 ## Confirm a revision
 
