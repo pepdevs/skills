@@ -49,7 +49,7 @@ Support Escape when the tooltip obscures other content; preserve focus when it c
 Use persistent detail for information that users need to compare or act on.
 See [content on hover or focus](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html).
 
-For pointer actions, target 24 by 24 CSS pixels or the spacing/equivalent-control exceptions in WCAG 2.5.8.
+WCAG 2.5.8 sets a minimum of 24 by 24 CSS pixels, with spacing and equivalent-control exceptions. Screens hold to the larger targets in [phone](phone.md).
 Expand hit regions independently of visual marks where practical.
 Dense plots may use selection aids and equivalent controls rather than overlapping hit boxes.
 See [target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
@@ -58,7 +58,7 @@ See [target size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimu
 
 Check reflow at 320 CSS pixels, equivalent to a 1280px viewport at 400% zoom.
 Surrounding navigation, filters and explanations must remain reachable without two-dimensional scrolling.
-Some charts and tables require two-dimensional layout; scope the exception to those regions.
+Some charts require two-dimensional layout; scope the exception to those regions.
 Also check 200% text resizing. Component scrolling is a workspace preference, not a reason to clip content.
 See [reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html).
 
