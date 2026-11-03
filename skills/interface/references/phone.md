@@ -19,9 +19,8 @@
   current destination stays visible there. Source: operator, decided 2026-11-02; `docs/research/layouts.md` (:64, :65).
 - **The tab row never scrolls sideways.** Shorten labels, or use fewer tabs. Source: operator,
   decided 2026-10-27.
-- **Sheets open on phone; popovers stay on desktop.** The Presentation `auto` setting already does
-  this. Source: `docs/research/navigation.md` (:218).
-- **Targets are 44 px on touch and 40 px with a mouse**, through the library's target token, and keep full
+- **Sheets open on phone; popovers stay on desktop.** Source: `docs/research/navigation.md` (:218).
+- **Targets are 44 px on touch and 40 px with a mouse**, through the catalog's target token, and keep full
   size in dense mode. Source: `docs/research/themes-form.md` (:155, :237);
   `docs/research/guardrails.md` (:149).
 - **Keep 16 px between content and the screen edge.** Text against the edge fails reading. Source:

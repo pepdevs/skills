@@ -26,11 +26,9 @@ Write `docs/screens/<screen>.md` in the app's repository and confirm it with the
 | Data | The API read that answers each question, or a data request |
 | Choices | The component picked for each question and why |
 | States | Empty, loading, one item, many, extreme values and failure |
-| Theme | The library theme, or none for a white page with flat regions |
 
-Pick each component from the `answers` of the library's `catalog.json`, once it has them, and from
-[charts](../references/charts.md). When nothing fits, follow the gap rule in
-[library first](../SKILL.md#library-first).
+Pick each component from the [component catalog](../SKILL.md#component-catalog) and from
+[charts](../references/charts.md). When nothing fits, follow the gap rule there.
 
 ## Data and visualization
 
@@ -50,9 +48,9 @@ Pick each component from the `answers` of the library's `catalog.json`, once it 
 3. Read the references for every area the change touches.
 4. Decide the phone layout and the desktop layout from the purpose, then check each decision against
    the references. Change what the purpose needs, even when no rule names it.
-5. Build with library components. Keep each rule as written; record a design call as stated in the
+5. Build with the catalog's components. Keep each rule as written; record a design call as stated in the
    order of sources.
-6. Capture again, in every mode the theme has, use it at both sizes, and walk the
+6. Capture again, in every mode the app supports, use it at both sizes, and walk the
    [checklist](../references/review.md#checklist-before-presenting) on the captures.
 7. Review it in two passes that do not see each other: a critique by an agent with fresh context
    that sees only the captures and the purpose, and a mechanical audit of the checklist, contrast,
@@ -69,7 +67,7 @@ Save each correction at the level it applies to, in the same change that makes i
 | Every screen of this app | The app's `AGENTS.md` |
 | Every app, about what the operator likes | [taste](../references/taste.md) |
 | Every app, about how a screen works | The reference for its area |
-| A component | The library |
+| A component | The component catalog |
 | A figure | The app's API |
 
 Count the corrections per screen in the brief. A count that does not fall means rules are not being

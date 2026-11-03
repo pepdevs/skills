@@ -78,12 +78,12 @@
 
 ## Disclosure
 
-- **The chart key sits behind a swatch button (`ChartKey`).** The legend is never placed first and
+- **The chart key sits behind a swatch button.** The legend is never placed first and
   series are not labelled at their ends. Eye tracking shows a legend draws attention away from the
   data. Source: operator, decided 2026-10-27 over `docs/research/charts.md` (:98, :107);
   `docs/research/charts.md` (:99).
 - **An info icon may open explanatory detail when a screen needs it.** Use it only for detail that
-  `ChartKey` cannot hold. It opens a popover on desktop and a sheet on phone. Source: operator,
+  the chart key cannot hold. It opens a popover on desktop and a sheet on phone. Source: operator,
   decided 2026-10-27.
 - **Nothing else explains a screen**: no `?` icons, explaining tooltips, guided tours, "How this is
   calculated" rows, Disclosure sections or accordions. Detail on an item opens in its detail view.

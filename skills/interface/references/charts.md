@@ -36,7 +36,7 @@ These distinctions follow [Datawrapper's chart selection guidance](https://www.d
   2026-10-27; `docs/research/charts.md` (:203 to :211, :222).
 - **Use small multiples for several trends.** With more than 4 lines, highlight the top 4 first.
   Source: `docs/research/charts.md` (:123).
-- **Use Meter for a value against a limit**, with the overage drawn as part of the meter. Task
+- **Use a meter for a value against a limit**, with the overage drawn as part of the meter. Task
   progress uses a progress component. Source: `docs/research/figures.md` (:88, :107).
 - **Draw a sparkline only when it answers a question on that screen.** When a headline number
   changes over time, show its recent history beside it. Source: impeccable: craft-floor.md,

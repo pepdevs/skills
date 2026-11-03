@@ -1,6 +1,6 @@
 ---
 name: interface
-description: 'The operator''s rules for every screen, chart, table, list, dashboard and visual report. Use when building, changing, redesigning, iterating on, reviewing or capturing any user interface in an app, a design web page, an artifact, an exploration or a standalone report. Load it before writing UI code, and pass its checklist before presenting a screen.'
+description: 'The operator''s rules for every screen, chart, table, list, dashboard and visual report. Use when building, changing, redesigning, iterating on, reviewing or capturing any user interface in an app, an artifact, an exploration or a standalone report. Load it before writing UI code, and pass its checklist before presenting a screen.'
 ---
 
 # Interface
@@ -26,8 +26,7 @@ sections of [charts](references/charts.md), [accessibility](references/accessibi
 [scenarios](references/scenarios.md). The other rules here hold the operator's taste and do not bind
 it. Where these files name an info icon or a drawn state for a limit or definition, the product may
 use its own note or annotation. A file report adds [standalone-html](references/standalone-html.md),
-and one with no system of its own also adds [report-style](references/report-style.md). Every pepdevs app follows all the rules, including
-one still on an older package.
+and one with no system of its own also adds [report-style](references/report-style.md). Every app the operator owns follows all the rules.
 
 ## Order of sources
 
@@ -54,19 +53,23 @@ purpose of the component, record it with its reason in the plan of the work, and
 presenting, so the operator can overrule it. Ask first only when the call removes something the
 operator asked for.
 
-## Library first
+## Component catalog
 
-Build with `@pepsoler/material` and read its `catalog.json` to choose a component. A rule the library
-enforces by type, default, token, guard or runtime check lives there, and these references say only
-"use the component". A pattern used three times with the same intent moves into the library. Never
-copy a library control into an app. The kit is the library's `@pepsoler/material/kit` export: charts,
-tables and page structure.
+Build with a component catalog, found in this order:
 
-The library does not yet hold everything these rules name, such as `ChartKey`, `Meter`, `Sheet`,
-`Segmented` and `Table`, and `catalog.json` lists only styles until its component rows arrive. Such a
-rule still states the required behaviour: choose from the library's design web pages and
-[charts](references/charts.md), build the smallest local version on library tokens, name the gap when
-presenting, and add it to the library as an idea.
+1. The catalog the operator names.
+2. The component library the project already uses: its dependencies, and any catalog, docs or
+   examples it ships.
+3. Otherwise, ask the operator which catalog to use. Never write a look from scratch.
+
+Pick each component from the catalog, by what it answers when the catalog says so. A rule the
+catalog enforces by type, default, token or check lives there, and these references say only "use
+the component". A pattern used three times with the same intent moves into the catalog. Never copy a
+catalog control into an app.
+
+The rules name components by behaviour: a chart key, a meter, a sheet, a segmented control, tabs, a
+table. When the catalog lacks one, build the smallest local version on the catalog's tokens, name
+the gap when presenting, and propose it for the catalog.
 
 ## Rules agents break most
 
@@ -75,7 +78,7 @@ Each is stated in full in its reference.
 - A screen carries titles, labels and values. No subtitles, notes, hints, captions or explanatory
   legend lines. Removing one such text removes every text of that kind in the app.
   [screen-text](references/screen-text.md)
-- The chart key sits behind a swatch button (`ChartKey`). An info icon may open detail when a
+- The chart key sits behind a swatch button. An info icon may open detail when a
   screen needs it. Nothing else explains. [screen-text](references/screen-text.md#disclosure)
 - Phone and desktop are different screens. Design each layout on its own; never shrink the desktop.
   [phone](references/phone.md)
@@ -110,6 +113,6 @@ Read a reference only when the work touches its area.
 | Contrast, keyboard, tooltips, chart alternatives, reflow | [accessibility.md](references/accessibility.md) |
 | Reviewing a result, and the checklist | [review.md](references/review.md) |
 | Failure symptoms and scenarios that challenge these rules | [scenarios.md](references/scenarios.md) |
-| A report or dashboard with no library and no visual system | [report-style.md](references/report-style.md) |
+| A report or dashboard with no component catalog and no visual system | [report-style.md](references/report-style.md) |
 | A file that opens locally or works offline | [standalone-html.md](references/standalone-html.md) |
 | Chart palette diagnostics | [charts.md](references/charts.md#palette-diagnostics), with [validate-palette.mjs](scripts/validate-palette.mjs) |

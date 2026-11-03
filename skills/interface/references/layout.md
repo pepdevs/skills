@@ -8,8 +8,8 @@
   `docs/research/figures.md` (:17).
 - **Show at most 8 insight tiles, 4 on phone, with key numbers at the top left.** Source:
   `docs/research/figures.md` (:40, :57); `docs/research/layouts.md` (:87).
-- **With no theme, the page is all white and regions are flat.** A chosen theme sets the page and
-  regions, as in [colour](colour.md#colour). One region style per page: no mix of cards and flat
+- **Where the catalog sets no page or region look, the page is all white and regions are flat.**
+  Otherwise the catalog sets them, as in [colour](colour.md#colour). One region style per page: no mix of cards and flat
   regions, and no second neutral layer behind panels. Source: operator, decided 2026-10-24 and
   2026-10-27, replacing the grey page with a white shell; `docs/research/themes-form.md` (:302).
 - **Page content stops at a maximum width of 64 to 100rem, and regions fill that width.** Lines and
@@ -67,7 +67,7 @@
 
 ## Forms and detail
 
-- **Use a Sheet for 1 to 5 fields and a page for a longer flow.** Source:
+- **Use a sheet for 1 to 5 fields and a page for a longer flow.** Source:
   `docs/research/layouts.md` (:218).
 - **Keep a form column at most 40rem wide, and size each field to the value it expects.** Source:
   `docs/research/layouts.md` (:329); `docs/research/inputs.md` (:100, :126).

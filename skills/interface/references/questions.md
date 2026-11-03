@@ -131,7 +131,7 @@ A summary count can open a dedicated evidence tab instead of crowding the overvi
 Provide an explicit keyboard-operable link or control for the same action.
 
 Use component scrolling when the user requests a bounded desktop workspace or the task benefits from persistent context.
-A report with no library can use the shell in [report-style.md](report-style.md).
+A report with no component catalog can use the shell in [report-style.md](report-style.md).
 Give flexible children room to shrink and scroll: inspect their actual minimum sizes and overflow behaviour.
 Reserve scrolling for the evidence region; avoid multiple tiny nested scroll areas.
 Allow sensible page flow on narrow screens, at zoom and with large text. Reachability matters more than a fixed viewport.
