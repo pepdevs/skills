@@ -1,0 +1,3 @@
+#!/bin/sh
+# Runs the structural check before every push. Enable with: git config core.hooksPath .githooks
+exec node scripts/check.mjs

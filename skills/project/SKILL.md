@@ -40,7 +40,9 @@ stays in the plan that made the decision, and git keeps the history.
    check: refresh the use cases it settled, run the golden files and review the diffs. External
    systems change on their own, so adapter tests over faked responses run in every check.
    Browser, scenario and unit tests are out. Static checks (lint, types, architecture boundaries)
-   stay. Read `references/tests.md`.
+   stay. A bug fix in settled behaviour starts with a golden case or adapter test that fails for
+   the expected reason, and the fix leaves that case's expected output unchanged. Read
+   `references/tests.md`.
 3. **The layout names what the code does.** A thin entry point, one file per group of use cases,
    one folder per external system, operator facts in `data/` as JSON with their sources, and
    `SYSTEM.md` as the map. Read `references/layout.md`.
@@ -49,6 +51,15 @@ stays in the plan that made the decision, and git keeps the history.
    rule when one can check it. Read `references/agents.md`.
 5. **Plans follow `clarify`**: Purpose and success, Principles, Increments, Scope and boundaries,
    Open questions.
+6. **The repository refuses a bad push.** It tracks `.githooks/pre-push`, which runs its check, and
+   the README's setup enables the hook. A check over 10 seconds keeps its static checks in the hook,
+   and an `AGENTS.md` rule names what runs where. A fresh worktree installs its dependencies before
+   its first push. Read `references/tests.md`.
+7. **We own the code, so write the least that works.** A reference, a spec or an upstream library
+   sets behaviour and values; our code takes its own, smallest shape. Cut or simplify any code,
+   generated file, layer or check whose removal keeps functionality and behaviour, without asking.
+   A plan principle that multiplies output per row, state or component states the total it
+   produces. When judging an increment, run `wf repo` and account for the largest folder.
 
 ## Record what changed
 
@@ -64,12 +75,14 @@ Use this path when the user asks to audit, orient or adopt this shape in a repos
 
 1. Read the documents above and the evidence behind them: manifests, entry points, configuration,
    tests and deployment definitions.
-2. Classify each finding as aligned, missing, stale, contradictory or unsupported. Skip package
+2. Run `git config core.hooksPath` and read `.githooks/pre-push`. The hook runs the repository's
+   check and the checkout enables it.
+3. Classify each finding as aligned, missing, stale, contradictory or unsupported. Skip package
    versions and directory listings that the tree already shows.
-3. Propose the smallest changes, each naming the document, the evidence and the statement it adds
+4. Propose the smallest changes, each naming the document, the evidence and the statement it adds
    or removes. For an existing decision-record directory, propose folding each decision still in
    force into an `AGENTS.md` rule and deleting the rest.
-4. Wait for confirmation before writing. The audit authorizes reading only.
+5. Wait for confirmation before writing. The audit authorizes reading only.
 
 ## Before finishing a change
 
@@ -82,4 +95,6 @@ Use this path when the user asks to audit, orient or adopt this shape in a repos
   `SYSTEM.md` says it goes.
 - No price, plan, limit or tier is a constant in code.
 - Every rule added to `AGENTS.md` states its reason and revisit condition.
+- `wf repo` shows no folder larger than what it delivers justifies.
 - The check passes under 10 seconds.
+- A push from this checkout runs the tracked `pre-push` hook.
