@@ -1,0 +1,3 @@
+interface:
+  display_name: "UI"
+  short_description: "Pick a web app's look by eye on a prototype, then build the screen to match it"

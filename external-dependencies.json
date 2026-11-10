@@ -41,7 +41,6 @@
       "minimumVersion": "22",
       "usedBy": [
         "clarify",
-        "interface",
         "m3-corpus",
         "m3-review"
       ]
