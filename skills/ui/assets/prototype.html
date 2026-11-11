@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototype: orders</title>
+<style>
+  /* One block per switch. Each option sets tokens or one layout rule on <body>. */
+  body { --ground: #f3f1ec; --card: #fff; --ink: #16191f; --muted: #6b7280; --line: #e3e0d8;
+         --primary: #16191f; --on-primary: #fff; --radius: 12px; --pad: 14px;
+         --font: system-ui, sans-serif; }
+  body[data-ground="white"] { --ground: #fff; --line: #e5e7eb; }
+  body[data-primary="blue"] { --primary: #2456d6; }
+  body[data-density="compact"] { --pad: 8px; }
+  body[data-radius="4"] { --radius: 4px; }
+  body[data-theme="dark"] { --ground: #111317; --card: #1b1e24; --ink: #eceef2; --muted: #9aa1ad;
+                            --line: #2b2f38; --on-primary: #111317; }
+  body[data-theme="dark"]:not([data-primary="blue"]) { --primary: #eceef2; }
+  body[data-theme="dark"][data-primary="blue"] { --primary: #8fb0ff; }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.4 var(--font); color: var(--ink); background: #d9d9de; }
+
+  /* Switches. They stay outside the frame so a screenshot of the frame shows the screen alone. */
+  .switches { display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 12px 16px; background: #fff;
+              color: #16191f; border-bottom: 1px solid #d0d0d6; font: 13px system-ui, sans-serif; }
+  .switches fieldset { border: 0; margin: 0; padding: 0; display: flex; align-items: center; gap: 6px; }
+  .switches legend { float: left; padding: 0; margin-right: 6px; color: #6b7280; }
+  .switches label { cursor: pointer; }
+  .switches input { position: absolute; opacity: 0; }
+  .switches span { display: block; padding: 5px 10px; border: 1px solid #c9c9d1; border-radius: 6px; }
+  .switches input:checked + span { background: #16191f; border-color: #16191f; color: #fff; }
+  .switches input:focus-visible + span { outline: 2px solid #2456d6; outline-offset: 2px; }
+  .pick { margin: 0; padding: 8px 16px; background: #fff; border-bottom: 1px solid #d0d0d6;
+          font: 13px ui-monospace, monospace; color: #16191f; }
+
+  /* The frame is the device. */
+  .frame { margin: 20px auto; background: var(--ground); min-height: 640px; padding: 16px;
+           width: min(1280px, 100%); }
+  body[data-device="phone"] .frame { width: min(390px, 100%); }
+
+  /* The screen. Replace it with the real screen's fields on invented data. */
+  h1 { font-size: 20px; margin: 0 0 12px; }
+  .bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .button { border: 0; border-radius: var(--radius); padding: 8px 14px; font: inherit; font-weight: 600;
+            background: var(--primary); color: var(--on-primary); }
+  .group { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+           margin-bottom: 12px; overflow: hidden; }
+  .group h2 { font-size: 12px; font-weight: 600; color: var(--muted); margin: 0;
+              padding: var(--pad) var(--pad) 0; text-transform: uppercase; letter-spacing: .04em; }
+  .row { display: flex; justify-content: space-between; gap: 12px; padding: var(--pad);
+         border-top: 1px solid var(--line); }
+  .group h2 + .row { border-top: 0; }
+  .row small { display: block; color: var(--muted); }
+  .amount { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  body[data-layout="flat"] .group h2 { display: none; }
+  body[data-layout="flat"] .group { margin-bottom: 0; border-radius: 0; border-bottom: 0; }
+  body[data-layout="flat"] .group:first-of-type { border-radius: var(--radius) var(--radius) 0 0; }
+  body[data-layout="flat"] .group:last-of-type { border-radius: 0 0 var(--radius) var(--radius);
+                                                 border-bottom: 1px solid var(--line); }
+  body[data-layout="flat"] .group h2 + .row { border-top: 0; }
+  body[data-device="desktop"][data-layout="grouped"] .groups { display: grid; gap: 12px;
+                                                               grid-template-columns: 1fr 1fr; }
+</style>
+</head>
+<!-- The data attributes hold the options you recommend. -->
+<body data-layout="grouped" data-ground="tint" data-primary="ink" data-density="comfortable"
+      data-radius="12" data-device="phone" data-theme="light">
+
+<form class="switches" aria-label="Open choices">
+  <!-- One fieldset per open choice, two or three options each. The script reads the names. -->
+  <fieldset data-switch="layout"><legend>Layout</legend></fieldset>
+  <fieldset data-switch="ground"><legend>Ground</legend></fieldset>
+  <fieldset data-switch="primary"><legend>Primary</legend></fieldset>
+  <fieldset data-switch="density"><legend>Density</legend></fieldset>
+  <fieldset data-switch="radius"><legend>Radius</legend></fieldset>
+  <fieldset data-switch="device"><legend>Device</legend></fieldset>
+  <fieldset data-switch="theme"><legend>Theme</legend></fieldset>
+</form>
+<p class="pick" aria-live="polite"></p>
+
+<main class="frame">
+  <div class="bar"><h1>Orders</h1><button class="button" type="button">New order</button></div>
+  <div class="groups">
+    <section class="group">
+      <h2>Today</h2>
+      <div class="row"><div>Ada Example<small>3 items, pickup</small></div><div class="amount">42.50</div></div>
+      <div class="row"><div>Bo Sample<small>1 item, delivery</small></div><div class="amount">9.90</div></div>
+    </section>
+    <section class="group">
+      <h2>Yesterday</h2>
+      <div class="row"><div>Cy Placeholder<small>7 items, delivery</small></div><div class="amount">118.00</div></div>
+      <div class="row"><div>Di Invented<small>2 items, pickup</small></div><div class="amount">23.75</div></div>
+    </section>
+  </div>
+</main>
+
+<script>
+  // Option names per switch. The first two lists are layout choices; the rest pick the look.
+  const OPTIONS = {
+    layout: ["grouped", "flat"],
+    ground: ["tint", "white"],
+    primary: ["ink", "blue"],
+    density: ["comfortable", "compact"],
+    radius: ["12", "4"],
+    device: ["phone", "desktop"],
+    theme: ["light", "dark"],
+  };
+  // The pick line leaves these out: every screen is built for both devices and both themes.
+  const VIEW_ONLY = ["device", "theme"];
+  const pick = document.querySelector(".pick");
+
+  function showPick() {
+    const names = Object.keys(OPTIONS).filter((key) => !VIEW_ONLY.includes(key));
+    pick.textContent = "Pick: " + names.map((key) => document.body.dataset[key]).join(", ");
+  }
+
+  for (const fieldset of document.querySelectorAll("[data-switch]")) {
+    const key = fieldset.dataset.switch;
+    for (const option of OPTIONS[key]) {
+      const label = document.createElement("label");
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = key;
+      input.value = option;
+      input.checked = document.body.dataset[key] === option;
+      input.addEventListener("change", () => { document.body.dataset[key] = option; showPick(); });
+      const text = document.createElement("span");
+      text.textContent = option;
+      label.append(input, text);
+      fieldset.append(label);
+    }
+  }
+  showPick();
+</script>
+</body>
+</html>

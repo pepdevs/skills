@@ -59,6 +59,14 @@
         "m3-review"
       ]
     },
+    "wf": {
+      "source": "https://github.com/pepdevs/workflow",
+      "usedBy": [
+        "m3-corpus",
+        "m3-review",
+        "project"
+      ]
+    },
     "ffmpeg": {
       "source": "https://ffmpeg.org/",
       "usedBy": [

@@ -1,11 +1,11 @@
 ---
 name: git
-description: Apply my Git preferences when asked to inspect or stage changes, create branches, commit, push, or open a pull request.
+description: 'Git: branches named by commit type, Conventional Commits and one pull request per branch. Use when asked to inspect or stage changes, create branches, commit, push, or open a pull request.'
 ---
 
 # Git
 
-These are my Git preferences. A repository's `AGENTS.md` or a repository-specific Git skill
+These are the author's Git preferences. A repository's `AGENTS.md` or a repository-specific Git skill
 overrides any rule here. `writing-style` owns the prose of commit messages and pull requests.
 
 ## Workflow

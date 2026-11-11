@@ -69,7 +69,7 @@ confirmation SHA read it, and the page draws it.
   page tool, such as Claude's Artifact, and link it in the PR body beside the plan link.
 - Redraw and commit it after each revision. When the page and the plan disagree, fix the plan first,
   then the page.
-- Builders read the plan file. A capsule may point at the page for behaviour the plan describes in
+- Builders read the plan file. A capsule, the brief a launcher gives a fresh session, may point at the page for behaviour the plan describes in
   words, such as a layout that changes with width; the look comes from the repository's rules.
 
 ## Confirm a revision
