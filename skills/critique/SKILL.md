@@ -22,7 +22,7 @@ Treat the proposed tools, abstractions, and system boundaries as choices to exam
 Check whether existing conventions fit this work and what would justify changing them.
 Apply this to decisions the user already made. When a simpler design would meet the outcome with
 fewer parts, hosts or privileges, present it as a decision for the user with its costs, even if the
-capsule calls the current choice settled.
+capsule, the brief a launcher gives this session, calls the current choice settled.
 
 Compare the proposed approach with simpler or better-fitting alternatives at consequential design decisions.
 Consider implementation complexity, performance requirements, maintainability, testability, operational cost, and migration effort where they affect the choice.

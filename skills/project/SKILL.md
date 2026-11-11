@@ -59,7 +59,9 @@ stays in the plan that made the decision, and git keeps the history.
    sets behaviour and values; our code takes its own, smallest shape. Cut or simplify any code,
    generated file, layer or check whose removal keeps functionality and behaviour, without asking.
    A plan principle that multiplies output per row, state or component states the total it
-   produces. When judging an increment, run `wf repo` and account for the largest folder.
+   produces. When judging an increment, run `wf repo` and account for the largest folder. `wf repo`
+   prints the committed tree's size per folder and comes from
+   [pepdevs/workflow](https://github.com/pepdevs/workflow).
 8. **A slow command is a smell.** A script, check or build that runs longer than two minutes while
    you work on a feature probably repeats work, or does more than the feature needs. Review it:
    stop, find which, and cut it before going on. A command that must stay longer says why

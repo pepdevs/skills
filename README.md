@@ -1,17 +1,30 @@
 # Skills
 
-Reusable agent skills for planning, plan review, Git, tickets, repository order, writing, and data
-visualization. Each directory under `skills/` is an installable skill with its own resources.
+Agent skills for planning, plan review, Git, tickets, repository order, UI and writing. Each
+directory under `skills/` is an installable skill with its own resources.
+
+A change starts in `clarify`, which interviews for a plan and publishes it as a pull request.
+`critique` reviews that plan before you confirm it. The build then follows `project` for the
+repository's shape, `ui` for each screen and `git` for branches and commits. `writing-style` owns
+the prose of all of them.
+
+`ui` has the agent draw each screen as a static page with a switch per open choice, so you pick the
+look by eye before the build. Its scaffold is
+[skills/ui/assets/prototype.html](skills/ui/assets/prototype.html):
+
+<img src="skills/ui/assets/prototype.png" alt="A phone-width orders screen under switches for layout, ground, primary colour, density, radius, device and theme" width="320">
 
 ## Install
 
 The [Skills CLI](https://github.com/vercel-labs/skills) discovers and installs selected skills.
 Version `1.7.2` is the verified installer and requires Node.js 22.20 or newer.
-For example, install writing rules for Codex:
+For example, install the writing rules for Claude Code:
 
 ```bash
-npx --yes skills@1.7.2 add pepdevs/skills --skill writing-style --agent codex --global --copy --yes
+npx --yes skills@1.7.2 add pepdevs/skills --skill writing-style --agent claude-code --global --copy --yes
 ```
+
+For Codex, pass `--agent codex`.
 
 Omit `--global` for an installation scoped to the current project. `--copy` keeps installed
 resources together. Other agent targets need their native discovery paths checked: the installer
@@ -41,6 +54,9 @@ The installer fetches that revision; updating the revision is a separate decisio
 | `ticket-authoring` | Write tracker-independent tickets, criteria, and comments |
 | `ui` | Pick a web app's look by eye on a prototype, then build the screen to match it |
 | `writing-style` | Apply prose rules by documentation, instruction, and correspondence register |
+
+`m3-corpus` and `m3-review` need a repository that keeps a Material 3 corpus in `docs/m3/` with the
+`m3:check` script, and the `wf` launcher from [pepdevs/workflow](https://github.com/pepdevs/workflow).
 
 Each skill's `skill-dependencies.json` names its companions. Install them recursively alongside
 the selected skill. Conditional companions, such as `gh-stack` for stacked work, support every
