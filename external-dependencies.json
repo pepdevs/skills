@@ -16,6 +16,7 @@
       "usedBy": [
         "clarify",
         "critique",
+        "engineering-review",
         "git",
         "m3-corpus",
         "m3-review",
@@ -27,6 +28,7 @@
       "usedBy": [
         "clarify",
         "critique",
+        "engineering-review",
         "git"
       ]
     },
@@ -41,6 +43,7 @@
       "minimumVersion": "22",
       "usedBy": [
         "clarify",
+        "engineering-review",
         "m3-corpus",
         "m3-review"
       ]
@@ -48,6 +51,7 @@
     "npm": {
       "source": "https://www.npmjs.com/",
       "usedBy": [
+        "engineering-review",
         "m3-corpus",
         "m3-review"
       ]
