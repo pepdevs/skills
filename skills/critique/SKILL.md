@@ -1,12 +1,20 @@
 ---
 name: critique
-description: Stress-test a plan PR, explore better design and architecture options, and publish evidence-supported corrections and findings before confirmation.
+description: Stress-test a draft plan in the repository's plan inbox or a plan PR, explore better design and architecture options, and publish evidence-supported corrections and findings before confirmation.
 ---
 
 # Critique
 
-Take a plan PR and the revision to review. Own the review, evidence-supported plan corrections, and publication.
+Take a draft plan and the revision to review: a plan in the repository's plan inbox, or a plan PR.
+Own the review, evidence-supported plan corrections, and publication.
 Apply `writing-style` to the plan changes, review, PR updates, and comments.
+
+**With a plan inbox.** The plan inbox, when the repository has one, holds draft plans as numbered
+revisions. Its README gives the exact syntax of its commands. Run its open command with the plan
+number or page; it prints the paths of the latest revision's plan, view and asset folder. Review
+that revision and edit those files.
+
+**Without one.** Check out the plan PR's branch at the revision to review.
 
 Read the plan, applicable repository instructions, and the code and evidence behind its claims.
 Test whether its intended outcome is clear, its choices are justified, its implementation is
@@ -36,7 +44,8 @@ Keep comparisons proportional to uncertainty and impact. Preserve a justified ap
 
 ## Revise and publish
 
-Commit corrections supported by repository evidence to the same plan branch, using `git`.
+Put corrections supported by repository evidence in the plan files: with a plan inbox, the files
+its open command printed; without one, the plan branch, committed with `git`.
 Change only the plan's decisions, acceptance, and boundaries, following the plan contract in the
 installed `clarify` skill's `references/plan-file.md`. State each correction in the plan in one or two
 sentences. Keep each acceptance item's one-line check, such as "Checked by a table test" or the
@@ -51,12 +60,24 @@ An architectural recommendation remains a proposal until the user resolves that 
 Keep the proposal drafted until the user confirms the revised plan. A confirmed plan needing a
 material revision becomes a new proposal requiring renewed confirmation.
 
-Publish a review that identifies the judged and resulting commits, findings, evidence, dispositions,
+Publish a review that identifies the judged and resulting revisions, findings, evidence, dispositions,
 and unresolved choices. Give each material finding a stable identity. Explain accepted or rejected
 findings without prescribing a fixed table. Identify foundational decisions changed by the revision
-and the downstream assumptions that need reconsideration. A review with no findings needs no edit
-merely to manufacture a new commit.
+and the downstream assumptions that need reconsideration.
 
-Fetch the PR again before pushing. If another author changed its head, reconcile those changes and
-review the resulting plan. Read the published changes and review back. Return actual publication links
-and any unresolved decisions. Human decisions control confirmation and merges.
+- **With a plan inbox.** The plan view is the page the user reads before confirming, so the review
+  goes there. Add a section headed `Review` at the end of the view: each finding with its identity,
+  evidence and disposition, then the unresolved choices. Redraw the rest of the view to match the
+  corrected plan. Run the push command with a message that starts with `critique:` and counts the
+  findings and open choices, such as `critique: 4 findings, 1 open choice`. The judged revision is
+  the one open printed; the resulting revision is the one push stores. When open or push refuses
+  because the inbox holds a newer revision, run open again and review that revision.
+- **Without one.** Push the plan corrections to the PR branch and post the review as a PR comment,
+  with the judged and resulting commits. Fetch the PR again before pushing. If another author
+  changed its head, reconcile those changes and review the resulting plan.
+
+A review with no findings changes no plan file: with a plan inbox, push the view with its `Review`
+section alone; without one, post the comment without a commit.
+
+Read the published revision or PR and its review back. Return the plan's page or the PR link, and any
+unresolved decisions. Human decisions control confirmation and merges.
