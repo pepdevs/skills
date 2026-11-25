@@ -53,6 +53,7 @@ The installer fetches that revision; updating the revision is a separate decisio
 | `project` | Keep repository documents, structure, policies, and proof coherent |
 | `ticket-authoring` | Write tracker-independent tickets, criteria, and comments |
 | `ui` | Pick a web app's look by eye on a prototype, then build the screen to match it |
+| `variants` | Plan design variants on an axis grid so each one differs in encoding, content, type, density and margins |
 | `writing-style` | Apply prose rules by documentation, instruction, and correspondence register |
 
 `m3-corpus` and `m3-review` need a repository that keeps a Material 3 corpus in `docs/m3/` with the

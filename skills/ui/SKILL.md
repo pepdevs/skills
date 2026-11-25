@@ -23,7 +23,9 @@ Run one loop per screen or area, with one pull request each.
 3. Write one static HTML file that draws the screen with its real fields on invented data. Start
    from [assets/prototype.html](assets/prototype.html).
 4. Give each open choice a segmented control with two or three options. Add a phone and desktop
-   switch, and a light and dark switch. Set each control to the option you recommend.
+   switch, and a light and dark switch. Set each control to the option you recommend. Variants:
+   when the operator asks for whole designs to pick from, load the `variants` skill and plan them
+   on its axis grid.
 5. Publish the file where the operator can open it on a phone, and send the link. Use the
    harness's page tool, such as Claude's Artifact, or the static host the operator names.
    Screenshot the options you recommend.
