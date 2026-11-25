@@ -1,6 +1,6 @@
 ---
 name: operations-review
-description: Operations review of a running system. Reads a self-hosted server read-only over SSH, with the facts, units and thresholds its infrastructure checkout states, and records a status of findings on failed or late units and timers, stopped collectors and restarts, backup age and size, coverage and restore drills, capacity per app, and app speed and errors. Use when a task asks to run the operations lead or for an operations review of a host.
+description: Operations review of a running system. Reads a self-hosted server read-only over SSH, with the facts, units and thresholds its infrastructure checkout states, and records a status of findings on failed or late units and timers, stopped collectors and restarts, backup age and size, coverage and restore drills, capacity per app, app speed and errors, and Actions and B2 costs, and proposes each fix in the repository that owns it. Use when a task asks to run the operations lead or for an operations review of a host.
 ---
 
 # Operations review
@@ -94,6 +94,17 @@ Read the result files of the restore drill the checkout installs, at the paths i
 2. `docker stats --no-stream`: CPU and memory per app against its limit. An app over 90 percent of
    its memory limit breaks.
 
+### Costs
+
+1. GitHub Actions: this month's billed minutes per repository and workflow, for every repository
+   of the owner (`gh repo list <owner> --json nameWithOwner`), with the usage tool the checkout
+   names, such as `scripts/github-actions-usage <owner/name>...`. It reads with `gh api` GETs only.
+   Sum its rows per repository and workflow for the status's costs.
+2. B2: the offsite repository's size in bytes, from the monitoring API the checkout names or the
+   backup job's last summary.
+3. A projection over a threshold the checkout states is a `costs` finding: `warning` over the
+   first, `broken` over the last. Name the workflow with the most minutes in its title.
+
 ### Speed and errors
 
 1. Each health path and front door: status code and time. A code other than 200, or a time over
@@ -114,6 +125,23 @@ Give each finding one severity:
 
 Compare with the last status in the task's context. Keep a problem's title the same from run to
 run, so the operator and the next run see it as the same problem.
+
+## Propose fixes
+
+A broken or warning finding whose fix is a change to a repository gets a proposal in the
+repository that owns the change, when the task lists that repository. Pick the owner from the
+checkouts' `SYSTEM.md` files:
+
+- Host configuration, units, timers, backups, drills and capacity limits: the infrastructure
+  repository.
+- An app's errors, speed, collectors and containers: the app's repository.
+- A workflow's minutes: the repository that holds the workflow.
+
+Each proposal states the finding, its measurement and command, the change, and the expected saving
+in minutes, bytes or failures. A cost proposal names the workflow and the minutes it saves a month.
+Keep to the task's room per repository, and file no problem that an open proposal or a decision
+in the context already covers, unless its measurement has changed since. A problem without an
+owner the task lists stays a finding.
 
 ## Write the status
 
