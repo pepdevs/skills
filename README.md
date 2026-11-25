@@ -99,8 +99,8 @@ node scripts/check.mjs
 git config core.hooksPath .githooks
 ```
 
-One offline check validates skill names, descriptions, companion declarations, and portable local
-resource links. CI runs the same command, and `.githooks/pre-push` runs it before every push. This repository contains installable skills and their
+One offline check validates skill names, descriptions, front matter YAML, companion declarations,
+and portable local resource links. CI runs the same command, and `.githooks/pre-push` runs it before every push. This repository contains installable skills and their
 resources; machine deployment and migration tooling stay outside its published tree.
 
 [AGENTS.md](AGENTS.md) defines editing rules; [SYSTEM.md](SYSTEM.md) maps the files.
