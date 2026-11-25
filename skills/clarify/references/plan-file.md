@@ -7,6 +7,8 @@ readers who did not attend the interview.
 
 Store one plan at `docs/plans/NNNN-slug.md`, using the next unused number. Respect an established
 repository plan directory when one exists. Its stable UUID survives renaming or moving the file.
+The plan view sits beside it as `NNNN-slug.html`, and the view's images sit in the asset folder
+`NNNN-slug/`.
 
 ```yaml
 ---
