@@ -70,6 +70,11 @@ confirmation SHA read it, and the page draws it.
   pair. Take captures on invented data only. Save images in the plan's asset folder, the folder
   beside the plan with its name and no extension (`docs/plans/NNNN-slug/`), as png, jpg, webp or
   svg, and reference them from the page by relative path.
+- Declare `<meta charset="utf-8">` and write the page's script as `<script type="module">`. A
+  classic script shares the window's globals: a top-level `const top` collides with `window.top`
+  and the page draws nothing, with no visible error.
+- Open the page in a browser before each push. Check that the console shows no error and every
+  figure draws.
 - Commit the page beside the plan with the same name and an `.html` extension, with its asset
   folder, in the plan's commit, so the confirmed SHA holds all three.
 - Show the page where the user reviews it. When the repository has a plan inbox, a tool that lists
