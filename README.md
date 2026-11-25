@@ -47,10 +47,12 @@ The installer fetches that revision; updating the revision is a separate decisio
 | --- | --- |
 | `clarify` | Interview for a plan and publish its draft and explicit confirmation |
 | `critique` | Review a plan and publish evidence-supported corrections |
+| `design-review` | Prototype a repository's screens from captures and public design pages, and propose a critique and a research change |
 | `engineering-review` | Measure a repository's gates, structure, dependencies and open ideas, and propose the largest problems |
 | `git` | Apply the author's branch, commit, and pull-request preferences |
 | `m3-corpus` | Judge the committed Material 3 corpus against the live site |
 | `m3-review` | Judge a pull request against the Material 3 corpus |
+| `product-review` | Keep a repository's vision page and propose briefs against it |
 | `project` | Keep repository documents, structure, policies, and proof coherent |
 | `ticket-authoring` | Write tracker-independent tickets, criteria, and comments |
 | `ui` | Pick a web app's look by eye on a prototype, then build the screen to match it |
