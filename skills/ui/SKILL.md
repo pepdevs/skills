@@ -1,6 +1,6 @@
 ---
 name: ui
-description: 'UI: how a web app gets its look. The operator picks by eye from a static HTML prototype with a switch per open choice, the build matches the picked prototype side by side, and rules are written last from what built screens share. Use when designing, redesigning or building a screen in a web app.'
+description: 'UI: how a web app gets its look. Screens start from the app defaults, the operator picks by eye from a static HTML prototype, the build matches the picked prototype side by side, and picked components move to the shared registry. Use when designing, redesigning or building a screen in a web app.'
 ---
 
 # UI
@@ -12,6 +12,11 @@ A written rule records what two built screens share.
 - **Frontend document**: the file in the app's repository that records each screen's pick and the
   rules its screens share. Use the one the repository names. Create `docs/frontend.md` when it has
   none.
+- **Shared registry**: the component registry the operator's own instructions name. Apps copy
+  components from it and own the copies.
+
+Defaults: width, scroll, phone and desktop arrangement, text, controls and checks. Read
+[defaults.md](defaults.md) before drawing a prototype or building a screen.
 
 ## Loop
 
@@ -52,25 +57,28 @@ app, and give the first prototype switches for layout only.
 
 ## Components
 
-- **Copies the app owns.** Start from shadcn-style component files in the app's own folder, styled
-  by the theme file's tokens.
-- **App first.** A new component lands in the app that needs it. Move it to a shared registry when
-  a second app needs it.
+Design a component in the app, pick it by eye, and move the pick to the shared registry, so the next
+app and the next round start from it.
+
+- **Copies the app owns.** Start from the shared registry's component files in the app's own
+  folder, styled by the theme file's tokens.
+- **Design in the app.** A new component lands in the app that needs it, drawn from its prototype.
+- **Promote the pick.** When the operator picks a component's design, move it to the shared
+  registry in its own pull request: the component, its page on the registry's site with invented
+  data, and the interface rule the pick set. Then re-add it in the app from the registry, so the
+  two copies match. Do the same when an app's copy of a registry component has grown better than
+  the registry's.
+- **Evolve in the registry.** A later round of variants on a registry component starts from the
+  registry's copy, and the picked variant lands in the registry before the apps take it.
 - **Old screens keep working.** A screen on an older library stays inside the new shell until its
   own loop redraws it. One block maps the theme's tokens onto the old library's variables. Delete
   the block and the library with the last old screen.
 
-## Phone and desktop
-
-Start each prototype from these arrangements. The operator's pick stands over them.
-
-- Draw two arrangements. A phone has one column, its sections behind a segmented control, and
-  navigation at the bottom. A desktop has a board: the title, the period control and the section
-  control in one row, cards side by side, and a navigation rail.
-- Try widths to find the narrowest one the board holds. Use the phone arrangement below it.
-- Detail opens in a pane beside its list on desktop. On a phone it takes the page, with Back.
-
 ## Rules
 
-Write a rule after two built screens share it. Put it in the app's frontend document when it
-belongs to that app, and in your copy of this skill when a second app follows it.
+Write a rule when the operator gives the same correction twice or two built screens share it.
+Put it where its scope ends:
+
+- one app: the app's frontend document;
+- one component: the shared registry's interface document for that component;
+- every app: [defaults.md](defaults.md), by pull request to this skill.
