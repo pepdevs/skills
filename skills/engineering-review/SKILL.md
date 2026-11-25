@@ -12,8 +12,9 @@ and how to judge it.
 
 The repository is the boundary. Evidence comes from its files, its Git history, its checks, its
 pull requests and the idea list. Runtime evidence from production hosts, logs or collectors is out
-of scope. Change no code, commit nothing, open no pull request and write to no database. Write
-notes, command output and figures to the notes directory.
+of scope. Change no code, commit nothing, open no pull request and write to no database, except
+the allow-rule pull request in [Allow rules](#allow-rules). Write notes, command output and figures
+to the notes directory.
 
 Write every title, description and figure label with `writing-style`, Documentation register.
 
@@ -165,6 +166,27 @@ Draw one figure per proposal from its measurements, so the operator sees the pro
    `google-chrome --headless --window-size=1200,675 --force-device-scale-factor=2 --screenshot=<notes>/<figure>.png file://<notes>/<figure>.html`.
 4. Look at the PNG. Fix clipped or overlapping text, text under 15 pixels and empty areas. Keep it
    under 2 MiB.
+
+## Allow rules
+
+When the task supplies recorded permission requests, propose allow rules for the target's
+`.claude/settings.json` under `permissions.allow`, in Claude Code permission rule syntax:
+`Tool` or `Tool(specifier)`, such as `Bash(npm run check)`, `Bash(npm run check:*)` for a command
+and its arguments, `Read(./docs/**)` for a path, or `WebFetch(domain:example.com)`.
+
+1. Propose a rule only for a request the task's criteria select, such as one that recurs across
+   runs, and that the target's `AGENTS.md` allows.
+2. Write the narrowest pattern that covers the recorded requests: the exact command, or its prefix
+   with `:*` when the arguments vary. Never a broad wildcard such as `Bash(*)`, `Bash` alone or
+   `Bash(npm:*)`.
+3. Propose none for a destructive command, such as `rm`, a force push, `git reset --hard` or a
+   database drop, and none for a command or path that reads or writes credentials, tokens or
+   `.env` files.
+4. Keep every other key in the file. Add no deny rule and change no permission mode.
+
+Open the rules as one pull request when the task says to, branched from the default branch, with
+each rule and the requests it covers listed in the body: pattern, count and outcomes, and no
+private value. Leave the merge to the operator.
 
 ## Privacy
 
