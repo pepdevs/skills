@@ -41,7 +41,9 @@ One explicit approval can confirm both understanding and the plan revision when 
 Use [the plan contract](references/plan-file.md) for location, metadata, content guidance, and readiness.
 
 Use the `git` skill to commit and publish a draft plan PR. Preserve one plan identity and PR through revisions.
-In the PR body, explain the intended outcome and why it matters. Link the plan at its current full commit SHA.
+In the PR body, explain the intended outcome and why it matters. While the plan is drafted, link the
+plan and its view on the PR branch, without a commit SHA, so a revision push needs no PR edit.
+The full commit SHA enters the PR at confirmation.
 Highlight decisions needing review and unresolved choices. Link critique findings when available.
 Apply `writing-style` and choose the structure that helps reviewers. Keep detailed design in the plan.
 Record confirmation using the procedure below. Check the plan metadata with:
@@ -50,7 +52,7 @@ Record confirmation using the procedure below. Check the plan metadata with:
 node <clarify-skill>/scripts/validate-plan.mjs <plan-file>
 ```
 
-Read the remote PR back and verify its plan link and revision. Report its URL and unresolved choices.
+Read the remote PR back and verify its plan link. Report its URL and unresolved choices.
 `critique` can review this proposal independently. Clarify itself launches no critic.
 
 ## Draw the plan
@@ -64,20 +66,39 @@ confirmation SHA read it, and the page draws it.
 - Give each part or increment its acceptance line or question from the plan. Show the increment
   order with its review gates, the settled decisions and the exclusions.
 - Use the plan's terms and the demo values it states. Draw nothing the plan leaves out.
-- Commit the page beside the plan with the same name and an `.html` extension, in the plan's
-  commit, so the confirmed SHA holds both. Also publish it as a private page when the harness has a
-  page tool, such as Claude's Artifact, and link it in the PR body beside the plan link.
+- Add a figure where a screen or behaviour changes: a capture, a diagram, or a before and after
+  pair. Take captures on invented data only. Save images in the plan's asset folder, the folder
+  beside the plan with its name and no extension (`docs/plans/NNNN-slug/`), as png, jpg, webp or
+  svg, and reference them from the page by relative path.
+- Commit the page beside the plan with the same name and an `.html` extension, with its asset
+  folder, in the plan's commit, so the confirmed SHA holds all three.
+- Show the page where the user reviews it. When the repository has a plan inbox, a tool that lists
+  its draft plan PRs and draws each plan view, the inbox is the view: link its plan page in the PR
+  body and publish no other copy. Without one, publish the page as a private page when the harness
+  has a page tool, such as Claude's Artifact, and link it in the PR body beside the plan link.
 - Redraw and commit it after each revision. When the page and the plan disagree, fix the plan first,
   then the page.
 - Builders read the plan file. A capsule, the brief a launcher gives a fresh session, may point at the page for behaviour the plan describes in
   words, such as a layout that changes with width; the look comes from the repository's rules.
 
+## Revise a draft
+
+Take a revision in one round: apply every answer the user gave to the plan, redraw the view, and
+push once. A plan inbox provides two commands for this. Its open command checks out the plan PR's
+branch in a working copy and prints the plan, view and asset folder paths. Its push command
+validates the plan, commits `docs/plans/`, pushes, refreshes the inbox and prints the plan's page.
+Without an inbox, edit the PR branch, run the validator, commit and push.
+
+Keep each revision commit small, with a subject that names what changed, such as
+`docs(plans): split increment 2 by screen`. The inbox and the PR history show that subject.
+
 ## Confirm a revision
 
 Only explicit user confirmation authorizes implementation. Merge alone is not confirmation.
 Resolve any remaining consequential choice before recording confirmation. Update the plan's status
-and confirmation date, commit and push, and record the resulting full commit SHA in the PR. Mark the
-plan PR ready for review. Use that immutable revision for decomposition and implementation.
+and confirmation date, commit and push, and record the resulting full commit SHA in the PR: link the
+plan and its view at that SHA. When the user confirms in a plan inbox, the inbox records the head
+commit it showed them. Mark the plan PR ready for review. Use that immutable revision for decomposition and implementation.
 
 A material change after confirmation needs renewed confirmation. Preserve the old authorized
 revision for existing work; do not silently change its scope. Human decisions control merges.
