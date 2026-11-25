@@ -47,6 +47,7 @@ The installer fetches that revision; updating the revision is a separate decisio
 | --- | --- |
 | `clarify` | Interview for a plan and publish its draft and explicit confirmation |
 | `critique` | Review a plan and publish evidence-supported corrections |
+| `engineering-review` | Measure a repository's gates, structure, dependencies and open ideas, and propose the largest problems |
 | `git` | Apply the author's branch, commit, and pull-request preferences |
 | `m3-corpus` | Judge the committed Material 3 corpus against the live site |
 | `m3-review` | Judge a pull request against the Material 3 corpus |
