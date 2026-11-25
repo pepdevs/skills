@@ -20,6 +20,7 @@
         "git",
         "m3-corpus",
         "m3-review",
+        "product-review",
         "ticket-authoring"
       ]
     },
@@ -29,7 +30,8 @@
         "clarify",
         "critique",
         "engineering-review",
-        "git"
+        "git",
+        "product-review"
       ]
     },
     "gh stack": {
@@ -43,17 +45,21 @@
       "minimumVersion": "22",
       "usedBy": [
         "clarify",
+        "design-review",
         "engineering-review",
         "m3-corpus",
-        "m3-review"
+        "m3-review",
+        "product-review"
       ]
     },
     "npm": {
       "source": "https://www.npmjs.com/",
       "usedBy": [
+        "design-review",
         "engineering-review",
         "m3-corpus",
-        "m3-review"
+        "m3-review",
+        "product-review"
       ]
     },
     "git-lfs": {
