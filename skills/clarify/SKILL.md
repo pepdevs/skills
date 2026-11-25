@@ -1,13 +1,13 @@
 ---
 name: clarify
-description: Stress-test a request through an iterative interview until user and agent share an understanding, then capture it in a plan PR.
+description: Stress-test a request through an iterative interview until user and agent share an understanding, then capture it in a plan, published to the repository's plan inbox or a plan PR.
 ---
 
 # Clarify
 
 Build mutual understanding of the intended outcome, its boundaries, and why the chosen approach fits.
 Capture that understanding in a plan an implementer can use without this conversation. Run in the invoking session.
-Apply `writing-style` to every written artifact, including the plan, PR, and comments.
+Apply `writing-style` to every written artifact, including the plan, view, PR, and comments.
 
 ## Reach shared understanding
 
@@ -39,27 +39,33 @@ One explicit approval can confirm both understanding and the plan revision when 
 ## Publish the proposal
 
 Use [the plan contract](references/plan-file.md) for location, metadata, content guidance, and readiness.
-
-Use the `git` skill to commit and publish a draft plan PR. Preserve one plan identity and PR through revisions.
-In the PR body, explain the intended outcome and why it matters. While the plan is drafted, link the
-plan and its view on the PR branch, without a commit SHA, so a revision push needs no PR edit.
-The full commit SHA enters the PR at confirmation.
-Highlight decisions needing review and unresolved choices. Link critique findings when available.
-Apply `writing-style` and choose the structure that helps reviewers. Keep detailed design in the plan.
-Record confirmation using the procedure below. Check the plan metadata with:
+Check the plan metadata before each publish:
 
 ```bash
 node <clarify-skill>/scripts/validate-plan.mjs <plan-file>
 ```
 
-Read the remote PR back and verify its plan link. Report its URL and unresolved choices.
+**With a plan inbox.** The repository's plan inbox, when one exists, is a tool that holds draft
+plans, draws each plan view and records the user's confirmation. Its README gives the exact syntax
+of its commands. Publish the draft with its new command, which takes the plan file, the view, the
+asset folder and a message, allocates the plan number and prints the plan's page. Draft without a
+branch, commit or PR. Report the plan's page and unresolved choices.
+
+**Without one.** Use the `git` skill to commit and publish a draft plan PR. Preserve one plan
+identity and PR through revisions. In the PR body, explain the intended outcome and why it matters.
+While the plan is drafted, link the plan and its view on the PR branch, without a commit SHA, so a
+revision push needs no PR edit. The full commit SHA enters the PR at confirmation. Read the remote PR
+back and verify its plan link. Report its URL and unresolved choices.
+
+Either way, highlight decisions needing review and unresolved choices, and link critique findings
+when available. Apply `writing-style` and keep detailed design in the plan.
 `critique` can review this proposal independently. Clarify itself launches no critic.
 
 ## Draw the plan
 
 Draw each published revision as one HTML page, the plan view, so the user checks the design by
 sight during the read-back. The plan file stays the source: builders, the validator and the
-confirmation SHA read it, and the page draws it.
+confirmed revision read it, and the page draws it.
 
 - Draw what the user will get: each screen, behaviour or structure the plan names, at the sizes or
   cases it names. Make it interactive where a width, setting or press changes the result.
@@ -70,13 +76,17 @@ confirmation SHA read it, and the page draws it.
   pair. Take captures on invented data only. Save images in the plan's asset folder, the folder
   beside the plan with its name and no extension (`docs/plans/NNNN-slug/`), as png, jpg, webp or
   svg, and reference them from the page by relative path.
-- Commit the page beside the plan with the same name and an `.html` extension, with its asset
-  folder, in the plan's commit, so the confirmed SHA holds all three.
-- Show the page where the user reviews it. When the repository has a plan inbox, a tool that lists
-  its draft plan PRs and draws each plan view, the inbox is the view: link its plan page in the PR
-  body and publish no other copy. Without one, publish the page as a private page when the harness
-  has a page tool, such as Claude's Artifact, and link it in the PR body beside the plan link.
-- Redraw and commit it after each revision. When the page and the plan disagree, fix the plan first,
+- Declare `<meta charset="utf-8">` and write the page's script as `<script type="module">`. A
+  classic script shares the window's globals: a top-level `const top` collides with `window.top`
+  and the page draws nothing, with no visible error.
+- Open the page in a browser before each publish. Check that the console shows no error and every
+  figure draws.
+- Keep the page beside the plan with the same name and an `.html` extension, with its asset folder,
+  so a revision holds all three.
+- With a plan inbox, the inbox is the view: publish no other copy. Without one, commit the page in
+  the plan's commit, publish it as a private page when the harness has a page tool, such as
+  Claude's Artifact, and link it in the PR body beside the plan link.
+- Redraw it after each revision. When the page and the plan disagree, fix the plan first,
   then the page.
 - Builders read the plan file. A capsule, the brief a launcher gives a fresh session, may point at the page for behaviour the plan describes in
   words, such as a layout that changes with width; the look comes from the repository's rules.
@@ -84,21 +94,29 @@ confirmation SHA read it, and the page draws it.
 ## Revise a draft
 
 Take a revision in one round: apply every answer the user gave to the plan, redraw the view, and
-push once. A plan inbox provides two commands for this. Its open command checks out the plan PR's
-branch in a working copy and prints the plan, view and asset folder paths. Its push command
-validates the plan, commits `docs/plans/`, pushes, refreshes the inbox and prints the plan's page.
-Without an inbox, edit the PR branch, run the validator, commit and push.
+publish once.
 
-Keep each revision commit small, with a subject that names what changed, such as
-`docs(plans): split increment 2 by screen`. The inbox and the PR history show that subject.
+- With a plan inbox, run its open command, which prints the paths of the plan, view and asset folder
+  to edit. Edit them, then run its push command with a message; it validates and stores the
+  revision and prints the plan's page.
+- Without one, edit the PR branch, run the validator, commit and push.
+
+Keep each revision small, with a message that names what changed, such as
+`split increment 2 by screen`. The inbox and the PR history show that message.
 
 ## Confirm a revision
 
 Only explicit user confirmation authorizes implementation. Merge alone is not confirmation.
-Resolve any remaining consequential choice before recording confirmation. Update the plan's status
-and confirmation date, commit and push, and record the resulting full commit SHA in the PR: link the
-plan and its view at that SHA. When the user confirms in a plan inbox, the inbox records the head
-commit it showed them. Mark the plan PR ready for review. Use that immutable revision for decomposition and implementation.
+Resolve any remaining consequential choice before recording confirmation.
+
+- With a plan inbox, the inbox records confirmation of the revision it showed: the user confirms
+  there, or the agent records it through the inbox on the user's explicit word. The build commits
+  the confirmed plan, its view and asset folder into the repository's plan directory in its own PR.
+- Without one, update the plan's status and confirmation date, commit and push, and record the
+  resulting full commit SHA in the PR: link the plan and its view at that SHA. Mark the plan PR
+  ready for review.
+
+Use the confirmed revision for decomposition and implementation.
 
 A material change after confirmation needs renewed confirmation. Preserve the old authorized
 revision for existing work; do not silently change its scope. Human decisions control merges.

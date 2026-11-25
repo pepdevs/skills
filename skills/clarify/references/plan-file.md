@@ -8,7 +8,8 @@ readers who did not attend the interview.
 Store one plan at `docs/plans/NNNN-slug.md`, using the next unused number. Respect an established
 repository plan directory when one exists. Its stable UUID survives renaming or moving the file.
 The plan view sits beside it as `NNNN-slug.html`, and the view's images sit in the asset folder
-`NNNN-slug/`.
+`NNNN-slug/`. A plan inbox allocates the number and holds the draft; the build commits the
+confirmed plan at this path.
 
 ```yaml
 ---
@@ -48,7 +49,7 @@ nothing for it. Metadata validation does not enforce prose structure.
 
 Keep detail proportional to uncertainty and consequence. The plan holds decisions, acceptance, and
 boundaries. Implementation checks, verification commands, and review evidence belong in outcome
-issues and plan PR reviews.
+issues and plan reviews.
 
 ## Readiness
 
