@@ -52,6 +52,7 @@ The installer fetches that revision; updating the revision is a separate decisio
 | `git` | Apply the author's branch, commit, and pull-request preferences |
 | `m3-corpus` | Judge the committed Material 3 corpus against the live site |
 | `m3-review` | Judge a pull request against the Material 3 corpus |
+| `operations-review` | Read a running host's schedules, backups, capacity and app health read-only, and record a status of what broke |
 | `product-review` | Keep a repository's vision page and propose briefs against it |
 | `project` | Keep repository documents, structure, policies, and proof coherent |
 | `ticket-authoring` | Write tracker-independent tickets, criteria, and comments |

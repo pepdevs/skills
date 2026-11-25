@@ -20,6 +20,7 @@
         "git",
         "m3-corpus",
         "m3-review",
+        "operations-review",
         "product-review",
         "ticket-authoring"
       ]
@@ -82,6 +83,24 @@
       "usedBy": [
         "m3-corpus",
         "m3-review"
+      ]
+    },
+    "ssh": {
+      "source": "https://www.openssh.com/",
+      "usedBy": [
+        "operations-review"
+      ]
+    },
+    "ansible-playbook": {
+      "source": "https://docs.ansible.com/",
+      "usedBy": [
+        "operations-review"
+      ]
+    },
+    "curl": {
+      "source": "https://curl.se/",
+      "usedBy": [
+        "operations-review"
       ]
     }
   }
