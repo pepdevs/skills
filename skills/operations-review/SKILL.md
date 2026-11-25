@@ -1,6 +1,6 @@
 ---
 name: operations-review
-description: Operations review of a running system. Reads a self-hosted server read-only over SSH, with the facts, units and thresholds its infrastructure checkout states, and records a status of findings: failed or late units and timers, stopped collectors and restarts, backup age and size, capacity per app, and app speed and errors. Use when a task asks to run the operations lead or for an operations review of a host.
+description: Operations review of a running system. Reads a self-hosted server read-only over SSH, with the facts, units and thresholds its infrastructure checkout states, and records a status of findings on failed or late units and timers, stopped collectors and restarts, backup age and size, coverage and restore drills, capacity per app, and app speed and errors. Use when a task asks to run the operations lead or for an operations review of a host.
 ---
 
 # Operations review
