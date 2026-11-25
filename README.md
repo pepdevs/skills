@@ -3,8 +3,8 @@
 Agent skills for planning, plan review, Git, tickets, repository order, UI and writing. Each
 directory under `skills/` is an installable skill with its own resources.
 
-A change starts in `clarify`, which interviews for a plan and publishes it as a pull request.
-`critique` reviews that plan before you confirm it. The build then follows `project` for the
+A change starts in `clarify`, which interviews for a plan and publishes it to the repository's plan
+inbox or as a pull request. `critique` reviews that plan in the same place before you confirm it. The build then follows `project` for the
 repository's shape, `ui` for each screen and `git` for branches and commits. `writing-style` owns
 the prose of all of them.
 
@@ -99,8 +99,8 @@ node scripts/check.mjs
 git config core.hooksPath .githooks
 ```
 
-One offline check validates skill names, descriptions, companion declarations, and portable local
-resource links. CI runs the same command, and `.githooks/pre-push` runs it before every push. This repository contains installable skills and their
+One offline check validates skill names, descriptions, front matter YAML, companion declarations,
+and portable local resource links. CI runs the same command, and `.githooks/pre-push` runs it before every push. This repository contains installable skills and their
 resources; machine deployment and migration tooling stay outside its published tree.
 
 [AGENTS.md](AGENTS.md) defines editing rules; [SYSTEM.md](SYSTEM.md) maps the files.

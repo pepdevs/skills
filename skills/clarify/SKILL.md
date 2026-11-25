@@ -71,7 +71,9 @@ confirmed revision read it, and the page draws it.
   cases it names. Make it interactive where a width, setting or press changes the result.
 - Give each part or increment its acceptance line or question from the plan. Show the increment
   order with its review gates, the settled decisions and the exclusions.
-- Use the plan's terms and the demo values it states. Draw nothing the plan leaves out.
+- Use the plan's terms and the demo values it states. Draw nothing the plan leaves out, except a
+  `Review` section that `critique` adds at the end: keep it on a redraw and update each finding's
+  disposition as answers settle it.
 - Add a figure where a screen or behaviour changes: a capture, a diagram, or a before and after
   pair. Take captures on invented data only. Save images in the plan's asset folder, the folder
   beside the plan with its name and no extension (`docs/plans/NNNN-slug/`), as png, jpg, webp or

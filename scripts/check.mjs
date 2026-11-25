@@ -35,6 +35,7 @@ export function validateRepository(root) {
             const body = fs.readFileSync(file, 'utf8');
             if (entry.name === 'SKILL.md') {
                 const match = body.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+                if (match) frontMatterFailures(match[1]).forEach((failure) => failures.push(`${file}: front matter ${failure}`));
                 const name = match?.[1].match(/^name:\s*([a-z0-9-]+)\s*$/m)?.[1];
                 if (name !== path.basename(home)) failures.push(`${file}: skill identity differs from directory`);
                 if (!match?.[1].match(/^description:\s*\S/m)) failures.push(`${file}: missing description`);
@@ -56,6 +57,48 @@ export function validateRepository(root) {
         inspect(path.join(skillRoot, entry.name), path.join(skillRoot, entry.name));
     }
     return failures;
+}
+
+// Accept the YAML subset skill front matter uses: top-level keys holding a quoted, plain or block
+// scalar, or a mapping of such keys one level deeper. A plain scalar that YAML would read as
+// something else, such as a nested mapping after ': ' or a comment after ' #', fails here, before an
+// installer skips the skill.
+export function frontMatterFailures(text) {
+    const failures = [];
+    const keys = new Set();
+    let block = null;
+    let parent = false;
+    text.split(/\r?\n/).forEach((line, index) => {
+        const at = `line ${index + 2}`;
+        const indent = line.match(/^ */)[0].length;
+        if (block !== null && (indent > block || !line.trim())) return;
+        block = null;
+        if (!line.trim() || /^\s*#/.test(line)) return;
+        if (line.includes('\t')) { failures.push(`${at}: tab in indentation or value`); return; }
+        if (indent > 0 && !parent) { failures.push(`${at}: indented line outside a mapping`); return; }
+        if (indent === 0) parent = false;
+        const pair = line.slice(indent).match(/^([A-Za-z0-9_-]+):(?: (.*))?$/);
+        if (!pair) { failures.push(`${at}: expected "key: value"`); return; }
+        if (indent === 0) {
+            if (keys.has(pair[1])) failures.push(`${at}: duplicate key ${pair[1]}`);
+            keys.add(pair[1]);
+        }
+        const value = (pair[2] ?? '').trim();
+        if (!value) { if (indent === 0) parent = true; return; }
+        if (/^[|>][+-]?[1-9]?$/.test(value)) { block = indent; return; }
+        const problem = scalarProblem(value);
+        if (problem) failures.push(`${at}: ${pair[1]} ${problem}`);
+    });
+    return failures;
+}
+
+function scalarProblem(value) {
+    if (value.startsWith("'")) return /^'(?:[^']|'')*'(?:\s+#.*)?$/.test(value) ? null : 'has an unclosed single-quoted string';
+    if (value.startsWith('"')) return /^"(?:[^"\\]|\\.)*"(?:\s+#.*)?$/.test(value) ? null : 'has an unclosed double-quoted string';
+    if (/^[[\]{},#&*!|>%@`]/.test(value) || /^[-?:](?:\s|$)/.test(value)) return 'starts with a YAML indicator; quote the value';
+    if (/:(?:\s|$)/.test(value)) return "holds ': ', which YAML reads as a nested mapping; quote the value";
+    if (/\s#/.test(value)) return "holds ' #', which YAML reads as a comment; quote the value";
+    return null;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
