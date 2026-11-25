@@ -1,0 +1,3 @@
+interface:
+  display_name: "Variants"
+  short_description: "Plan design variants on an axis grid so each one differs in encoding, content, type, density and margins"
