@@ -18,7 +18,8 @@ overrides any rule here. `writing-style` owns the prose of commit messages and p
 4. **Pull request.** Open it with `gh pr create`. For several related pull requests, load the
    `gh-stack` skill and submit them as a stack.
 5. **Merge.** Follow the merge authority in the active instructions. Without one, leave the merge
-   to the user.
+   to the user. Merge with a squash merge, `gh pr merge <pr> --squash --delete-branch`, so `main`
+   takes one commit per pull request.
 
 State the branch name, each commit subject, and the pull request URL in your response.
 
