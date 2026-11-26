@@ -78,11 +78,13 @@ confirmed revision read it, and the page draws it.
   pair. Take captures on invented data only. Save images in the plan's asset folder, the folder
   beside the plan with its name and no extension (`docs/plans/NNNN-slug/`), as png, jpg, webp or
   svg, and reference them from the page by relative path.
-- Declare `<meta charset="utf-8">` and write the page's script as `<script type="module">`. A
-  classic script shares the window's globals: a top-level `const top` collides with `window.top`
-  and the page draws nothing, with no visible error.
-- Open the page in a browser before each publish. Check that the console shows no error and every
-  figure draws.
+- Declare `<meta charset="utf-8">` and write the page's script as `<script type="module">`.
+- With a plan inbox, its new and push commands check the page as they publish and print each
+  problem to fix. Fix them and run the command again.
+- Without one, check the page in a headless browser before each publish, at a phone width and a
+  full width: no uncaught error, no console error, a body that draws, every image loaded with a
+  size, the charset declared and every inline script a module. Use headless Chromium through
+  Playwright, and keep the desktop app's browser pane closed.
 - Keep the page beside the plan with the same name and an `.html` extension, with its asset folder,
   so a revision holds all three.
 - With a plan inbox, the inbox is the view: publish no other copy. Without one, commit the page in
