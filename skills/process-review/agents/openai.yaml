@@ -1,0 +1,3 @@
+interface:
+  display_name: "Process review"
+  short_description: "Label the operator's prompts, find the rules they repeat and propose each one in the file every agent reads"
