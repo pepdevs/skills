@@ -67,6 +67,7 @@ Draw each published revision as one HTML page, the plan view, so the user checks
 sight during the read-back. The plan file stays the source: builders, the validator and the
 confirmed revision read it, and the page draws it.
 
+- Open the page with the plan's Why, in its words, before any figure.
 - Draw what the user will get: each screen, behaviour or structure the plan names, at the sizes or
   cases it names. Make it interactive where a width, setting or press changes the result.
 - Give each part or increment its acceptance line or question from the plan. Show the increment
