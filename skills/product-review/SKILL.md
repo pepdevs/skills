@@ -1,6 +1,6 @@
 ---
 name: product-review
-description: Product review of one repository against its vision page, docs/vision.md, which states who uses it, the jobs it does, the jobs it takes on next and what it leaves to other tools. When the repository has no vision page, drafts one from its documents, plans, use cases, the operator's prompts and strategy notes, and opens it as a draft pull request. When the page exists, proposes up to two briefs against it, each with a figure drawn from its evidence, and opens a pull request to change the page when the operator's decision reasons contradict a section. Use when a task asks to run the product lead or for a product review of a repository.
+description: Product review of one repository against its vision page, docs/vision.md, which states who uses it, the jobs it does, the jobs it takes on next and what it leaves to other tools. When the repository has no vision page, drafts one from its documents, plans, use cases, the operator's prompts and strategy notes, and opens it as a draft pull request. When the page exists, proposes up to two briefs against it, each with a figure drawn from its evidence, and opens a pull request to change the page when the operator's decision reasons contradict a section. Runs the checks its product runbook lists and keeps that runbook current through proposals. Use when a task asks to run the product lead or for a product review of a repository.
 ---
 
 # Product review
@@ -9,7 +9,8 @@ You review one repository in a checkout of it on a detached default branch, usua
 nobody to answer. The task supplies the protocol: the notes directory, the past decisions with
 their reasons, the open proposals and the room for more, the operator's prompts and strategy
 notes, how to file a brief with its figure, and how to record the run. This skill says what to
-read and how to judge the repository's product.
+read and how to judge the repository's product. The runbook says how this repository is read
+and checked.
 
 A run keeps the repository's vision page, `docs/vision.md`. When it is missing, the run drafts it
 and opens it as a draft pull request in the repository. When it exists, the run proposes briefs
@@ -41,8 +42,22 @@ Write with `writing-style`, Documentation register, with no marketing tone.
 4. The plans folder, such as `docs/plans/`: the list and the purpose of the five newest plans.
    A plan there is confirmed or proposed work that is still unfinished, unless it says it is
    implemented.
-5. The open pull requests: `gh pr list --state open --json number,title,headRefName,isDraft,url`.
-   Note the URL of any pull request whose head starts with `docs/vision`: a vision pull request.
+5. The open pull requests. Note the URL of any pull request whose branch starts with
+   `docs/vision`: a vision pull request.
+
+## Runbook
+
+The product runbook, `docs/runbooks/product.md`, lists the checks for this repository: how to list
+its open pull requests, the document and privacy checks a vision page passes before its push, how
+to render a figure, and each check's threshold and the source of any cost.
+
+1. Read the runbook. Run each check it lists at the step that needs it.
+2. Judge each result by the rules below.
+3. A check that no longer runs stays unrun: note it, and push no vision page that skipped a
+   document or privacy check.
+
+When the repository has no product runbook, use the checks its `AGENTS.md` and `README.md` name,
+say so in the record, and file the runbook proposal in [Keep the runbook](#keep-the-runbook).
 
 ## Read the users' context
 
@@ -113,20 +128,12 @@ this pull request, the order of Jobs next in one line each, and the evidence sou
 
 1. Run the [Privacy check](#privacy-check) on `docs/vision.md` and fix what it finds.
 2. Install dependencies the way the repository says when they are missing.
-3. Run the repository's document and privacy checks that its `AGENTS.md` or `package.json`
-   names, such as `check:docs` or a leak guard, and fix what fails.
-4. Commit on a new branch:
-
-   ```sh
-   git switch -C <branch>
-   git add docs/vision.md
-   git commit -m "<commit message>"
-   ```
-
-5. Push with `git push -u origin <branch>`. When a pre-push hook fails, fix the cause, commit and
-   push again. Never bypass a hook with `--no-verify` or another hooks path.
+3. Run the document and privacy checks the runbook lists, and fix what fails.
+4. Commit only `docs/vision.md` on a new branch with the given commit message, as the `git` skill
+   sets out.
+5. Push the branch. When a hook fails, fix the cause, commit and push again. Never bypass a hook.
 6. Run the Privacy check on `<notes>/pr.md`, then open the pull request as a draft against the
-   default branch: `gh pr create --draft --head <branch> --title "<title>" --body-file <notes>/pr.md`.
+   default branch, with the given title and `<notes>/pr.md` as its body.
 
 Never merge it and never mark it ready. The operator confirms the page there.
 
@@ -150,7 +157,7 @@ one once the operator marks it ready.
 
 ### Write
 
-Write each brief in `<notes>/brief-<n>.md`, 8 to 20 lines:
+Write each brief in `<notes>/brief-<n>.md`:
 
 ```markdown
 ## Problem
@@ -161,19 +168,19 @@ Write each brief in `<notes>/brief-<n>.md`, 8 to 20 lines:
 Serves [<section>: <item>](<vision page URL on the default branch>#<section anchor>)
 ```
 
-- **Problem**: what goes wrong or stays undone for the users today, in two or three sentences.
+- **Problem**: what goes wrong or stays undone for the users today.
 - **Who**: the users who have the problem, by role, as Who uses it names them.
 - **Evidence**: one line per source, cited as in Jobs next. State the pattern in words.
 - **Outcome**: what the users can do once it is built, as a check the operator can make.
 - **Serves**: the vision section and item, such as Jobs next item 2 by its number and first
   words, linked to the section's heading on the default branch.
 
-Give each brief a title of at most 80 characters that names the problem or the outcome.
+Give each brief a title that names the problem or the outcome.
 
 ### Figure
 
-Draw each brief's figure in `<notes>/brief-<n>.html` and render it to `<notes>/brief-<n>.png`.
-The figure shows the one thing the brief is about.
+Draw each brief's figure in the notes directory. The figure shows the one thing the brief is
+about.
 
 1. Choose the form that fits the brief, and a different form from the run's other brief:
    - **The screen, annotated**: the screen the brief touches, rebuilt with the app's own theme
@@ -184,24 +191,14 @@ The figure shows the one thing the brief is about.
    - **A table, matrix or chart** for a brief about coverage or a pattern over time, drawn only
      from what the brief states.
    Boxes and arrows with generic labels are the last resort.
-2. Write it as one self-contained HTML page: inline CSS, no script, no request to another address.
-   Light mode. No title, caption or explaining sentence: labels, values and pins only. Mark the
-   change in #3a5bff and the problem in #c2412d.
-3. Render it at 1200 CSS pixels wide and device scale 2, 675 high, up to 1100 when the subject
-   needs it. Use Playwright from the checkout root when it is installed:
+2. Draw it self-contained, with no request to another address. No title, caption or explaining
+   sentence: labels, values and pins only. Mark the change and the problem in two colours that
+   keep their meaning across the run's figures.
+3. Render it as the runbook says, and look at the image. Fix clipped or overlapping text, text too
+   small to read and empty areas. When the picture says nothing the title does not, draw another
+   form.
 
-   ```sh
-   node --input-type=module -e "import { chromium } from 'playwright'; const b = await chromium.launch();
-   const p = await b.newPage({ viewport: { width: 1200, height: 675 }, deviceScaleFactor: 2 });
-   await p.goto('file://<notes>/brief-<n>.html'); await p.screenshot({ path: '<notes>/brief-<n>.png' }); await b.close();"
-   ```
-
-   Otherwise use headless Chrome:
-   `google-chrome --headless --window-size=1200,675 --force-device-scale-factor=2 --screenshot=<notes>/brief-<n>.png file://<notes>/brief-<n>.html`.
-4. Look at the PNG. Fix clipped or overlapping text, text under 15 pixels and empty areas. When
-   the picture says nothing the title does not, draw another form. Keep it under 2 MiB.
-
-Run the [Privacy check](#privacy-check) on each brief and its figure's HTML before filing it.
+Run the [Privacy check](#privacy-check) on each brief and its figure's source before filing it.
 
 ## Vision change
 
@@ -217,9 +214,26 @@ when a vision pull request is open.
    `docs/vision-<yyyy-mm-dd>` of the run's date, the commit message
    `docs: update the vision page` and the title "Vision page: <changed sections>".
 
+## Keep the runbook
+
+The runbook is yours to keep current. File a proposal against `docs/runbooks/product.md`, within
+the task's room for the repository, when:
+
+- a check fails to run, or its command no longer matches the repository;
+- a check has no threshold;
+- a document or privacy check the repository's `AGENTS.md` names has no entry.
+
+The proposal names the entry, the evidence and the entry's new text: what it measures, the
+read-only command, its threshold and the source of any cost.
+
+When the repository has no product runbook, file one proposal that drafts it from the
+repository's own documents: one entry per check above, each with what it does, a command the
+repository supports, its threshold and each entry's source file. Point at the document that
+already owns a command instead of copying it.
+
 ## Privacy check
 
-Run this on each file that leaves the notes directory: a brief and its figure's HTML before
+Run this on each file that leaves the notes directory: a brief and its figure's source before
 filing, `docs/vision.md` before the push, and `pr.md` before the pull request. Compare the file
 with `<notes>/privacy.txt`:
 
@@ -230,6 +244,6 @@ with `<notes>/privacy.txt`:
   context; cite the page instead.
 - No prompt quoted: paraphrase it and cite its session and turn.
 
-Run `grep -n -i -w -F -f <notes>/privacy.txt <file>` with no blank line in the list. Remove each
-hit, unless it is part of a path or citation such as a repository name. Read the file once more
-for what the list missed.
+Search the file for every line of the list as a whole word, ignoring case, with no blank line in
+the list. Remove each hit, unless it is part of a path or citation such as a repository name. Read
+the file once more for what the list missed.

@@ -23,6 +23,7 @@ skill's text. Add a rule the repository lacks as its own change, outside an unre
 | `CONTEXT.md` | Project terms, read `references/context.md` | A term is settled |
 | `POLICIES.md` | Consequential business rules, read `references/policy.md` | A business rule is implemented |
 | `docs/plans/` | Future state until it is built, owned by `clarify` | Before the work |
+| `docs/runbooks/<lead>.md` | The read-only checks a lead runs on the repository, each with its threshold and cost source; it points at `README.md`, `AGENTS.md` or the manifest for a command they already own | The lead that runs it finds a check failing, missing a threshold, or missing for a new app, timer, gate or screen |
 
 Each fact has one owner. Create a document the first time it has content. A repository keeps no
 decision-record directory: a rule's reason sits beside the rule in `AGENTS.md`, the full debate

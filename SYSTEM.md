@@ -5,7 +5,8 @@ resources, companion metadata, and applicable license notices. The installer cop
 
 `external-dependencies.json` identifies separately maintained skills and required commands.
 `scripts/check.mjs` checks skill identity, that each front matter parses as the YAML installers read,
-companion availability, and portable resource links.
+companion availability, portable resource links, and that a lead skill names no word from its list of
+generic hosts, providers, services and tools.
 `.github/workflows/check.yml` runs that check for pull requests and pushes to main, and
 `.githooks/pre-push` runs it before every push.
 

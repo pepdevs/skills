@@ -116,15 +116,15 @@ A lead keeps the content of its own runbook: propose only where a fact lives.
 
 When the task supplies recorded permission requests, propose allow rules for the
 repository's `.claude/settings.json` under `permissions.allow`, in Claude Code permission rule syntax:
-`Tool` or `Tool(specifier)`, such as `Bash(npm run check)`, `Bash(npm run check:*)` for a command
-and its arguments, `Read(./docs/**)` for a path, or `WebFetch(domain:example.com)`.
+`Tool` or `Tool(specifier)`, such as `Bash(<command>)`, `Bash(<command>:*)` for a command and
+its arguments, `Read(./docs/**)` for a path, or `WebFetch(domain:example.com)`.
 
 1. Propose a rule only for a request the task's criteria select, such as one that recurs across
    runs, and that the repository's `AGENTS.md` allows.
 2. Write the narrowest pattern that covers the recorded requests: the exact command, or its prefix
-   with `:*` when the arguments vary. Never a broad wildcard such as `Bash(*)`, `Bash` alone or
-   `Bash(npm:*)`.
-3. Propose none for a destructive command, such as `rm`, a force push, `git reset --hard` or a
+   with `:*` when the arguments vary. Never a broad wildcard such as `Bash(*)`, `Bash` alone or a
+   whole toolchain such as `Bash(<tool>:*)`.
+3. Propose none for a destructive command, such as `rm`, a force push, a hard reset or a
    database drop, and none for a command or path that reads or writes credentials, tokens or
    `.env` files.
 4. Keep every other key in the file. Add no deny rule and change no permission mode.

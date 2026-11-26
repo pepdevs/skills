@@ -101,7 +101,8 @@ git config core.hooksPath .githooks
 ```
 
 One offline check validates skill names, descriptions, front matter YAML, companion declarations,
-and portable local resource links. CI runs the same command, and `.githooks/pre-push` runs it before every push. This repository contains installable skills and their
+portable local resource links, and that a lead skill names no listed host, provider, service or
+tool: a lead reads its commands from the runbook of the repository it runs on. CI runs the same command, and `.githooks/pre-push` runs it before every push. This repository contains installable skills and their
 resources; machine deployment and migration tooling stay outside its published tree.
 
 [AGENTS.md](AGENTS.md) defines editing rules; [SYSTEM.md](SYSTEM.md) maps the files.

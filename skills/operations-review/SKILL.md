@@ -1,125 +1,104 @@
 ---
 name: operations-review
-description: Operations review of a running system. Reads a self-hosted server read-only over SSH, with the facts, units and thresholds its infrastructure checkout states, and records a status of findings on failed or late units and timers, stopped collectors and restarts, backup age and size, coverage and restore drills, capacity per app, app speed and errors, and Actions and B2 costs, and proposes each fix in the repository that owns it. Use when a task asks to run the operations lead or for an operations review of a host.
+description: Operations review of a running system. Runs the read-only checks of the operations runbook in the system's infrastructure repository and judges them, records a status of findings on failed or late schedules, stopped collectors and restarts, backup age and size, coverage and restore drills, capacity per app, app speed and errors, and costs, and proposes each fix in the repository that owns it, the runbook included. Use when a task asks to run the operations lead or for an operations review of a host.
 ---
 
 # Operations review
 
-You review a running system in a checkout of its infrastructure repository, usually headless with
-nobody to answer. The task supplies the protocol: the notes directory, the last status and its
-findings, the status file's shape, how to record it, and the runs to record. This skill says what
-to measure and how to judge it.
+You review a running system from a checkout of its infrastructure repository, usually headless
+with nobody to answer. The task supplies the protocol: the notes directory, the last status and
+its findings, how to record a status, and the runs to record. This skill says what each area
+covers and how to judge it. The runbook says how this system is measured.
 
-The checkout states the system: read every host fact from it, and assume none. Evidence comes from
-read-only commands on the hosts it names and from reading the checkout. Change nothing anywhere:
-no `sudo`, no restart, no deploy, no Ansible apply, no file write on a host, no commit. Write
-notes, command output and the status file to the notes directory.
+The checkout states the system: read every host fact from it, and assume none. Evidence comes
+from the runbook's read-only checks and from reading the checkout. Change nothing anywhere: no
+privileged command, no restart, no deploy, no configuration apply, no file write on a host, no
+commit. Write notes, check output and the status to the notes directory.
 
 Write every title and label with `writing-style`, Documentation register.
 
 ## Read the checkout
 
 1. Read `AGENTS.md`, `SYSTEM.md`, `CONTEXT.md` and `README.md` at the root.
-2. Read the inventory: the hosts with their SSH name and user, the group variables and the app
-   stacks with their containers, ports, health paths and databases.
-3. From `SYSTEM.md`, list the systemd units and timers the repository installs with their purpose
-   and schedule, the backup jobs with their times and repositories, the alerting path, and every
+2. Read the inventory: the hosts, the apps with their services, health paths and databases.
+3. From `SYSTEM.md`, list the scheduled jobs the repository installs with their purpose and
+   schedule, the backup jobs with their times and destinations, the alerting path, and every
    threshold it states, with the file and line that state it.
 4. Use the app names the inventory gives. A finding about the host itself or about no single app
    names the app `host`.
 
-## Allowed commands
+## Runbook
 
-Run these over SSH as the inventory's user, such as `ssh <host> '<command>'`, and nothing else on a
-host:
+The operations runbook, `docs/runbooks/operations.md` in this checkout, lists the checks for each
+area: what each measures, its read-only command, its threshold and the source of any cost.
 
-- `systemctl status <unit>`, `systemctl show <unit> -p <properties>`, `systemctl list-timers --all`
-  and `systemctl --failed`.
-- `journalctl -u <unit> --since <time>` piped to a count, such as `grep -c` or `wc -l`. Read a
-  unit's journal lines only for their timestamps and result words, and copy none into a finding.
-- `df -h` and `df -B1` over the mounts the checkout names.
-- `docker ps -a --format` and `docker stats --no-stream --format`.
-- `curl -s -o /dev/null -w '%{http_code} %{time_total}'` against each app's health path and front
-  door the inventory names.
-- Reading a result file the checkout says the user may read without `sudo`.
+1. Read the runbook. Run every check it lists, and only those, from where it says to run them.
+2. Save each check's output to the notes directory.
+3. Judge each result by the area's rules below and the threshold the runbook or `SYSTEM.md`
+   states.
+4. A check that asks for a password, fails with a permission error or no longer runs stays
+   unrun: record the gap as a `warning` finding and go on.
 
-On the control node, run `ansible-playbook playbooks/verify.yml` from the checkout when it has one:
-the repository marks it read-only. Run no other playbook, and never `--check` with `site.yml`.
+When the checkout has no operations runbook, measure nothing on the hosts: record one `warning`
+finding that names the gap, and file the runbook proposal in [Keep the runbook](#keep-the-runbook).
 
-A command that asks for a password or fails with a permission error stays unrun: record the gap
-as a finding with severity `warning` and go on.
+## Areas
 
-## Measure
-
-Measure every area on every run. Save each command's output to the notes directory. For each
-finding, note the measurement, its command and the threshold it breaks.
+Measure every area on every run. For each finding, note the measurement, its check and the
+threshold it breaks.
 
 ### Schedules and failures
 
-1. `systemctl --failed` and `systemctl list-timers --all`: a failed unit, and a timer whose last
-   run is older than its schedule allows (one interval plus an hour) or that never ran.
-2. For each unit the checkout installs, failures in the last 24 hours:
-   `journalctl -u <unit> --since -24h | grep -c -E 'Failed|failed with result'`.
-3. Containers: `docker ps -a` for each container an app stack names: one stopped or missing, or
-   restarted in the last 24 hours (`docker inspect -f '{{.RestartCount}} {{.State.StartedAt}}'`).
-4. Collectors: a collector unit or timer that the checkout marks enabled and that has not run
-   within its schedule.
+- A failed job, and a scheduled job whose last run is older than its schedule allows or that
+  never ran.
+- Failures of each job the checkout installs in the last 24 hours.
+- Each service an app names: one stopped or missing, or restarted in the last 24 hours.
+- Collectors: a collector the checkout marks enabled that has not run within its schedule.
 
 ### Backups
 
-1. Each backup job's last success and its age against the freshness threshold the checkout states,
-   from `systemctl show <unit> -p ExecMainExitTimestamp,ExecMainStatus,Result` and the verify
-   playbook.
-2. Repository sizes and snapshot counts, when a monitoring API on the host reports them, and their
-   trend over the last week.
-3. The dead-man's-switch check the checkout names: whether its last run passed.
+- Each backup job's last success and its age against the freshness threshold the checkout states.
+- Backup sizes and snapshot counts, when the host reports them, and their trend over the last
+  week.
+- The check that alerts when backups stop: whether its last run passed.
 
 ### Coverage and drills
 
-Read the result files of the restore drill the checkout installs, at the paths its `SYSTEM.md` names.
-
-1. Coverage: a result other than `covered`, each uncovered path and each database without a dump
-   breaks. Name the app and count the paths and databases; copy no path inside an app's data.
-2. Each drill kind, such as weekly and quarterly: a result `fail` breaks, with the app and the
-   duration. A drill whose timer fired with no result since, or whose last result is older than
-   its interval plus a day, is missing and breaks. A kind whose first scheduled time has not come
-   yet is no finding.
-3. Record one `ok` finding per drill kind that passed, with its age in days and the app it
-   restored.
+- Coverage: a result other than covered, each uncovered path and each database without a dump
+  breaks. Name the app and count the paths and databases; copy no path inside an app's data.
+- Each drill kind: a failed result breaks, with the app and the duration. A drill whose schedule
+  fired with no result since, or whose last result is older than its interval plus a day, is
+  missing and breaks. A kind whose first scheduled time has not come yet is no finding.
+- One `ok` finding per drill kind that passed, with its age in days and the app it restored.
 
 ### Capacity
 
-1. `df -B1` per mount: use and growth since the last status. A mount over 85 percent, or one whose
-   last week's growth fills it within 30 days, breaks.
-2. `docker stats --no-stream`: CPU and memory per app against its limit. An app over 90 percent of
-   its memory limit breaks.
+- Use and growth per storage mount since the last status. A mount over its threshold, or one whose
+  last week's growth fills it within 30 days, breaks.
+- CPU and memory per app against its limit. An app over its memory threshold breaks.
 
 ### Costs
 
-1. GitHub Actions: this month's billed minutes per repository and workflow, for every repository
-   of the owner (`gh repo list <owner> --json nameWithOwner`), with the usage tool the checkout
-   names, such as `scripts/github-actions-usage <owner/name>...`. It reads with `gh api` GETs only.
-   Sum its rows per repository and workflow for the status's costs.
-2. B2: the offsite repository's size in bytes, from the monitoring API the checkout names or the
-   backup job's last summary.
-3. A projection over a threshold the checkout states is a `costs` finding: `warning` over the
-   first, `broken` over the last. Name the workflow with the most minutes in its title.
+- Each paid service the runbook names, with its use this period from the cost source the runbook
+  names: per repository and job for build minutes, in bytes for storage.
+- A projection over a threshold the checkout states is a `costs` finding: `warning` over the
+  first, `broken` over the last. Name the job or store that costs the most in its title.
 
 ### Speed and errors
 
-1. Each health path and front door: status code and time. A code other than 200, or a time over
-   2 seconds, breaks.
-2. HTTP error counts per app over 24 hours, where an app's logs or monitoring API report them, as a
-   count only.
+- Each health path and front door: a status other than success, or a time over its threshold,
+  breaks.
+- Error counts per app in the last 24 hours, where its logs or monitoring report them, as a count
+  only.
 
 ## Judge
 
 Give each finding one severity:
 
-- `broken`: a threshold the checkout states is crossed, a unit or timer failed, a backup is late,
-  a container is down, or a health path fails.
-- `warning`: within 10 percent of a threshold, a growth that crosses one within 30 days, or a
-  command the run could not run.
+- `broken`: a threshold the checkout states is crossed, a job failed, a backup is late, a service
+  is down, or a health path fails.
+- `warning`: within a tenth of a threshold, a growth that crosses one within 30 days, or a check
+  the run could not run.
 - `ok`: an area measured and within every threshold. Record one `ok` finding per area and app you
   measured, so a fine status shows what it covered.
 
@@ -132,29 +111,45 @@ A broken or warning finding whose fix is a change to a repository gets a proposa
 repository that owns the change, when the task lists that repository. Pick the owner from the
 checkouts' `SYSTEM.md` files:
 
-- Host configuration, units, timers, backups, drills and capacity limits: the infrastructure
+- Host configuration, scheduled jobs, backups, drills and capacity limits: the infrastructure
   repository.
-- An app's errors, speed, collectors and containers: the app's repository.
-- A workflow's minutes: the repository that holds the workflow.
+- An app's errors, speed, collectors and services: the app's repository.
+- A build job's cost: the repository that holds the job.
 
-Each proposal states the finding, its measurement and command, the change, and the expected saving
-in minutes, bytes or failures. A cost proposal names the workflow and the minutes it saves a month.
-Keep to the task's room per repository, and file no problem that an open proposal or a decision
-in the context already covers, unless its measurement has changed since. A problem without an
-owner the task lists stays a finding.
+Each proposal states the finding, its measurement and check, the change, and the expected saving
+in minutes, bytes or failures. A cost proposal names the job and what it saves a month. Keep to
+the task's room per repository, and file no problem that an open proposal or a decision in the
+context already covers, unless its measurement has changed since. A problem without an owner the
+task lists stays a finding.
+
+## Keep the runbook
+
+The runbook is yours to keep current. File a proposal against `docs/runbooks/operations.md`, in
+the infrastructure repository and within its room, when:
+
+- a check fails to run, or its command no longer matches the system;
+- a check has no threshold, or its threshold disagrees with `SYSTEM.md`;
+- an app, scheduled job, backup or paid service in the checkout has no check.
+
+The proposal names the entry, the evidence and the entry's new text: what it measures, the
+read-only command, its threshold and the source of any cost.
+
+When the checkout has no operations runbook, file one proposal that drafts it from the checkout's
+own documents: one entry per area above, each with what it measures, a read-only command the
+documents support, its threshold and cost source, and each entry's source file.
 
 ## Write the status
 
-- `title`: what broke, in up to 120 characters: the unit, container, mount or path and what
-  happened, such as "backup.service failed" or "Offsite snapshot is late".
-- `values`: up to six numbers with their unit and an optional label: counts, hours, bytes,
-  percentages, seconds.
-- `source`: the command behind the measurement, shortened to 80 characters.
+- Title: what broke, by the job, service, mount or path and what happened, such as "Backup job
+  failed" or "Offsite snapshot is late".
+- Values: the numbers behind the finding, each with its unit and an optional label: counts, hours,
+  bytes, percentages, seconds.
+- Source: the check behind the measurement.
 
 ## Privacy
 
-Every finding carries counts, durations, sizes, unit names and app names only.
+Every finding carries counts, durations, sizes, job names and app names only.
 
 - Copy no log line, row, file name inside an app's data, amount, merchant or person's name.
-- Read no secret file and no environment file, and print no credential, token or push topic.
-- Before recording, read the status file once more for any such value, and remove it.
+- Read no secret file and no environment file, and print no credential, token or alert topic.
+- Before recording, read the status once more for any such value, and remove it.
