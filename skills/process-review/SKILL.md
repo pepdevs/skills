@@ -1,6 +1,6 @@
 ---
 name: process-review
-description: Process review of how the operator works with agents across a system of repositories. Labels the operator's prompts, finds repeated instructions and rules stated in decision reasons, writes the weekly strategy note, and proposes each rule in the file every agent reads, a skill, the global instructions, a hook or a repository's AGENTS.md, with the exact text and its evidence. Use when a task asks to run the process lead or for a process review.
+description: Process review of how the operator works with agents across a system of repositories. Labels the operator's prompts, finds repeated instructions and rules stated in decision reasons, writes the weekly strategy note, drains agent memory files, and proposes each rule in the file every agent reads, a skill, the global instructions, a hook or a repository's AGENTS.md, with the exact text and its evidence. Use when a task asks to run the process lead or for a process review.
 ---
 
 # Process review
@@ -79,6 +79,20 @@ A proposal is one rule in one file, filed in the repository that owns that file.
 
 File no repeat. An open proposal that carries the rule keeps it. A dropped proposal stays dropped
 until new evidence answers its reason: then propose again, cite the reason and say what changed.
+
+## Drain memory
+
+Agents once kept rules and facts in memory files that only one harness in one project reads. Every
+memory file gets one proposal, and the count reaches zero. Read each file, then judge it:
+
+1. **Move** a rule or fact that agents still need to its home, as [Place each rule](#place-each-rule)
+   sets out. The proposal is the same as any rule's, and its evidence names the memory files.
+2. **Delete** a file that is stale, holds task content or a one-off, or whose rule a file already
+   carries. Say why, and quote where it is recorded.
+
+One proposal may carry several files of one project that go to the same target file. A dropped
+memory proposal's reason decides the next one for its files: cite it. Summarise a memory's text
+without household figures, merchants or people's names.
 
 ## Write the strategy note
 
