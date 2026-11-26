@@ -1,6 +1,6 @@
 ---
 name: process-review
-description: Process review of how the operator works with agents across a system of repositories. Labels the operator's prompts, finds repeated instructions and rules stated in decision reasons, writes the weekly strategy note, drains agent memory files, proposes allow rules for recurring permission requests, and proposes each rule in the file every agent reads, a skill, the global instructions, a hook or a repository's AGENTS.md, with the exact text and its evidence. Use when a task asks to run the process lead or for a process review.
+description: Process review of how the operator works with agents across a system of repositories. Labels the operator's prompts, finds repeated instructions and rules stated in decision reasons, writes the weekly strategy note, drains agent memory files, keeps one owner for each fact in a repository's documents, proposes allow rules for recurring permission requests, and proposes each rule in the file every agent reads, a skill, the global instructions, a hook or a repository's AGENTS.md, with the exact text and its evidence. Use when a task asks to run the process lead or for a process review.
 ---
 
 # Process review
@@ -94,6 +94,23 @@ memory file gets one proposal, and the count reaches zero. Read each file, then 
 One proposal may carry several files of one project that go to the same target file. A dropped
 memory proposal's reason decides the next one for its files: cite it. Summarise a memory's text
 without household figures, merchants or people's names.
+
+## Keep the documents
+
+Agents work from each repository's documents, so documentation is process work. Hold each
+repository's documents against the `project` skill's document set:
+
+1. **Two owners.** A fact written in two places, such as a command in both a runbook and the
+   README, or a rule in both a runbook and `AGENTS.md`. Propose the one owner, the copy to remove
+   and the pointer that replaces it.
+2. **A missing document.** Content the set gives an owner, held in a document the set does not
+   name. Propose the document that owns it.
+3. **Drift.** A document of the set that no longer matches the code it describes, such as a command
+   that no longer exists. Propose the corrected text.
+4. **A gap in the set.** When the repositories need an owner the `project` skill does not name,
+   propose the change to that skill.
+
+A lead keeps the content of its own runbook: propose only where a fact lives.
 
 ## Allow rules
 
