@@ -30,8 +30,14 @@ Other plans omit `implemented_at`. The confirmation commit identifies the author
 ## Suggested content structure
 
 Cover the relevant information below, in this order. Rename or omit a section when the plan has
-nothing for it. Metadata validation does not enforce prose structure.
+nothing for it, except Why, which every plan keeps. Metadata validation does not enforce prose
+structure.
 
+- **Why:** The first section, `## Why`, of at most three sentences for the user who reads the plan
+  cold, days after the interview: what they see wrong or missing today, what they get once it is
+  built, and where the request came from (the user's words, an idea or a lead's finding). Use the
+  user's terms and name no file, prop or code path. A plan inbox shows this section on the plan's
+  card and above its view.
 - **Purpose and success:** State the problem, who needs the result, and the evidence behind the
   need. Define the result as observable acceptance: the questions it answers, the commands or
   behaviour that answer them, and how a reader checks each one.
