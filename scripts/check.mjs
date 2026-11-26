@@ -55,7 +55,53 @@ export function validateRepository(root) {
     for (const entry of directories) {
         if (!entry.isDirectory()) { failures.push(`${entry.name}: expected a skill directory`); continue; }
         inspect(path.join(skillRoot, entry.name), path.join(skillRoot, entry.name));
+        if (isLead(entry.name)) failures.push(...leadWordFailures(root, path.join('skills', entry.name)));
     }
+    return failures;
+}
+
+// A lead skill states intent; the commands, hosts and services it measures live in the runbook of
+// the repository it runs on. These categories name generic tools and providers, nothing of one system.
+export const leadWords = [
+    // remote access and privilege
+    'ssh', 'scp', 'rsync', 'sudo',
+    // service managers and schedulers
+    'systemd', 'systemctl', 'journalctl', 'cron', 'crontab',
+    // containers and provisioning
+    'docker', 'podman', 'kubernetes', 'kubectl', 'helm', 'ansible', 'ansible-playbook', 'terraform',
+    // backup tools and storage providers
+    'restic', 'borg', 'rclone', 'b2', 'backblaze', 's3', 'aws', 'azure', 'gcp', 'cloudflare', 'hetzner',
+    // code hosting and its automation
+    'github actions', 'dependabot', 'gh', 'gitlab',
+    // package managers and test runners
+    'npm', 'npx', 'pnpm', 'yarn', 'pip', 'vitest', 'jest', 'mocha', 'pytest', 'eslint', 'jscpd',
+    // browser drivers
+    'playwright', 'puppeteer', 'selenium', 'chrome', 'chromium',
+    // notification, network and monitoring services
+    'ntfy', 'tailscale', 'wireguard', 'grafana', 'prometheus', 'uptime kuma',
+    // databases and HTTP clients
+    'postgres', 'postgresql', 'sqlite', 'curl', 'wget',
+];
+
+// m3-review judges a pull request from a capsule and is no scheduled lead.
+const isLead = (name) => name.endsWith('-review') && name !== 'm3-review';
+
+export function leadWordFailures(root, directory) {
+    const pattern = new RegExp(`(?<!\\w)(?:${leadWords.map(word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+')).join('|')})(?!\\w)`, 'gi');
+    const failures = [];
+    const walk = (relative) => {
+        for (const entry of fs.readdirSync(path.join(root, relative), { withFileTypes: true })) {
+            const file = path.join(relative, entry.name);
+            if (entry.isDirectory()) { walk(file); continue; }
+            if (!/\.(?:md|ya?ml|json|txt)$/.test(entry.name)) continue;
+            fs.readFileSync(path.join(root, file), 'utf8').split(/\r?\n/).forEach((line, index) => {
+                for (const match of line.matchAll(pattern)) {
+                    failures.push(`${file}:${index + 1}: names "${match[0]}"; a lead skill names no host, provider, service or tool, and its runbook holds the command`);
+                }
+            });
+        }
+    };
+    walk(directory);
     return failures;
 }
 
