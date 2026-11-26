@@ -8,6 +8,11 @@
         "gh",
         "gh stack"
       ]
+    },
+    "security-audit": {
+      "repository": "https://github.com/cloudflare/security-audit-skill",
+      "path": "skills/security-audit",
+      "when": "Required by security-review for its method; read in guidance mode."
     }
   },
   "commands": {

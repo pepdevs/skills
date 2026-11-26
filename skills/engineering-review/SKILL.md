@@ -71,13 +71,13 @@ boundary, or an exception list that grew.
 
 ### Dependencies
 
-Outdated packages, security advisories and alerts, and the runtime version each place pins: the
-local toolchain, the manifests, the images and the hosted workflows. Compare them with each other
-and with the runtime's release schedule when it is reachable. A source the run has no permission
-for is a note, and the run goes on.
+Outdated packages and the runtime version each place pins: the local toolchain, the manifests,
+the images and the hosted workflows. Compare them with each other and with the runtime's release
+schedule when it is reachable. A source the run has no permission for is a note, and the run goes
+on. Security advisories and alerts belong to the Security lead: file nothing for one.
 
-A problem: a high or critical advisory with a fix, a direct dependency one or more major versions
-behind, a runtime past or within six months of end of life, or runtime versions that disagree.
+A problem: a direct dependency one or more major versions behind, a runtime past or within six
+months of end of life, or runtime versions that disagree.
 
 ### Triage
 
@@ -102,7 +102,7 @@ description.
    - 0: nothing breaks a threshold.
    - 1: one finding at its threshold.
    - 2: a finding past its threshold, or several at it.
-   - 3: a gate over budget on every push, a critical advisory, or a revisit condition that holds
+   - 3: a gate over budget on every push, a runtime past end of life, or a revisit condition that holds
      and blocks other work.
 2. Read the reason of each past decision. Raise a concern whose kept proposals' reasons ask for
    more of it, and lower one that dropped reasons reject. Skip a change that a dropped reason

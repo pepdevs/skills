@@ -48,7 +48,7 @@ The installer fetches that revision; updating the revision is a separate decisio
 | `clarify` | Interview for a plan and publish its draft and explicit confirmation |
 | `critique` | Review a plan and publish evidence-supported corrections |
 | `design-review` | Prototype a repository's screens from captures and public design pages, and propose a critique and a research change |
-| `engineering-review` | Measure a repository's gates, structure, dependencies and open ideas, and propose the largest problems |
+| `engineering-review` | Measure a repository's gates, structure, package currency and open ideas, and propose the largest problems |
 | `git` | Apply the author's branch, commit, and pull-request preferences |
 | `m3-corpus` | Judge the committed Material 3 corpus against the live site |
 | `m3-review` | Judge a pull request against the Material 3 corpus |
@@ -56,6 +56,7 @@ The installer fetches that revision; updating the revision is a separate decisio
 | `process-review` | Label the operator's prompts, find the rules they repeat and propose each one in the file every agent reads |
 | `product-review` | Keep a repository's vision page and propose briefs against it |
 | `project` | Keep repository documents, structure, policies, and proof coherent |
+| `security-review` | Review one security area of a repository per run, judge each finding by the trust boundary it crosses, and propose the confirmed ones without a replayable reproduction |
 | `ticket-authoring` | Write tracker-independent tickets, criteria, and comments |
 | `ui` | Pick a web app's look by eye on a prototype, then build the screen to match it |
 | `variants` | Plan design variants on an axis grid so each one differs in encoding, content, type, density and margins |
