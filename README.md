@@ -3,8 +3,8 @@
 Agent skills for planning, plan review, Git, tickets, repository order, UI and writing. Each
 directory under `skills/` is an installable skill with its own resources.
 
-A change starts in `clarify`, which interviews for a plan and publishes it as an idea's page in an
-idea inbox that records pages, or as a pull request. `critique` reviews that plan in the same place before you confirm it. The build then follows `project` for the
+A change starts in `clarify`, which interviews for a plan and publishes it as an idea's artifact in an
+idea inbox that records artifacts, or as a pull request. `critique` reviews that plan in the same place before you confirm it. The build then follows `project` for the
 repository's shape, `ui` for each screen and `git` for branches and commits. `writing-style` owns
 the prose of all of them.
 
