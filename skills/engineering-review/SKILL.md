@@ -165,6 +165,14 @@ Draw one figure per proposal from its measurements, so the operator sees the pro
 3. Render it and look at the image. Fix clipped or overlapping text, text too small to read and
    empty areas.
 
+## Publish the page
+
+When the task names an idea page, publish each proposal as its idea's page, with its figure first. The
+Why states the measured problem, the increments state the change in build order with each review
+gate, and the questions hold the choices the operator still owns. Follow the page contract the task
+gives. The operator answers on the page and confirms it, and a build then reads it. The privacy rules
+below hold for the page.
+
 ## Privacy
 
 Every proposal and figure carries evidence from the repository, its checks and the idea list only.

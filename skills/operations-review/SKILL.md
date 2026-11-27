@@ -146,6 +146,14 @@ documents support, its threshold and cost source, and each entry's source file.
   bytes, percentages, seconds.
 - Source: the check behind the measurement.
 
+## Publish the page
+
+When the task names an idea page, publish each fix proposal as its idea's page. The Why states the
+finding with its measurement, the increments state the change in build order with each review gate,
+and the questions hold the choices the operator still owns. Follow the page contract the task gives.
+The operator answers on the page and confirms it, and a build then reads it. The privacy rules below
+hold for the page.
+
 ## Privacy
 
 Every finding carries counts, durations, sizes, job names and app names only.

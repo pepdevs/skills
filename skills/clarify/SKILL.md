@@ -1,13 +1,18 @@
 ---
 name: clarify
-description: Stress-test a request through an iterative interview until user and agent share an understanding, then capture it in a plan, published to the repository's plan inbox or a plan PR.
+description: Stress-test a request through an iterative interview until user and agent share an understanding, then capture it in an idea's page when an idea inbox records pages, or in a plan PR.
 ---
 
 # Clarify
 
 Build mutual understanding of the intended outcome, its boundaries, and why the chosen approach fits.
 Capture that understanding in a plan an implementer can use without this conversation. Run in the invoking session.
-Apply `writing-style` to every written artifact, including the plan, view, PR, and comments.
+Apply `writing-style` to every written artifact, including the plan, page, view, PR, and comments.
+
+**Two paths.** With an idea inbox that records pages, the plan is the idea's page: follow
+[the idea page contract](references/idea-page.md), write no plan file and open no PR. Without one,
+the plan is a file in a plan PR: follow [the plan contract](references/plan-file.md). Sections below
+that name the plan file, the plan view, the validator or the PR belong to the plan PR path.
 
 ## Reach shared understanding
 
@@ -31,27 +36,29 @@ Probe vague answers with concrete examples, boundary cases, and observable behav
 Make consequential assumptions explicit and put unresolved trade-offs to the user. An unanswered question remains open; a recommendation is not agreement.
 Depth follows uncertainty and consequence. Continue until the decisions needed to define the plan are settled or explicitly deferred with their effects understood.
 
-Read back the resulting understanding: the outcome, scope, chosen behavior, important trade-offs, and any remaining boundaries. Show it in the plan view, drawn as described in "Draw the plan".
+Read back the resulting understanding: the outcome, scope, chosen behavior, important trade-offs, and any remaining boundaries. Show it in the idea's page, or in the plan view drawn as described in "Draw the plan".
 Invite corrections and obtain explicit confirmation that this captures the user's intent. A coherent document alone does not establish mutual understanding.
 Drafts can support the interview, but unresolved choices remain visible. Implementation authorization follows the revision confirmation below.
 One explicit approval can confirm both understanding and the plan revision when it covers the current proposal.
 
 ## Publish the proposal
 
-Use [the plan contract](references/plan-file.md) for location, metadata, content guidance, and readiness.
+**With an idea inbox that records pages.** The inbox holds each idea, shows its page and records the
+user's Confirm of one version. Its README gives the exact syntax of its commands. When the request
+is an idea the inbox already holds, publish its page at the idea's address; when it is new, file the
+idea first. Publish the page and record each version as [the idea page contract](references/idea-page.md)
+sets out. Draft without a branch, commit, plan file or PR. Report the page's address and the
+unresolved choices. A small change that one session finishes in one pull request needs no page:
+build it in the session.
+
+**Without one.** Use [the plan contract](references/plan-file.md) for location, metadata, content guidance, and readiness.
 Check the plan metadata before each publish:
 
 ```bash
 node <clarify-skill>/scripts/validate-plan.mjs <plan-file>
 ```
 
-**With a plan inbox.** The repository's plan inbox, when one exists, is a tool that holds draft
-plans, shows each plan with its view and records the user's confirmation. Its README gives the exact
-syntax of its commands. Publish the draft with its new command, which takes the plan file, the view,
-the asset folder and a message, allocates the plan number and prints the plan's page. Draft without a
-branch, commit or PR. Report the plan's page and unresolved choices.
-
-**Without one.** Use the `git` skill to commit and publish a draft plan PR. Preserve one plan
+Use the `git` skill to commit and publish a draft plan PR. Preserve one plan
 identity and PR through revisions. In the PR body, explain the intended outcome and why it matters.
 While the plan is drafted, link the plan and its view on the PR branch, without a commit SHA, so a
 revision push needs no PR edit. The full commit SHA enters the PR at confirmation. Read the remote PR
@@ -63,7 +70,7 @@ when available. Apply `writing-style` and keep detailed design in the plan.
 
 ## Draw the plan
 
-Draw each published revision as one interactive HTML page, the plan view, so the user checks the
+On the plan PR path, draw each published revision as one interactive HTML page, the plan view, so the user checks the
 design by sight during the read-back. The plan file stays the source: builders, the validator and
 the confirmed revision read it, and the page draws it.
 
@@ -80,17 +87,14 @@ the confirmed revision read it, and the page draws it.
   the plan with its name and no extension (`docs/plans/NNNN-slug/`), as png, jpg, webp or svg, and
   reference them from the page by relative path.
 - Declare `<meta charset="utf-8">` and write the page's script as `<script type="module">`.
-- With a plan inbox, its new and push commands check the page as they publish and print each
-  problem to fix. Fix them and run the command again.
-- Without one, check the page in a headless browser before each publish, at a phone width and a
+- Check the page in a headless browser before each publish, at a phone width and a
   full width: no uncaught error, no console error, a body that draws, every image loaded with a
   size, the charset declared and every inline script a module. Use headless Chromium through
   Playwright, and keep the desktop app's browser pane closed.
 - Keep the page beside the plan with the same name and an `.html` extension, with its asset folder,
   so a revision holds all three. Every revision carries the view: a push without it drops the view.
-- With a plan inbox, the inbox shows the view: publish no other copy. Without one, commit the page
-  in the plan's commit, publish it as a private page when the harness has a page tool, such as
-  Claude's Artifact, and link it in the PR body beside the plan link.
+- Commit the page in the plan's commit, publish it as a private page when the harness has a page
+  tool, such as Claude's Artifact, and link it in the PR body beside the plan link.
 - Redraw it after each revision. When the page and the plan disagree, fix the plan first,
   then the page.
 - Builders read the plan file. A capsule, the brief a launcher gives a fresh session, may point at
@@ -99,8 +103,9 @@ the confirmed revision read it, and the page draws it.
 
 ## Put the questions in the plan
 
-Write each open question in the plan file as well, so builders, the validator and the plan inbox
-read one source. [The plan contract](references/plan-file.md) defines the format.
+On the plan PR path, write each open question in the plan file, so builders and the validator read
+one source. [The plan contract](references/plan-file.md) defines the format. On the idea page path,
+the `questions` section and the page's picks hold them.
 
 - Give each question at least two options and mark exactly one `(recommended)`, so the user picks
   from concrete candidates and an agent can apply the pick.
@@ -116,14 +121,11 @@ read one source. [The plan contract](references/plan-file.md) defines the format
 ## Revise a draft
 
 Take a revision in one round: apply every answer the user gave to the plan, move each answered
-question into the principles or increments, redraw the view, and publish once. An answer the user saved in the plan
-inbox arrives as a list of picks with the revision they were made on; apply each pick, drop its
-question, and name the picks in the revision's message.
+question into the principles or increments, redraw the view, and publish once.
 
-- With a plan inbox, run its open command, which prints the paths of the plan, view and asset folder
-  to edit. Edit them, then run its push command with a message; it validates and stores the
-  revision and prints the plan's page.
-- Without one, edit the PR branch, run the validator, commit and push.
+- On an idea page, read the page, its picks and its comments, apply each, publish the next version
+  at the same address and record it, as [the idea page contract](references/idea-page.md) sets out.
+- On a plan PR, edit the PR branch, run the validator, commit and push.
 
 Keep each revision small, with a message that names what changed, such as
 `split increment 2 by screen`. The inbox and the PR history show that message.
@@ -133,10 +135,9 @@ Keep each revision small, with a message that names what changed, such as
 Only explicit user confirmation authorizes implementation. Merge alone is not confirmation.
 Resolve any remaining consequential choice before recording confirmation.
 
-- With a plan inbox, the inbox records confirmation of the revision it showed: the user confirms
-  there, or the agent records it through the inbox on the user's explicit word. The build commits
-  the confirmed plan, its view and asset folder into the repository's plan directory in its own PR.
-- Without one, update the plan's status and confirmation date, commit and push, and record the
+- On an idea page, the inbox records confirmation of the version it showed: the user confirms
+  there. The build reads the confirmed page and commits no plan.
+- On a plan PR, update the plan's status and confirmation date, commit and push, and record the
   resulting full commit SHA in the PR: link the plan and its view at that SHA. Mark the plan PR
   ready for review.
 
