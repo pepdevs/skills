@@ -7,9 +7,9 @@ readers who did not attend the interview.
 
 Store one plan at `docs/plans/NNNN-slug.md`, using the next unused number. Respect an established
 repository plan directory when one exists. Its stable UUID survives renaming or moving the file.
-The plan view sits beside it as `NNNN-slug.html`, and the view's images sit in the asset folder
-`NNNN-slug/`. A plan inbox allocates the number and holds the draft; the build commits the
-confirmed plan at this path.
+The images of its questions sit in the asset folder `NNNN-slug/`. A plan inbox allocates the number,
+holds the draft and draws it as a page; the build commits the confirmed plan at this path. A plan
+written before structured questions can also hold an HTML view as `NNNN-slug.html`.
 
 ```yaml
 ---
@@ -50,8 +50,38 @@ structure.
 - **Scope and boundaries:** State included work, exclusions, constraints, and explicit deferrals.
   Explain the effects of deferrals and any human decision boundaries.
 - **Open questions:** Keep unresolved decisions and assumptions visible while the plan remains
-  drafted. Explain what each blocks. Move resolved answers into principles or increments; retain
-  critique links where useful.
+  drafted, as structured questions (below). Explain what each blocks. Move resolved answers into
+  principles or increments; retain critique links where useful. A plan with none says `None.`
+
+### Question format
+
+Each question is a `###` heading under `## Open questions`, followed by these lines in order:
+
+1. `Blocks:` and what the question holds up, such as `Blocks: increment 3`.
+2. Optionally `Changes the design.` on its own line, for a question whose options differ on
+   something the user judges by sight.
+3. A list of options, one per line. Mark exactly one `(recommended)`. An option may end with the
+   name of an image in the plan's asset folder, in backticks, which draws that option.
+
+```markdown
+## Open questions
+
+### Where does the list sit on a phone?
+Blocks: increment 3
+Changes the design.
+- Above the detail (recommended) `list-above.png`
+- In a drawer `list-drawer.png`
+
+### Which window counts a stale run?
+Blocks: increment 2
+- 24 hours (recommended)
+- 7 days
+```
+
+`validate-plan.mjs` rejects a question with fewer than two options, with no `(recommended)` option
+or with more than one. The page gives each question an Other answer, so no option stands for it.
+A bullet under `## Open questions` outside a `###` question is prose and stays valid, but the page
+shows it as text with no options.
 
 Keep detail proportional to uncertainty and consequence. The plan holds decisions, acceptance, and
 boundaries. Implementation checks, verification commands, and review evidence belong in outcome

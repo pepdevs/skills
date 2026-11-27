@@ -8,6 +8,32 @@ function isoDate(date, message) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date ?? '') || new Date(`${date}T00:00:00Z`).toISOString().slice(0, 10) !== date) throw new Error(message);
 }
 
+/** The text of the `## Open questions` section, or null when the plan has none. */
+function openQuestions(text) {
+    const lines = text.split(/\r?\n/);
+    const start = lines.findIndex((line) => /^##\s+open questions\s*$/i.test(line));
+    if (start < 0) return null;
+    const end = lines.findIndex((line, index) => index > start && /^##\s/.test(line));
+    return lines.slice(start + 1, end < 0 ? undefined : end);
+}
+
+/** Every `###` question under Open questions needs two options, one of them recommended. */
+function checkQuestions(text) {
+    const lines = openQuestions(text);
+    if (!lines) return;
+    const questions = [];
+    for (const line of lines) {
+        const heading = line.match(/^###\s+(.+?)\s*$/);
+        if (heading) questions.push({ title: heading[1], options: [] });
+        else if (questions.length && /^(?:[-*]|\d+\.)\s+\S/.test(line)) questions.at(-1).options.push(line);
+    }
+    for (const { title, options } of questions) {
+        const recommended = options.filter((option) => /\(recommended\)/i.test(option)).length;
+        if (options.length < 2) throw new Error(`question "${title}" needs at least two options`);
+        if (recommended !== 1) throw new Error(`question "${title}" needs exactly one (recommended) option, found ${recommended}`);
+    }
+}
+
 export function parsePlan(body) {
     const match = body.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
     if (!match) throw new Error('plan requires YAML front matter');
@@ -40,7 +66,9 @@ export function parsePlan(body) {
             throw new Error('superseded plan needs a distinct replacement UUID');
         }
     }
-    if (!body.slice(match[0].length).trim()) throw new Error('plan needs an explanation');
+    const text = body.slice(match[0].length);
+    if (!text.trim()) throw new Error('plan needs an explanation');
+    checkQuestions(text);
     return plan;
 }
 
