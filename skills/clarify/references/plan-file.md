@@ -7,9 +7,10 @@ readers who did not attend the interview.
 
 Store one plan at `docs/plans/NNNN-slug.md`, using the next unused number. Respect an established
 repository plan directory when one exists. Its stable UUID survives renaming or moving the file.
-The images of its questions sit in the asset folder `NNNN-slug/`. A plan inbox allocates the number,
-holds the draft and draws it as a page; the build commits the confirmed plan at this path. A plan
-written before structured questions can also hold an HTML view as `NNNN-slug.html`.
+Its interactive view sits beside it as `NNNN-slug.html`, and the view's images and the images of
+its questions sit in the asset folder `NNNN-slug/`. A plan inbox allocates the number, holds the
+draft and shows it with its view; the build commits the confirmed plan, view and asset folder at
+this path.
 
 ```yaml
 ---
@@ -61,7 +62,8 @@ Each question is a `###` heading under `## Open questions`, followed by these li
 2. Optionally `Changes the design.` on its own line, for a question whose options differ on
    something the user judges by sight.
 3. A list of options, one per line. Mark exactly one `(recommended)`. An option may end with the
-   name of an image in the plan's asset folder, in backticks, which draws that option.
+   name of an image in the plan's asset folder, in backticks, which draws that option. Under
+   `Changes the design.` every option names one.
 
 ```markdown
 ## Open questions

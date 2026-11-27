@@ -17,20 +17,23 @@ function openQuestions(text) {
     return lines.slice(start + 1, end < 0 ? undefined : end);
 }
 
-/** Every `###` question under Open questions needs two options, one of them recommended. */
+/** Every `###` question under Open questions needs two options, one of them recommended, and an image per option when it changes the design. */
 function checkQuestions(text) {
     const lines = openQuestions(text);
     if (!lines) return;
     const questions = [];
     for (const line of lines) {
         const heading = line.match(/^###\s+(.+?)\s*$/);
-        if (heading) questions.push({ title: heading[1], options: [] });
+        if (heading) questions.push({ title: heading[1], options: [], design: false });
+        else if (questions.length && /^changes the design\.\s*$/i.test(line.trim())) questions.at(-1).design = true;
         else if (questions.length && /^(?:[-*]|\d+\.)\s+\S/.test(line)) questions.at(-1).options.push(line);
     }
-    for (const { title, options } of questions) {
+    for (const { title, options, design } of questions) {
         const recommended = options.filter((option) => /\(recommended\)/i.test(option)).length;
         if (options.length < 2) throw new Error(`question "${title}" needs at least two options`);
         if (recommended !== 1) throw new Error(`question "${title}" needs exactly one (recommended) option, found ${recommended}`);
+        const bare = options.filter((option) => !/`[^`]+\.(?:png|jpe?g|webp|svg)`\s*$/i.test(option)).length;
+        if (design && bare) throw new Error(`question "${title}" changes the design, so each option needs an image; ${bare} name none`);
     }
 }
 
