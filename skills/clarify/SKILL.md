@@ -1,16 +1,16 @@
 ---
 name: clarify
-description: Stress-test a request through an iterative interview until user and agent share an understanding, then capture it in an idea's page when an idea inbox records pages, or in a plan PR.
+description: Stress-test a request through an iterative interview until user and agent share an understanding, then capture it in an idea's artifact when an idea inbox records artifacts, or in a plan PR.
 ---
 
 # Clarify
 
 Build mutual understanding of the intended outcome, its boundaries, and why the chosen approach fits.
 Capture that understanding in a plan an implementer can use without this conversation. Run in the invoking session.
-Apply `writing-style` to every written artifact, including the plan, page, view, PR, and comments.
+Apply `writing-style` to every written artifact, including the plan, idea artifact, view, PR, and comments.
 
-**Two paths.** With an idea inbox that records pages, the plan is the idea's page: follow
-[the idea page contract](references/idea-page.md), write no plan file and open no PR. Without one,
+**Two paths.** With an idea inbox that records artifacts, the plan is the idea's artifact: follow
+[the idea artifact contract](references/idea-artifact.md), write no plan file and open no PR. Without one,
 the plan is a file in a plan PR: follow [the plan contract](references/plan-file.md). Sections below
 that name the plan file, the plan view, the validator or the PR belong to the plan PR path.
 
@@ -36,19 +36,19 @@ Probe vague answers with concrete examples, boundary cases, and observable behav
 Make consequential assumptions explicit and put unresolved trade-offs to the user. An unanswered question remains open; a recommendation is not agreement.
 Depth follows uncertainty and consequence. Continue until the decisions needed to define the plan are settled or explicitly deferred with their effects understood.
 
-Read back the resulting understanding: the outcome, scope, chosen behavior, important trade-offs, and any remaining boundaries. Show it in the idea's page, or in the plan view drawn as described in "Draw the plan".
+Read back the resulting understanding: the outcome, scope, chosen behavior, important trade-offs, and any remaining boundaries. Show it in the idea's artifact, or in the plan view drawn as described in "Draw the plan".
 Invite corrections and obtain explicit confirmation that this captures the user's intent. A coherent document alone does not establish mutual understanding.
 Drafts can support the interview, but unresolved choices remain visible. Implementation authorization follows the revision confirmation below.
 One explicit approval can confirm both understanding and the plan revision when it covers the current proposal.
 
 ## Publish the proposal
 
-**With an idea inbox that records pages.** The inbox holds each idea, shows its page and records the
+**With an idea inbox that records artifacts.** The inbox holds each idea, shows its artifact and records the
 user's Confirm of one version. Its README gives the exact syntax of its commands. When the request
-is an idea the inbox already holds, publish its page at the idea's address; when it is new, file the
-idea first. Publish the page and record each version as [the idea page contract](references/idea-page.md)
-sets out. Draft without a branch, commit, plan file or PR. Report the page's address and the
-unresolved choices. A small change that one session finishes in one pull request needs no page:
+is an idea the inbox already holds, publish its artifact at the idea's address; when it is new, file the
+idea first. Publish the artifact and record each version as [the idea artifact contract](references/idea-artifact.md)
+sets out. Draft without a branch, commit, plan file or PR. Report the artifact's address and the
+unresolved choices. A small change that one session finishes in one pull request needs no artifact:
 build it in the session.
 
 **Without one.** Use [the plan contract](references/plan-file.md) for location, metadata, content guidance, and readiness.
@@ -104,8 +104,8 @@ the confirmed revision read it, and the page draws it.
 ## Put the questions in the plan
 
 On the plan PR path, write each open question in the plan file, so builders and the validator read
-one source. [The plan contract](references/plan-file.md) defines the format. On the idea page path,
-the `questions` section and the page's picks hold them.
+one source. [The plan contract](references/plan-file.md) defines the format. On the idea artifact path,
+the `questions` section and the artifact's picks hold them.
 
 - Give each question at least two options and mark exactly one `(recommended)`, so the user picks
   from concrete candidates and an agent can apply the pick.
@@ -123,8 +123,8 @@ the `questions` section and the page's picks hold them.
 Take a revision in one round: apply every answer the user gave to the plan, move each answered
 question into the principles or increments, redraw the view, and publish once.
 
-- On an idea page, read the page, its picks and its comments, apply each, publish the next version
-  at the same address and record it, as [the idea page contract](references/idea-page.md) sets out.
+- On an idea's artifact, read the artifact, its picks and its comments, apply each, publish the next version
+  at the same address and record it, as [the idea artifact contract](references/idea-artifact.md) sets out.
 - On a plan PR, edit the PR branch, run the validator, commit and push.
 
 Keep each revision small, with a message that names what changed, such as
@@ -135,8 +135,8 @@ Keep each revision small, with a message that names what changed, such as
 Only explicit user confirmation authorizes implementation. Merge alone is not confirmation.
 Resolve any remaining consequential choice before recording confirmation.
 
-- On an idea page, the inbox records confirmation of the version it showed: the user confirms
-  there. The build reads the confirmed page and commits no plan.
+- On an idea's artifact, the inbox records confirmation of the version it showed: the user confirms
+  there. The build reads the confirmed artifact and commits no plan.
 - On a plan PR, update the plan's status and confirmation date, commit and push, and record the
   resulting full commit SHA in the PR: link the plan and its view at that SHA. Mark the plan PR
   ready for review.

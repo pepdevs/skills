@@ -231,13 +231,13 @@ repository's own documents: one entry per check above, each with what it does, a
 repository supports, its threshold and each entry's source file. Point at the document that
 already owns a command instead of copying it.
 
-## Publish the page
+## Publish the artifact
 
-When the task names an idea page, publish each brief as its idea's page, with its figure first. The
+When the task names an idea artifact, publish each brief as its idea's artifact, with its figure first. The
 Why states the job and who needs it, the increments state the change in build order with each review
-gate, and the questions hold the choices the operator still owns. Follow the page contract the task
-gives. The operator answers on the page and confirms it, and a build then reads it. The privacy
-check below holds for the page.
+gate, and the questions hold the choices the operator still owns. Follow the artifact contract the task
+gives. The operator answers on the artifact and confirms it, and a build then reads it. The privacy
+check below holds for the artifact.
 
 ## Privacy check
 

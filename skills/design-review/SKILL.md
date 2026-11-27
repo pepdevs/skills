@@ -164,13 +164,13 @@ names the screen and the change. The description says:
 
 A research proposal carries each reference screenshot with the public page it shows.
 
-## Publish the page
+## Publish the artifact
 
-When the task names an idea page, publish each proposal as its idea's page, with the prototype and its
-switches as the page's figure. The Why states the problem the screen has today, the increments state
+When the task names an idea artifact, publish each proposal as its idea's artifact, with the prototype and its
+switches as the artifact's figure. The Why states the problem the screen has today, the increments state
 the change in build order with each review gate, and the questions hold the choices the operator
-still owns, one per switch. Follow the page contract the task gives. The operator answers on the
-page and confirms it, and a build then reads it. The privacy rules below hold for the page.
+still owns, one per switch. Follow the artifact contract the task gives. The operator answers on the
+artifact and confirms it, and a build then reads it. The privacy rules below hold for the artifact.
 
 ## Privacy
 
