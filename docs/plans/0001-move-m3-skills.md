@@ -65,6 +65,7 @@ Acceptance:
    other skill uses. Remove the `m3-review` exception from rule 7 in `AGENTS.md` and from `isLead`
    in `scripts/check.mjs`. Advance the `authored` pin in `pepdevs/agents` to this merge and deploy
    the `personal` profile. Check: acceptance 2 and 3.
+   Done on 2026-11-27. [pepdevs/skills#43](https://github.com/pepdevs/skills/pull/43) removed the skills, and `node scripts/check.mjs` passes. The `pepdevs/agents` pin advance and deploy follow.
 
 Review gate: the operator reads the `pepdevs/skills` README on GitHub after increment 3.
 
