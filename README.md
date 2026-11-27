@@ -50,8 +50,6 @@ The installer fetches that revision; updating the revision is a separate decisio
 | `design-review` | Prototype a repository's screens from captures and public design pages, and propose a critique and a research change |
 | `engineering-review` | Measure a repository's gates, structure, package currency and open ideas, and propose the largest problems |
 | `git` | Apply the author's branch, commit, and pull-request preferences |
-| `m3-corpus` | Judge the committed Material 3 corpus against the live site |
-| `m3-review` | Judge a pull request against the Material 3 corpus |
 | `operations-review` | Read a running host's schedules, backups, capacity and app health read-only, and record a status of what broke |
 | `process-review` | Label the operator's prompts, find the rules they repeat and propose each one in the file every agent reads |
 | `product-review` | Keep a repository's vision page and propose briefs against it |
@@ -61,9 +59,6 @@ The installer fetches that revision; updating the revision is a separate decisio
 | `ui` | Pick a web app's look by eye on a prototype, then build the screen to match it |
 | `variants` | Plan design variants on an axis grid so each one differs in encoding, content, type, density and margins |
 | `writing-style` | Apply prose rules by documentation, instruction, and correspondence register |
-
-`m3-corpus` and `m3-review` need a repository that keeps a Material 3 corpus in `docs/m3/` with the
-`m3:check` script, and the `wf` launcher from [pepdevs/workflow](https://github.com/pepdevs/workflow).
 
 Each skill's `skill-dependencies.json` names its companions. Install them recursively alongside
 the selected skill. Conditional companions, such as `gh-stack` for stacked work, support every

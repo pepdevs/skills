@@ -55,8 +55,10 @@ Acceptance:
    the layout in `SYSTEM.md`. Point rule 5 in `AGENTS.md` at `skills/m3-corpus` and
    `skills/m3-review`. Add one line to `README.md` naming the commands the skills run: `git-lfs`,
    `ffmpeg` and `wf` from `pepdevs/workflow`. Check: acceptance 1.
+   Done on 2026-11-27. [pepdevs/m3-specs#54](https://github.com/pepdevs/m3-specs/pull/54) added the skills, and `npm run check` passes.
 2. **`pepdevs/agents`: stop installing them.** Remove the `m3-corpus` and `m3-review` entries from
    `config/deployment.json`. Check: `npm run check` and `npm run golden` pass.
+   Done on 2026-11-27. [pepdevs/agents#192](https://github.com/pepdevs/agents/pull/192) removed the entries, and `npm run check` and `npm run golden` pass.
 3. **`pepdevs/skills`: remove the skills.** Delete `skills/m3-corpus/` and `skills/m3-review/`.
    Remove their two README rows and the paragraph on their needs. Remove them from each `usedBy`
    list in `external-dependencies.json`, and remove the `git-lfs` and `ffmpeg` entries, which no

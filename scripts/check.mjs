@@ -83,8 +83,7 @@ export const leadWords = [
     'postgres', 'postgresql', 'sqlite', 'curl', 'wget',
 ];
 
-// m3-review judges a pull request from a capsule and is no scheduled lead.
-const isLead = (name) => name.endsWith('-review') && name !== 'm3-review';
+const isLead = (name) => name.endsWith('-review');
 
 export function leadWordFailures(root, directory) {
     const pattern = new RegExp(`(?<!\\w)(?:${leadWords.map(word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/ /g, '\\s+')).join('|')})(?!\\w)`, 'gi');
