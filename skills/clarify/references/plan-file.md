@@ -65,7 +65,7 @@ Each question is a `###` heading under `## Open questions`, followed by these li
    name of an image in the plan's asset folder, in backticks, which draws that option. Under
    `Changes the design.` every option names one.
 
-A heading and an option's label, without `(recommended)` and its image, hold at most 40 characters.
+An option's label, without `(recommended)` and its image, holds at most 40 characters.
 
 ```markdown
 ## Open questions
