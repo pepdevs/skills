@@ -23,8 +23,6 @@
         "critique",
         "engineering-review",
         "git",
-        "m3-corpus",
-        "m3-review",
         "operations-review",
         "product-review",
         "ticket-authoring"
@@ -54,8 +52,6 @@
         "clarify",
         "design-review",
         "engineering-review",
-        "m3-corpus",
-        "m3-review",
         "product-review"
       ]
     },
@@ -64,31 +60,13 @@
       "usedBy": [
         "design-review",
         "engineering-review",
-        "m3-corpus",
-        "m3-review",
         "product-review"
-      ]
-    },
-    "git-lfs": {
-      "source": "https://git-lfs.com/",
-      "usedBy": [
-        "m3-corpus",
-        "m3-review"
       ]
     },
     "wf": {
       "source": "https://github.com/pepdevs/workflow",
       "usedBy": [
-        "m3-corpus",
-        "m3-review",
         "project"
-      ]
-    },
-    "ffmpeg": {
-      "source": "https://ffmpeg.org/",
-      "usedBy": [
-        "m3-corpus",
-        "m3-review"
       ]
     },
     "ssh": {
