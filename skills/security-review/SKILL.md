@@ -177,14 +177,14 @@ Draw one figure per proposal, so the operator sees where the problem is.
    only, with no title, caption or explaining sentence.
 3. Render it and look at the image. Fix clipped or overlapping text and empty areas.
 
-## Publish the page
+## Publish the artifact
 
-When the task names an idea page, publish each proposal as its idea's page, with its figure first. The
+When the task names an idea artifact, publish each proposal as its idea's artifact, with its figure first. The
 Why states the boundary and the resource, the increments state the smallest fix in build order with
-each review gate, and the questions hold the choices the operator still owns. Follow the page
-contract the task gives, and keep what the proposal keeps out of its text out of the page. The
-operator answers on the page and confirms it, and a build then reads it. The privacy rules below
-hold for the page.
+each review gate, and the questions hold the choices the operator still owns. Follow the artifact
+contract the task gives, and keep what the proposal keeps out of its text out of the artifact. The
+operator answers on the artifact and confirms it, and a build then reads it. The privacy rules below
+hold for the artifact.
 
 ## Privacy
 
