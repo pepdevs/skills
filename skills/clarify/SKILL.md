@@ -104,6 +104,9 @@ read one source. [The plan contract](references/plan-file.md) defines the format
 
 - Give each question at least two options and mark exactly one `(recommended)`, so the user picks
   from concrete candidates and an agent can apply the pick.
+- Keep the question's heading and each option's label to 40 characters, such as `### Which charts become month pairs?`
+  and `- Per day chart only`. The user scans them in a list; the reason and detail go in the plan's
+  principles, increments or the view.
 - Mark a question `Changes the design.` when its options differ on a screen, a layout or a
   structure the user judges by sight. Name one image per option on the option's line: a capture of
   the plan view with that option switched on, cropped to the part that changes and taken at twice

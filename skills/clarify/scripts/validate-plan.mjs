@@ -17,6 +17,9 @@ function openQuestions(text) {
     return lines.slice(start + 1, end < 0 ? undefined : end);
 }
 
+/** The longest question heading or option label, so a question reads as a short list. */
+const TITLE_MAX = 40;
+
 /** Every `###` question under Open questions needs two options, one of them recommended, and an image per option when it changes the design. */
 function checkQuestions(text) {
     const lines = openQuestions(text);
@@ -29,6 +32,11 @@ function checkQuestions(text) {
         else if (questions.length && /^(?:[-*]|\d+\.)\s+\S/.test(line)) questions.at(-1).options.push(line);
     }
     for (const { title, options, design } of questions) {
+        if (title.length > TITLE_MAX) throw new Error(`question "${title}" is ${title.length} characters; keep it to ${TITLE_MAX}`);
+        for (const option of options) {
+            const label = option.replace(/^(?:[-*]|\d+\.)\s+/, '').replace(/`[^`]+`\s*$/, '').replace(/\(recommended\)/i, '').trim();
+            if (label.length > TITLE_MAX) throw new Error(`option "${label}" of question "${title}" is ${label.length} characters; keep it to ${TITLE_MAX}`);
+        }
         const recommended = options.filter((option) => /\(recommended\)/i.test(option)).length;
         if (options.length < 2) throw new Error(`question "${title}" needs at least two options`);
         if (recommended !== 1) throw new Error(`question "${title}" needs exactly one (recommended) option, found ${recommended}`);
