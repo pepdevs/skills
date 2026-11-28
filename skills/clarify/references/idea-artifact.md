@@ -17,11 +17,31 @@ user's answers declares the capabilities that store them:
 
 Declare nothing else the artifact does not use. Take any capture on invented data only.
 
+## Start from the template
+
+Every idea artifact starts from [the template](../assets/idea-artifact.html), so each one has the same
+outline, blocks and look, and the user finds the Why, an increment or a question in the same place.
+
+1. Copy the template. Keep its `<style>`, outline, pager and scripts exactly as they are.
+2. Fill the `<title>`, the eyebrow with the repository and the idea's number, and the blocks `why`,
+   `increments`, `questions`, `decisions` and `out`. Replace every example.
+3. Draw only inside a `<figure class="slot">`: inside the Why, inside an increment, or inside a
+   question's options. Use the template's `m-*` classes or its colour tokens, so a drawing reads in
+   light and dark.
+4. Check the page before each publish, and fix each problem it prints:
+
+```bash
+node <clarify-skill>/scripts/check-artifact.mjs <the artifact file>
+```
+
+The template shows one item at a time: the outline picks it, Previous and Next step through the rest,
+and the address names it, so a link opens one increment or question.
+
 ## Mark the sections
 
 The inbox reads three sections of the artifact by their `id`, and the title. An artifact without all of them
-is refused and records nothing. The rest of the artifact is free: draw what the user needs to judge the
-plan by sight.
+is refused and records nothing. The template carries all of them, with the blocks `decisions` and
+`out` for the settled decisions and the exclusions.
 
 | Marker | Holds |
 |---|---|
@@ -34,12 +54,11 @@ Write each open question with at least two options and one marked as recommended
 from concrete candidates and a revision applies the pick. Keep each option's label to 40 characters.
 Draw the options of a question that changes a screen, so the user sees the difference.
 
-Open the artifact with the Why before any figure. Show the increment order with each review gate, the
-settled decisions and the exclusions. Use the user's terms and the invented values the plan states.
+Use the user's terms and the invented values the plan states.
 
 ## Store the picks
 
-Each question writes the user's pick to the artifact's data as one document in the collection `picks`,
+The template's script stores the picks; keep it as is. Each question writes the user's pick to the artifact's data as one document in the collection `picks`,
 named by the question's `data-question` value:
 
 - `{"question": "<name>", "option": <place of the option from 1>}` for a listed option.
