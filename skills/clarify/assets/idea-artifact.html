@@ -285,7 +285,7 @@ figure.slot svg{display:block;max-width:100%;height:auto}
   (async()=>{
     try{db=typeof claude!=='undefined'?await claude.use('db'):null}catch(e){db=null}
     if(!db)say('Saving is off: picks stay in this tab.');
-    else db.collection('picks').onSnapshot(s=>{s.forEach(d=>{const v=d.data()||{};state[d.id]=typeof v.other==='string'?{other:v.other}:{option:v.option}});paint()},()=>say('Your saved picks did not load. Reload the page.'));
+    else db.collection('picks').onSnapshot(s=>{s.docs.forEach(d=>{const v=d.data()||{};state[d.id]=typeof v.other==='string'?{other:v.other}:{option:v.option}});paint()},()=>say('Your saved picks did not load. Reload the page.'));
     try{const c=typeof claude!=='undefined'?await claude.use('comments'):null;
       if(c){const b=document.getElementById('comment');b.hidden=false;b.onclick=()=>c.openComposer({element:document.querySelector('.doc')})}}catch(e){}
   })();
