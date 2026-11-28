@@ -1,0 +1,293 @@
+<title>Name of the idea</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!--
+  Idea artifact template (clarify skill, assets/idea-artifact.html). references/idea-artifact.md is its contract.
+  Copy this file for a new idea. Keep the <style>, the outline, the pager and both scripts as they are.
+  Fill: <title>, the eyebrow, #why, #increments, #questions, #decisions, #out. Replace every example.
+  Draw freely only inside <figure class="slot">: inside the Why, inside an increment, or inside a question's options.
+  The page shows one item at a time: the Why, each increment, each question, the decisions, the exclusions.
+  The inbox reads <title>, #why, #increments (one <li> each, title in the first <strong>, gate in .review)
+  and #questions (one [data-question] each). Keep those ids.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: an outline column beside one item at a time; on a phone the outline becomes a chip row. Tokens from the tint theme. */
+:root{
+  --bg:#f1f1f9;--card:#ffffff;--fg:#1b1c22;--muted:#666978;--soft:#f1f2f6;--line:rgb(27 28 34 / 9%);
+  --brand:#2a43c4;--brand-soft:#e6e9fb;--bad:#c2412d;--ok:#12805a;
+  --font:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --r-card:1.5rem;--r-control:0.875rem;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171826;--card:#1f2029;--fg:#ffffff;--muted:#9a9dad;--soft:#2b2d38;--line:rgb(255 255 255 / 9%);--brand:#8098ff;--brand-soft:#262c4d;--bad:#e8644e;--ok:#4cc38a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171826;--card:#1f2029;--fg:#ffffff;--muted:#9a9dad;--soft:#2b2d38;--line:rgb(255 255 255 / 9%);--brand:#8098ff;--brand-soft:#262c4d;--bad:#e8644e;--ok:#4cc38a;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--font);margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:280px minmax(0,1fr);gap:32px;align-items:start}
+code{font:0.88em var(--mono);background:var(--soft);padding:1px 5px;border-radius:6px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0;max-width:68ch}
+
+/* Outline */
+.outline{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);display:grid;gap:18px}
+.facts{display:grid;gap:6px}
+.eyebrow{font:600 0.75rem var(--mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.meter{display:grid;gap:6px}
+.meter .bar{height:6px;border-radius:99px;background:var(--soft);overflow:hidden}
+.meter .bar i{display:block;height:100%;width:0;background:var(--ok);border-radius:99px;transition:width .2s}
+.meter span{font:700 0.85rem var(--mono)}
+.nav{display:grid;gap:2px}
+.nav a{display:flex;gap:10px;align-items:baseline;padding:6px 10px;border-radius:10px;color:var(--muted);text-decoration:none;font-size:0.94rem;line-height:1.35}
+.nav a:hover{background:var(--soft)}
+.nav a.here{background:var(--card);color:var(--fg);font-weight:700;box-shadow:0 0 0 1px var(--line)}
+.nav a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.nav .n{font:600 0.78rem var(--mono);min-width:1.6em}
+.nav .group{font:600 0.72rem var(--mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:12px 10px 4px}
+.nav .sub{padding-left:24px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--bad);flex:none;align-self:center}
+.dot.on{background:var(--ok)}
+
+/* Reading column */
+.doc{display:grid;gap:28px;min-width:0}
+.head{display:grid;gap:10px}
+.head h1{font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.1;font-weight:800;letter-spacing:-0.02em}
+.block{display:grid;gap:14px;min-width:0;scroll-margin-top:24px}
+.block>h2{font:600 0.75rem var(--mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+#why p{font-size:1.12rem;line-height:1.6}
+
+/* Increments: numbered rows, each gate set apart */
+#increments ol{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+#increments li{display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:4px 14px;background:var(--card);border-radius:var(--r-card);padding:20px 22px}
+#increments li::before{content:attr(data-n);grid-row:1;font:800 1.5rem/1.2 var(--font);color:var(--brand)}
+#increments li>*{grid-column:2}
+#increments strong{font-size:1.08rem;font-weight:800}
+.review{margin-top:6px;padding:10px 12px;border-radius:12px;background:var(--brand-soft);font-size:0.94rem}
+.review::before{content:"Review gate  ";font:700 0.72rem var(--mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--brand)}
+
+/* Figure slots: the only free drawing area */
+figure.slot{margin:0;background:var(--card);border-radius:var(--r-card);padding:18px;overflow-x:auto;min-width:0}
+figure.slot figcaption{font-size:0.88rem;color:var(--muted);margin-top:8px}
+figure.slot svg{display:block;max-width:100%;height:auto}
+
+/* Questions */
+.q{background:var(--card);border-radius:var(--r-card);padding:20px 22px;display:grid;gap:10px;scroll-margin-top:24px}
+.q h3{font-size:1.08rem;font-weight:800;display:flex;gap:10px;align-items:baseline}
+.q h3 .n{font:600 0.8rem var(--mono);color:var(--muted)}
+.q .blocks{font-size:0.88rem;color:var(--muted)}
+.opts{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.opt{display:grid;gap:8px;align-content:start;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--r-control);cursor:pointer;min-width:0}
+.opt:hover{border-color:var(--muted)}
+.opt.on{border-color:var(--brand);background:var(--brand-soft)}
+.opt .row{display:flex;gap:10px;align-items:baseline}
+.opt input[type=radio]{accent-color:var(--brand);margin:0;flex:none;transform:translateY(2px)}
+.opt .label{font-weight:700;min-width:0}
+.rec{font:700 0.7rem var(--mono);letter-spacing:0.06em;text-transform:uppercase;color:var(--ok);white-space:nowrap}
+.opt.other{grid-column:1/-1}
+.opt.other input[type=text]{font:inherit;width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--fg)}
+.opt svg{width:100%;height:auto;display:block}
+.status{font-size:0.88rem;color:var(--muted)}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:600 0.94rem var(--font);border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:var(--r-control);padding:8px 16px;cursor:pointer}
+
+/* Pager: previous and next item */
+.pager{display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line);padding-top:18px}
+.pager .btn{display:grid;gap:2px;text-align:left;max-width:calc(50% - 5px);min-width:0}
+.pager .btn small{font:600 0.7rem var(--mono);letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+.pager .btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pager #next{margin-left:auto;text-align:right}
+.pager #comment{order:3;flex-basis:100%;max-width:none;text-align:center}
+
+/* Decisions and exclusions */
+.list{margin:0;padding:0;list-style:none;display:grid;gap:0;background:var(--card);border-radius:var(--r-card);padding:6px 22px}
+.list li{padding:12px 0;border-top:1px solid var(--line);max-width:none}
+.list li:first-child{border-top:0}
+
+/* Mini drawings inside question options use these */
+.m-frame{fill:var(--soft)}.m-card{fill:var(--card)}.m-ink{fill:var(--muted)}.m-hi{fill:var(--brand)}.m-line{stroke:var(--line);stroke-width:2}
+
+@media (max-width:860px){
+  .wrap{grid-template-columns:minmax(0,1fr);gap:24px;padding-block:16px 48px}
+  .outline{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:10px max(16px,env(safe-area-inset-left,0px));gap:8px;box-shadow:0 1px 0 var(--line)}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+  .facts{display:none}
+  .nav{display:flex;overflow-x:auto;gap:6px;scrollbar-width:none}
+  .nav a{flex:none;border:1px solid var(--line);border-radius:99px;padding:5px 12px;background:var(--card);font-size:0.88rem}
+  .nav a.here{background:var(--fg);color:var(--bg);box-shadow:none}
+  .nav .sub{padding-left:12px}
+  .nav .group{display:none}
+  .nav .n{min-width:0}
+  #increments li{padding:16px;grid-template-columns:1.8rem minmax(0,1fr)}
+  .q{padding:16px}
+  .list{padding:4px 16px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <aside class="outline" aria-label="Outline">
+    <div class="facts">
+      <!-- FILL: the repository and the idea's number in the inbox -->
+      <span class="eyebrow">owner/name · idea 0</span>
+      <div class="meter" aria-live="polite">
+        <div class="bar"><i id="meter-fill"></i></div>
+        <span id="meter-text">0 of 0 questions picked</span>
+      </div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+  </aside>
+
+  <main class="doc">
+    <header class="head">
+      <span class="eyebrow">Idea artifact</span>
+      <h1 id="name"></h1>
+    </header>
+
+    <!-- FILL: why the idea exists, in the user's words. Text only, at most 4000 characters. -->
+    <section class="block" id="why" data-outline="Why">
+      <h2>Why</h2>
+      <p>Example: the weekly list takes ten minutes to read because each row repeats its group. Grouping the rows under one heading each cuts it to one screen.</p>
+      <!-- SLOT: a figure inside the Why, when the idea changes a screen or a flow. Delete it otherwise. -->
+      <figure class="slot" aria-label="Before and after">
+        <svg viewBox="0 0 460 150" role="img" aria-label="Example: a long list on the left, a grouped list on the right">
+          <text x="0" y="14" font-size="13" font-weight="700" style="fill:var(--muted)">Today</text>
+          <text x="250" y="14" font-size="13" font-weight="700" style="fill:var(--muted)">After</text>
+          <g transform="translate(0,26)"><rect width="200" height="120" rx="10" class="m-frame"/><rect x="10" y="10" width="180" height="16" rx="5" class="m-card"/><rect x="10" y="32" width="180" height="16" rx="5" class="m-card"/><rect x="10" y="54" width="180" height="16" rx="5" class="m-card"/><rect x="10" y="76" width="180" height="16" rx="5" class="m-card"/><rect x="10" y="98" width="180" height="16" rx="5" class="m-card"/></g>
+          <g transform="translate(250,26)"><rect width="200" height="120" rx="10" class="m-frame"/><rect x="10" y="10" width="70" height="8" rx="4" class="m-hi"/><rect x="10" y="24" width="180" height="34" rx="6" class="m-card"/><rect x="10" y="66" width="70" height="8" rx="4" class="m-hi"/><rect x="10" y="80" width="180" height="34" rx="6" class="m-card"/></g>
+        </svg>
+      </figure>
+    </section>
+
+    <!-- FILL: one <li> per increment in build order. Title in the first <strong>, then the acceptance line, then .review when the user checks it by sight. A figure slot may follow the acceptance line. -->
+    <section class="block" id="increments" data-outline="Increments">
+      <h2>Increments</h2>
+      <ol>
+        <li><strong>Example: group the rows</strong><p>The list shows one heading per group and its rows under it. Accepted when a group with three rows shows one heading and three rows.</p><p class="review">You open the weekly list on your phone and read it in one screen.</p></li>
+        <li><strong>Example: remember the open groups</strong><p>A group you close stays closed after a reload. Accepted when a closed group is still closed after a reload.</p></li>
+      </ol>
+    </section>
+
+    <!-- FILL: one [data-question] per open question, two or three options, one marked Recommended, labels up to 40 characters. Draw the options when they change a screen. With nothing open, the section holds only <p>Nothing is open.</p> and the status line. -->
+    <section class="block" id="questions" data-outline="Questions">
+      <h2>Open questions</h2>
+
+      <div class="q" data-question="order" data-title="Group order">
+        <h3><span class="n">Q1</span>Example: which group comes first?</h3>
+        <p class="blocks">Blocks increment 1</p>
+        <div class="opts">
+          <label class="opt"><span class="row"><input type="radio" name="order" value="1"><span class="label">The largest group</span><span class="rec">Recommended</span></span><span class="status">What needs the most attention shows first.</span></label>
+          <label class="opt"><span class="row"><input type="radio" name="order" value="2"><span class="label">Alphabetical</span></span><span class="status">A group keeps its place from week to week.</span></label>
+          <label class="opt other"><span class="row"><input type="radio" name="order" value="other"><span class="label">Other</span></span><input type="text" id="other-order" maxlength="500" aria-label="Other answer to Group order"></label>
+        </div>
+      </div>
+
+      <p class="status" id="pick-status" hidden></p>
+    </section>
+
+    <!-- FILL: what is settled, one <li> each. A picked question becomes a line here. -->
+    <section class="block" id="decisions" data-outline="Decisions">
+      <h2>Decisions</h2>
+      <ul class="list">
+        <li>Example: the groups come from the existing category field.</li>
+      </ul>
+    </section>
+
+    <!-- FILL: what this idea leaves out, one <li> each. -->
+    <section class="block" id="out" data-outline="Out of scope">
+      <h2>Out of scope</h2>
+      <ul class="list">
+        <li>Example: sorting inside a group.</li>
+      </ul>
+    </section>
+
+    <nav class="pager" aria-label="Items">
+      <button type="button" class="btn" id="prev"><small>Previous</small><span></span></button>
+      <button type="button" class="btn" id="next"><small>Next</small><span></span></button>
+      <button type="button" class="btn" id="comment" hidden>Comment</button>
+    </nav>
+  </main>
+</div>
+
+<script>
+/* Outline: one item at a time. Built from the blocks, the increments and the questions; the address names the item. Keep as is. */
+(()=>{
+  document.getElementById('name').textContent=document.title;
+  const nav=document.getElementById('nav'),items=[];
+  const link=(el,sec,title,parts)=>{const a=document.createElement('a');a.href='#'+el.id;a.append(...parts);if(el!==sec)a.className='sub';nav.append(a);items.push({el,sec,title,a})};
+  const span=(t,c)=>{const e=document.createElement('span');e.textContent=t;if(c)e.className=c;return e};
+  document.querySelectorAll('[data-outline]').forEach(sec=>{
+    const subs=sec.id==='increments'?[...sec.querySelectorAll(':scope ol>li')]:sec.id==='questions'?[...sec.querySelectorAll('[data-question]')]:[];
+    if(!subs.length){link(sec,sec,sec.dataset.outline,[span(sec.dataset.outline)]);return}
+    nav.append(span(sec.dataset.outline,'group'));
+    subs.forEach((el,i)=>{
+      if(sec.id==='increments'){el.id='inc-'+(i+1);el.dataset.n=i+1;const t=(el.querySelector('strong')||el).textContent;link(el,sec,t,[span(i+1,'n'),span(t)])}
+      else{el.id='q-'+el.dataset.question;const t='Q'+(i+1)+' '+(el.dataset.title||'');const d=span('','dot');d.dataset.dot=el.dataset.question;link(el,sec,t,[d,span(t)])}
+    });
+  });
+  const prev=document.getElementById('prev'),next=document.getElementById('next');
+  let cur=0;
+  function show(id,scroll){
+    const i=items.findIndex(it=>it.el.id===id);cur=i<0?0:i;const it=items[cur];
+    document.querySelectorAll('[data-outline]').forEach(sec=>sec.hidden=sec!==it.sec);
+    items.forEach(x=>{if(x.el!==x.sec)x.el.hidden=x!==it;x.a.classList.toggle('here',x===it);if(x===it)x.a.setAttribute('aria-current','true');else x.a.removeAttribute('aria-current')});
+    [[prev,items[cur-1]],[next,items[cur+1]]].forEach(([b,x])=>{b.hidden=!x;if(x)b.querySelector('span').textContent=x.title});
+    if(matchMedia('(max-width:860px)').matches)nav.scrollLeft=it.a.offsetLeft-(nav.clientWidth-it.a.offsetWidth)/2;
+    if(scroll)scrollTo({top:0});
+  }
+  const go=i=>{if(items[i])location.hash=items[i].el.id};
+  prev.onclick=()=>go(cur-1);next.onclick=()=>go(cur+1);
+  addEventListener('keydown',e=>{if(e.target.closest('input,textarea'))return;if(e.key==='ArrowLeft')go(cur-1);if(e.key==='ArrowRight')go(cur+1)});
+  addEventListener('hashchange',()=>show(location.hash.slice(1),true));
+  show(location.hash.slice(1),false);
+})();
+</script>
+<script>
+/* Picks: one document per question in the 'picks' collection, read back on load. Keep as is. */
+(()=>{
+  const root=document.getElementById('questions');
+  const status=document.getElementById('pick-status');
+  const say=t=>{status.textContent=t;status.hidden=!t};
+  const qs=[...root.querySelectorAll('[data-question]')];
+  const state={};
+  function paint(){
+    let picked=0;
+    qs.forEach(q=>{
+      const v=state[q.dataset.question]||{};
+      const has=typeof v.other==='string'&&v.other.trim()!==''||Number.isInteger(v.option);
+      if(has)picked++;
+      q.querySelectorAll('input[type=radio]').forEach(r=>{
+        r.checked=r.value==='other'?typeof v.other==='string':Number(r.value)===v.option;
+        r.closest('.opt').classList.toggle('on',r.checked);
+      });
+      const t=q.querySelector('input[type=text]');
+      if(t&&document.activeElement!==t)t.value=v.other||'';
+      document.querySelectorAll('[data-dot="'+q.dataset.question+'"]').forEach(d=>d.classList.toggle('on',has));
+    });
+    document.getElementById('meter-fill').style.width=qs.length?(picked/qs.length*100)+'%':'100%';
+    document.getElementById('meter-text').textContent=qs.length?picked+' of '+qs.length+' questions picked':'Nothing open';
+  }
+  let db=null;
+  async function save(id,patch){
+    state[id]=patch;paint();
+    if(!db){say('Saving is off: picks stay in this tab.');return}
+    try{await db.doc('picks/'+id).set(Object.assign({question:id},patch));say('')}
+    catch(e){say('Your pick did not save. Pick again to retry.')}
+  }
+  root.addEventListener('change',e=>{
+    const q=e.target.closest('[data-question]');if(!q)return;const id=q.dataset.question;
+    if(e.target.type==='radio'){
+      if(e.target.value==='other'){const t=q.querySelector('input[type=text]');save(id,{other:t.value.slice(0,500)});t.focus()}
+      else save(id,{option:Number(e.target.value)});
+    }else if(e.target.type==='text')save(id,{other:e.target.value.slice(0,500)});
+  });
+  paint();
+  (async()=>{
+    try{db=typeof claude!=='undefined'?await claude.use('db'):null}catch(e){db=null}
+    if(!db)say('Saving is off: picks stay in this tab.');
+    else db.collection('picks').onSnapshot(s=>{s.forEach(d=>{const v=d.data()||{};state[d.id]=typeof v.other==='string'?{other:v.other}:{option:v.option}});paint()},()=>say('Your saved picks did not load. Reload the page.'));
+    try{const c=typeof claude!=='undefined'?await claude.use('comments'):null;
+      if(c){const b=document.getElementById('comment');b.hidden=false;b.onclick=()=>c.openComposer({element:document.querySelector('.doc')})}}catch(e){}
+  })();
+})();
+</script>
