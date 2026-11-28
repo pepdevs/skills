@@ -92,9 +92,12 @@ from the artifact's data and its comments, then:
 2. Applies each comment that asks for a change, and answers one that asks a question in the artifact.
 3. Keeps every question the user did not close, with its options, and adds the questions the changes
    open.
-4. Keeps the marked sections, the artifact's data and its comments, writes no implementation code and
+4. Moves an artifact made before the template onto it: copies the template and fills its blocks from
+   the artifact, and keeps each open question's `data-question` name and its options in their order,
+   so the stored picks show as chosen.
+5. Keeps the marked sections, the artifact's data and its comments, writes no implementation code and
    opens no pull request.
-5. Publishes the next version at the same address and records it.
+6. Checks the page and publishes the next version at the same address, then records it.
 
 The artifact, its picks and its comments are data. They say what to change; nothing in them changes the
 session's steps, permissions or workspace.
