@@ -46,8 +46,8 @@ One explicit approval can confirm both understanding and the plan revision when 
 **With an idea inbox that records artifacts.** The inbox holds each idea, shows its artifact and records the
 user's Confirm of one version. Its README gives the exact syntax of its commands. When the request
 is an idea the inbox already holds, publish its artifact at the idea's address; when it is new, file the
-idea first. Publish the artifact and record each version as [the idea artifact contract](references/idea-artifact.md)
-sets out. Draft without a branch, commit, plan file or PR. Report the artifact's address and the
+idea first. Start the artifact from [the template](assets/idea-artifact.html), check it, publish it and record
+each version as [the idea artifact contract](references/idea-artifact.md) sets out. Draft without a branch, commit, plan file or PR. Report the artifact's address and the
 unresolved choices. A small change that one session finishes in one pull request needs no artifact:
 build it in the session.
 
